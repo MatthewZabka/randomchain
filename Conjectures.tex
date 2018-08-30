@@ -1,0 +1,70 @@
+\section{Conjectures}
+This section consists of a bunch of miscellaneous facts and conjectures that
+either we should include or not, but either way, I think we should understand
+them. In particular, I think these will be useful things to know to get a good
+grasp on what's really going on. 
+
+\begin{conjecture}
+ Consider the following.
+  \begin{enumerate}
+    \item Fix $r$. As a function of $k$, $P^m_k(r)$ is decreasing on its support.
+    \item Fix $k$. As a function of $r$, $P^m_k(r)$ is increasing on its support.
+    \item $P^m_k(r)$ has a maximum when $k = r$, as either variable changes.
+    \item $P^m_{r+1}(r) > P^m_r(r-1)$.
+  \end{enumerate}
+\end{conjecture}
+
+\mc{The following isn't a conjecture. We have a very simple proof by induction.}
+
+\begin{theorem}
+  \[
+    \bP[\beta_j = b_j] = \sum_{i_j=0}^{n_j} P^j_{i_j}(i_j-b_j)
+    \sum_{i_{j-1}=0}^{n_{j-1}} P^{j-1}_{i_{j-1}}(n_j-i_j) \cdots
+    \sum_{i_1=0}^{n_1}P^1_{i_1}(n_2-i_2)
+    P^0_{n_0}(n_1-i_1)
+  \]
+\end{theorem}
+
+\begin{question} 
+  What is the max of $\bP[\beta_1=b]$, as a function of $b$? For
+  what $b$ is the max attained? The same questions for $\bP[\beta_2=b]$.
+\end{question}
+
+\begin{question}
+  What if $n_0 = w$ and $n>0 = 2w$? Intuitively, we would expect these numbers
+  to not depend on the degree of the chain complex. Something similar should
+  be true for any sequence of $(n_i)$ which converge.
+\end{question}
+
+\begin{question}
+  What does this formula say if there exists $N >0$ so that $n_i=0$ for 
+  all $i > N$? Specifically, $\bP[\beta_i=0] = 1$ and $\bP[\beta_i > 0]= 0$ 
+  for $i>N$.
+\end{question}
+
+Using the same logic as the previous theorem, I'm {\em pretty sure} we have
+the following.
+
+\begin{conjecture}
+  \[
+    \bP[\rank A_m = r_m] = \sum_{i_{m-1}=0}^{n_{m-1}} P^{m-1}_{i_{m-1}}(r_m)
+    \sum_{i_{m-2} = 0}^{n_{m-2}} P^{m-2}_{i_{m-2}}(n_{m-1}- i_{m-1})
+    \cdots \sum_{i_1 = 0}^{n_2}P^1_{i_1}(n_2-i_2) P^0_{n_0}(n_1-i_1)
+  \]
+\end{conjecture}
+
+
+\begin{question} What distribution does the random variable
+  $\rank(A_m)$ follow? What are its moments?
+\end{question}
+
+\begin{conjecture}
+  Attempt to answer all of the following in cases:
+  (i) $n_i$ is eventually constant, (ii) $n_i \sim o(i)$.
+  \begin{enumerate}
+    \item $\bP[\beta_m = 0] \ra ?$ as $m \ra \infty$.
+    \item $\bP[\beta_m = j] \ra ?$ as $m \ra \infty$, $j>0$.
+    \item $\bE[\beta_m] = ?$ as $m \ra \infty$.
+  \end{enumerate}
+\end{conjecture}
+

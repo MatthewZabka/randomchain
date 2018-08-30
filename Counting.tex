@@ -1,0 +1,60 @@
+\section{Preliminaries}
+Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements. We are 
+interested in chain complexes over $\Fq$, given by
+\[
+  \cdots \lra \Fqn{n_m} \stackrel{A_m}{\lra} \Fqn{n_{m-1}} 
+  \stackrel{A_{m-1}}{\lra} \cdots \stackrel{A_2}{\lra} \Fqn{n_1} 
+  \stackrel{A_1}{\lra} \Fqn{n_0} \stackrel{A_0}{\lra} 0 \, ,
+\]
+where each $n_i$ is a natural number, and $A_{i+1}A_i=0$ for every $i\geq 0$. The
+linear transformations $A_i$ are chosen randomly, subject to $\im A_{i+1} \subset 
+\ker A_{i}$ for every $i \geq 0$.
+
+This section consists of several lemmas that count the number of elements in various sets related to $\mathbb{F}_q$.  We provide proofs for these lemmas, but an interested reader can see \cite{stanley2011enumerative} for further details. 
+\begin{lemma}\label{NumkTup}
+  The number of ordered, linear independent $k$-tuples of vectors in $\Fqn{n}$  is
+\[
+(q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n - q^{k-2})(q^n-q^{k-1}).
+\]
+\end{lemma}
+
+\begin{proof}
+Since first vector in the $k$-tuple may be any vector except for the zero vector, there are $q^n-1$ choices for the first vector.  For $1<m \leq k$, the $m$-th vector in the $k$-tuple may be any vector that is not a linear combination of the previously chosen $m-1$ vectors. So there are $q^n - q^{m-1}$ choices for the $m$-th vector.
+\end{proof}
+
+The number $\qbin{n}{k}$ defined in the next theorem is known as the $q$-binomial coefficient.
+
+\begin{lemma}\label{NumkSub}
+  The number of $k$-dimensional subspaces of $\Fqn{n}$ is
+\[
+\qbin{n}{k} = \frac{(q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n - q^{k-2})(q^n-q^{k-1})}{(q^k-1)(q^k-q)(q^k-q^2)\cdots(q^k - q^{k-2})(q^k-q^{k-1})}.
+\]
+\end{lemma}
+
+
+\begin{proof}
+  Let $\qbin{n}{k}$ denote the number of $k$-dimensional subspaces of $\Fqn{n}$ and $N(q,k)$ be the number of ordered, linear independent $k$-tuples of vectors in $\Fqn{n}$.  Then Corollary \ref{NumkTup} gives
+\begin{equation}\label{Nqk1}
+N(q,k) = (q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n - q^{k-2})(q^n-q^{k-1}).
+\end{equation}
+We may also find $N(q,k)$ another way: We can first choose a $k$-dimensional subspace and then choose the independent vectors in our $k$-tuple from the chosen subspace.  There are $\qbin{n}{k}$ $k$-dimensional subspaces of $\Fqn{n}$.  Then, there are $q^k-1$ choices for the first vector in the $k$-tuple, and, for $1<m \leq k$, there are $q^k - q^{m-1}$ vectors for the $m$-th vector in the $k$-tuple.  Thus
+\begin{equation}\label{Nqk2}
+N(q,k) = \qbin{n}{k}(q^k-1)(q^k-q)(q^k-q^2)\cdots(q^k - q^{k-2})(q^k-q^{k-1}).
+\end{equation}
+Equations (\ref{Nqk1}) and (\ref{Nqk2}) give the required result.
+\end{proof}
+
+\begin{lemma}\label{Num_mbyn_rankr}
+The number if $m\times n$ matrices of rank $r$ is given by
+\begin{align*}
+	&\qbin{m}{r}(q^n-1)(q^n-q)\cdots (q^n-q^{r-1})\\
+   =& \qbin{n}{r}(q^m-1)(q^m-q)\cdots (q^m-q^{r-1})\\
+   =& \frac{(q^m-1) (q^m-q) \cdots (q^m-q^{r-1})\cdot
+            (q^n-1) (q^n-q) \cdots (q^n-q^{r-1})}
+	 		      {(q^r-1)(q^r - q)(q^r - q^2)\cdots (q^r - q^{r-2})(q^r-q^{r-1})}
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+  Let $W$ be a fixed $r$-dimensional subspace of $\Fqn{n}$.  Then the number of matrices whose column space is $W$ is given by the number of $r\times n$ matrices with rank $r$.  This number is given by Lemma \ref{NumkTup}. The number of $r$-dimensional subspaces of $\Fqn{n}$ is $\qbin{m}{r}$, as stated in Lemma \ref{NumkSub}.  The product of these is the number of $m\times n$ rank $r$ matrices.
+\end{proof}

@@ -1,0 +1,24 @@
+Topology's tools have become very popular for analyzing data, and as one usually regards data as a random vector, some have attempted to apply randomness to topological ideas.  For example, Ginzburg and Pasechnik
+\cite{ginzburg2017random} have investigated a random chain complex
+with constant differential, while Zabka \cite{zabka2018random} has investigated
+a random Bockstein operator.  Both of these papers have investigated their
+topics in a strictly algebraic setting, and in this paper, we too shall
+investigate a random chain complex in a strictly algebraic setting.
+
+Chain complexes arise in topology as an algebraic measure in different
+dimensions of the relationship between the cycles and boundaries of a
+topological space. In particular, a chain complex defined on a space gives us a
+way to calculate that space's homology groups.
+
+Formally, a {\em chain complex $(C_n, \delta_n)$ } is a sequence of modules, denoted $C_n$, and a sequence of linear transformations $\delta_n : C_n \to C_{n-1}$ that satisfy the `boundary' condition
+$\delta_{n-1}\delta_n = 0$ for all $n$. The $\delta_n$ are usually called the
+boundary maps of the chain complex. An interested reader can see \cite{hatcher2002algebraic} for further details.
+
+Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements. Consider the sequence of vector spaces $\Fqn{n_m}$ indexed by $m$ in the integers.  Let $A_m$ be a random sequence of $(n_{m-1})\times (n_m)$ matrices whose entries are chosen i.i.d. uniformly from $\Fq$, subject to the condition that the product of consecutive matrices is zero.  We then consider the random chain complex $(\Fqn{n_m},A_m)$. That is, we consider
+\[
+  \cdots \stackrel{A_{m+1}}{\lra} \Fqn{n_m} \stackrel{A_m}{\lra} \Fqn{n_{m-1}} 
+  \stackrel{A_{m-1}}{\lra} \cdots 
+\]
+where $A_{i+1}A_i=0$ for every $i$. 
+
+We have two main results. We first show that, as $q$ goes to infinity, homology is concentrated in dimension zero.  We then derive an explicit formula for the distribution of the Betti numbers.
