@@ -1,30 +1,31 @@
-Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements. Let $n_m$ be a sequence of natural numbers. Consider the sequence of finite vector spaces $\Fqn{n_m}$ indexed by $m$ in the integers.  Let $A_m$ be a random sequence of $(n_{m-1})\times (n_m)$ matrices whose entries are chosen i.i.d. uniformly from $\Fq$, subject to the condition that the product of consecutive matrices is zero.  We then consider the random chain complex $(\Fqn{n_m},A_m)$. That is, we consider
-\[
-  \cdots \stackrel{A_{m+1}}{\lra} \Fqn{n_m} \stackrel{A_m}{\lra} \Fqn{n_{m-1}} 
-  \stackrel{A_{m-1}}{\lra} \cdots 
-\]
-where $A_{i+1}A_i=0$ for every $i$. 
+Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements. Let $n_m$ be a sequence of natural numbers. Consider the sequence of finite vector spaces $\Fqn{n_m}$ indexed by $m$ in the integers.  We iteratively construct a sequence $A_m$ of random $(n_{m-1})\times (n_m)$ matrices.
 
-Having already constructed $A_{m}$, we may suppose that its kernel has dimension $k$.  Then the set of maps from $\Fqn{n}$ to $\ker A_{m}$ are in one-to-one correspondence with the set of $n\times k$ matrices with entries in $\Fqn{n}$, of which there are $q^{nk}$.
-\mc{Is this our proof that it doesn't actually depend on which
-vector subspace the kernel is? All that matters is its dimension?}
+Suppose we know $A_{m}$. Let $A_{m+1}$ be a random $(n_{m})\times (n_{m+1})$ matrix whose entries are chosen i.i.d. uniformly from $\Fq$, subject to the condition that $A_{m+1}A_{m} = 0$. We shall see that it suffices to know only $\nul(A_m) = \dim\ker A_{m}$ in our investigation.
 
-Next, we wish to investigate the $m$-th Betti number, $\beta_m := \dim(H_m(A_\ast; \Fqn{n}))$.  Recall that $H_m(A_\ast;\Fqn{n}) = \ker (A_{m})/ A_{m+1}(\Fqn{n})$, so $\beta_m = k - \rank(A_{m+1})$.  We are therefore interested in the probabilistic properties of $\rank(A_{m+1})$ given that $A_{m}A_{m+1} = 0$ and that $\dim\ker(A_{m}) = k$. 
+\begin{definition}
+Let $n_m$ be a sequence of natural numbers. A \textbf{random chain complex} is a pair $(\Fqn{n_m},A_m)$, where $A_m$ is an iteratively defined sequence of random of $(n_{m-1})\times (n_m)$ matrices, as defined above.  
+\end{definition}
 
-Let $r \leq k$ be a non-negative integer and let 
+
+
+We wish to investigate the probabilistic properties of the $m$-th Betti number for a random chain complex, $\beta_m := \dim(H_m(A_\ast; \Fqn{n}))$.  Recall that $H_m(A_\ast;\Fqn{n}) = \ker (A_{m})/ A_{m+1}(\Fqn{n})$, so $\beta_m = k - \rank(A_{m+1})$.  We are therefore interested in the probabilistic properties of $\rank(A_{m+1})$ given that $A_{m}A_{m+1} = 0$ and that $\nul(A_{m}) = k$. 
+
+
+\begin{definition}
+
+Let $r \leq k$ be a non-negative integer.  Define 
 \[
   P^m_k(r) := \mathbb{P} 
   \left[\rank(A_{m+1}) = r|A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right] \, .
 \]
+\end{definition}
 
-Note that the above is equivalent to
+As the $A_m$ are uniformly distributed, we immediately have that
 \[
 P^m_k(r) = \mathbb{P}\left[\beta_m = k-r | A_{m}A_{m+1} = 0, \nul(A_{m}) = k\right] \, .
 \]
 
-\mc{This depends on every matrix being uniformly distributed, which
-  follows from the uniform distribution on $\Fq$. We should mention or 
-remark this.}
+
 Lemma~\ref{Num_mbyn_rankr} gives us the following.
 \begin{lemma}
 \[
@@ -37,9 +38,6 @@ P^m_k(r) = \begin{cases}
             \end{cases}
 \]
 \end{lemma}
-\mz{We've defined $P_k(r)$ several ways above -- this needs to be fixed.}\\
-\mc{I think we've fixed this now. Right?}                        
-
 
 \mc{The following theorem is no longer true in general. It fails if
   $n_{m+1} < k$, but it is still true if $n_m = n_{m+1}$. One possible
