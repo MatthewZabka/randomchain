@@ -6,38 +6,12 @@ Suppose we know $A_{m}$. Let $A_{m+1}$ be a random $(n_{m})\times (n_{m+1})$ mat
 Let $n_m$ be a sequence of natural numbers. A \textbf{random chain complex} is a pair $(\Fqn{n_m},A_m)$, where $A_m$ is an iteratively defined sequence of random of $(n_{m-1})\times (n_m)$ matrices, as defined above.  
 \end{definition}
 
-
+As the $A_m$ are uniformly distributed, Definition \ref{defPkmr} gives us that
+\[
+P^m_k(r) = \mathbb{P}\left[\beta_m = k-r | \nul(A_{m}) = k\right] \, .
+\]
 
 We wish to investigate the probabilistic properties of the $m$-th Betti number for a random chain complex, $\beta_m := \dim(H_m(A_\ast; \Fqn{n}))$.  Recall that $H_m(A_\ast;\Fqn{n}) = \ker (A_{m})/ A_{m+1}(\Fqn{n})$, so $\beta_m = k - \rank(A_{m+1})$.  We are therefore interested in the probabilistic properties of $\rank(A_{m+1})$ given that $A_{m}A_{m+1} = 0$ and that $\nul(A_{m}) = k$. 
-
-
-\begin{definition}
-
-Let $r \leq k$ be a non-negative integer.  Define 
-\[
-  P^m_k(r) := \mathbb{P} 
-  \left[\rank(A_{m+1}) = r|A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right] \, .
-\]
-\end{definition}
-
-As the $A_m$ are uniformly distributed, we immediately have that
-\[
-P^m_k(r) = \mathbb{P}\left[\beta_m = k-r | A_{m}A_{m+1} = 0, \nul(A_{m}) = k\right] \, .
-\]
-
-
-Lemma~\ref{Num_mbyn_rankr} gives us the following.
-\begin{lemma}
-\[
-P^m_k(r) = \begin{cases}
-  {\displaystyle \frac{\left(\prod_{j=0}^{r-1}\left(q^{n_{m+1}}-q^{j}\right)\right)
-  \left(\prod_{j=0}^{r-1}\left(q^k - q^j \right) \right)}
-  {q^{kn_{m+1}} \left(\prod_{j=0}^{r-1} \left(q^r-q^j\right)\right)}}
-            					& \textrm{ if } k\neq 0,\\
-           0					&  \textrm{ if }  r>k. 
-            \end{cases}
-\]
-\end{lemma}
 
 \mc{The following theorem is no longer true in general. It fails if
   $n_{m+1} < k$, but it is still true if $n_m = n_{m+1}$. One possible

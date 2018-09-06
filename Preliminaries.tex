@@ -48,3 +48,32 @@ The number of $m\times n$ matrices with entries in $\Fq$ of rank $r$ is given by
 \begin{proof}
   Let $W$ be a fixed $r$-dimensional subspace of $\Fqn{n}$.  Then the number of matrices whose column space is $W$ is given by the number of $r\times n$ matrices with rank $r$.  This number is given by Lemma \ref{NumkTup}. The number of $r$-dimensional subspaces of $\Fqn{n}$ is $\qbin{m}{r}$, as stated in Lemma \ref{NumkSub}.  The product of these is the number of $m\times n$ rank $r$ matrices.
 \end{proof}
+
+We now turn our attention to a sequence of random matrices.\mz{I've moved this stuff to Section 2. We can talk about this}
+
+\begin{definition}\label{defPkmr}
+Let $n_m$ be a sequence of natural numbers. Let $B_m$ be a sequence of random $(n_m) \times (n_{m-1})$ matrices whose entries are chosen i.i.d. uniformly from $\Fq$. Let $r$ be a non-negative integer.  Define 
+\[
+  P^m_k(r) := \mathbb{P} 
+  \left[\rank(B_{m+1}) = r|B_{m}B_{m+1} = 0, \nul(B_{m}) = k \right] \, .
+\]
+\end{definition}
+
+
+Lemma~\ref{Num_mbyn_rankr} gives us the following.
+
+\begin{lemma} With $B_m$ defined as in Definition \ref{defPkmr}, we have that
+\[
+P^m_k(r) = \begin{cases}
+  {\displaystyle \frac{\left(\prod_{j=0}^{r-1}\left(q^{n_{m+1}}-q^{j}\right)\right)
+  \left(\prod_{j=0}^{r-1}\left(q^k - q^j \right) \right)}
+  {q^{kn_{m+1}} \left(\prod_{j=0}^{r-1} \left(q^r-q^j\right)\right)}}
+            					& \textrm{ if } k\neq 0,\\
+           0					& \textrm{ if }  r>k,\\
+           1					& \textrm{ if } r = k = 0.
+            \end{cases}
+\]
+\end{lemma}
+\begin{proof}
+If $k= \nul(B_{m})$ and $B_mB_{m+1} = 0$, then $B_{m+1}$ maps $\Fq^{n_{m+1}}$ into the kernel of $B_m$, and thus $\rank(B_{m+1}) \leq k$.  Therefore, if $r>k$, we have $P^m_k(r) = 0$.
+\end{proof}
