@@ -1,21 +1,24 @@
 Recall that a chain complex consists of a pair of sequences $(C_n, \delta_n)$, where the $C_n$ are appropriate spaces (vector spaces, groups, modules, etc.) and the $\delta_n$ are maps, $\delta_n: C_n \to C_{n-1}$ such that $\delta_{n-1}\delta_n = 0$.  
 
-Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements. Let $n_m$ be a sequence of natural numbers. Consider the sequence of finite vector spaces $\Fqn{n_m}$ indexed by $m$.  We iteratively construct a sequence $A_m$ of random $(n_{m-1})\times (n_m)$ matrices.
+Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements. Let $n_m$ be a sequence of natural numbers. Consider the sequence of finite vector spaces $\Fqn{n_m}$ indexed by $m$.  We iteratively construct a sequence $A_m$ of boundary maps from $Fq^{n_m}$ into $\Fq^{n_{m-1}}$.
 
-Suppose we know $A_{m}$. Let $A_{m+1}$ be a random $(n_{m})\times (n_{m+1})$ matrix whose entries are chosen i.i.d. uniformly from $\Fq$, subject to the condition that $A_{m+1}A_{m} = 0$.
+Let $A_0:\Fq^{n_0} \to 0$ be the zero map. Suppose for $m>0$ that $A_{m}:\Fq^{n_m} \to \Fq^{n_{m-1}}$ is known. Let $A_{m+1}$ be the random map that is given by the random $(n_{m})\times (n_{m+1})$ matrix whose entries are chosen i.i.d. uniformly from $\Fq$, subject to the condition that $A_{m+1}A_{m} = 0$.
 
 \begin{definition}
-Let $n_m$ be a sequence of natural numbers. A \textbf{random chain complex} is a pair $(\Fqn{n_m},A_m)$, where $A_m$ is an iteratively defined sequence of random of $(n_{m-1})\times (n_m)$ matrices, as defined above.  
+Let $n_m$ be a sequence of natural numbers. A \textbf{random chain complex} is a pair $(\Fqn{n_m},A_m)$, where $A_m$ is an iteratively defined sequence of random linear transformations given by random $(n_{m-1})\times (n_m)$ matrices, as defined above.
 \end{definition}
 
 We wish to investigate the probabilistic properties of the homology of a random chain complex.  We are primarily interested in the distribution of the Betti numbers $\beta_m := \dim(H_m(A_\ast; \Fqn{n}))$.  Recall that $H_m(A_\ast;\Fqn{n}) = \ker (A_{m})/ A_{m+1}(\Fqn{n})$, so if $k= \ker(A_m)$, then $\beta_m = k - \rank(A_{m+1})$.  We are therefore interested in the probabilistic properties of $\rank(A_{m+1})$ given that $A_{m}A_{m+1} = 0$ and that $\nul(A_{m}) = k$. 
 
+
 \begin{remark}
-As the $A_m$ are uniformly distributed, Definition \ref{defPkmr} immediately gives us that
+As the $A_m$ of a random chain complex are uniformly distributed, Definition \ref{defPkmr} immediately gives us that
 \[
-P^m_k(r) = \mathbb{P}\left[\beta_m = k-r | \nul(A_{m}) = k\right] \, .
+P^m_k(r) = \mathbb{P}\left[\beta_m = k-r | \nul(A_{m}) = k\right].
 \]
 \end{remark}
+
+We are now ready to state our first theorem. \mz{If we know anything about $\lim_{q\to\infty} \Fq$, we should state it here.}
 
 %\mc{The following theorem is no longer true in general. It fails if $n_{m+1} < k$, but it is still true if $n_m = n_{m+1}$. One possible fix is to just impose $k \leq n_{m+1}$. This proposed fix may be   unnatural. In any case, there should be some condition on $k$ in the statement, since its a bound variable.}
 \mz{Letting $k\leq n_{m+1}$ seems fine to me, but what about Definition \ref{defPkmr}?}
@@ -24,7 +27,7 @@ P^m_k(r) = \mathbb{P}\left[\beta_m = k-r | \nul(A_{m}) = k\right] \, .
 \begin{theorem}\label{Condptoinfty}
 Let $\beta_m$ be the $m$-th Betti number of a random chain complex.  If $k\leq n_{m+1}$, then
 \[
-\mathbb{P}\left[\beta_m=0| A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right] \to 1 \textrm{ as } q\to\infty.
+\mathbb{P}\left[\beta_m=0| \nul(A_{m}) = k \right] \to 1 \textrm{ as } q\to\infty.
 \]
 \end{theorem}
 
@@ -39,7 +42,7 @@ We have
 		&=& \frac{\prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j)}
 		{q^{kn_{m+1}}} \\
 		%&=& \frac{\prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j)}{q^{n_{m+1}k}}\\
-		%&=& \frac{q^{kn_{m+1}}}{q^{kn_{m+1}}}\prod_{j=0}^{k-1}(1-q^{j-n_{m+1}})\\
+		&=& \frac{q^{kn_{m+1}}}{q^{kn_{m+1}}}\prod_{j=0}^{k-1}(1-q^{j-n_{m+1}})\\
 		&=& \prod_{j=0}^{k-1} (1-q^{j-n_{m+1}}),
 	\end{eqnarray*}
 which tends to 1 as $q\to\infty$.  
@@ -48,9 +51,9 @@ which tends to 1 as $q\to\infty$.
 The previous theorem immediately leads to two corollaries.  
 
 \begin{corollary}\label{condtozero}
-Let $b$ be a positive integer that is less than or equal to $k$. Then 
+Let $\beta_m$ be the $m$-th Betti number of a random chain complex. Let $b$ be a positive integer that is less than or equal to $k$. Then 
 \[
-\mathbb{P}[\beta_m = b| A_{m}A_{m+1} = 0, \nul(A_{m}) = k ] \to 0 \textrm{ as } q\to\infty.
+\mathbb{P}[\beta_m = b| \nul(A_{m}) = k ] \to 0 \textrm{ as } q\to\infty.
 \]
 \end{corollary}
 \begin{proof}
@@ -64,7 +67,10 @@ By Theorem~\ref{Condptoinfty}, this goes to $0$ as $q$ goes to infinity.
 \end{proof}
 
 \begin{corollary}
-$\mathbb{E}[\beta_m | A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ] \to n$ as $q\to\infty$.
+Let $\beta_m$ be the $m$-th Betti number of a random chain complex.  Then 
+\[
+\mathbb{E}[\beta_m | \nul(A_{m}) = k ] \to n \textrm{ as } q\to\infty.
+\]
 \begin{proof}
 The conditional expectation of the $m$-th Betti number is given by
 	\begin{eqnarray*}
@@ -81,3 +87,30 @@ n\mathbb{P}(\beta_m=0| A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ),
 which goes to $n$ has $q$ goes to infinity by Theorem~\ref{Condptoinfty}.
 \end{proof}
 \end{corollary}
+
+We next derive explicit formulas for the distributions of the Betti numbers of a random chain complex.
+
+\mz{We'll have to say something about the sequence $b_j$ so that each entry lies in an appropriate range.}
+
+\mz{Note that conditioning on $A_mA_{m+1}$ doesn't do anything, because this is a random chain complex?}
+
+\mz{We need to have $n_m = n$ for this part so that all the rank plus nullity stuff works out.}
+
+\begin{theorem} Let $\beta_j$ be the $j$-th Betti number of the random chain complex $(\Fq^{n} , A_m)$. Then
+  \[
+    \bP[\beta_j = b_j] = \sum_{i_j=0}^{n} P^j_{i_j}(i_j-b_j)
+    \sum_{i_{j-1}=0}^{n_{j}} P^{j-1}_{i_{j-1}}(n-i_j) \cdots
+    \sum_{i_1=0}^{n}P^1_{i_1}(n-i_2)
+    P^0_{n}(n_1-i_1).
+  \]
+\end{theorem}
+\begin{proof}
+The proof is by induction on $j$.  For the basis case $j=0$, we have that $\nul(A_0) = n_0$.  Therefore, by Theorem \ref{Num_mbyn_rankr}, we have
+\begin{align*}
+  \mathbb{P}[\beta_0 = b_0] 
+   &= \mathbb{P}[\rank(A_1) = n - b_0] \\
+   &= \mathbb{P}[\rank(A_1) = n - b_0 | \nul(A_0) = n] \\
+%  &= \frac{1}{q^{n^2}} \qbin{n}{n_0-b_0} \, (q^{n_0}-1) (q^{n_0} - q) \cdots (q^{n_0} - q^{{n_0}-b_0-1}) \\
+   &= P^0_{n}(n_0 - b_0)
+\end{align*}
+\end{proof}
