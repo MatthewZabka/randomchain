@@ -1,6 +1,6 @@
 Recall that a chain complex consists of a pair of sequences $(C_n, \delta_n)$, where the $C_n$ are appropriate spaces (vector spaces, groups, modules, etc.) and the $\delta_n$ are maps, $\delta_n: C_n \to C_{n-1}$ such that $\delta_{n-1}\delta_n = 0$.  
 
-Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements. Let $n_m$ be a sequence of natural numbers. Consider the sequence of finite vector spaces $\Fqn{n_m}$ indexed by $m$.  We iteratively construct a sequence $A_m$ of boundary maps from $Fq^{n_m}$ into $\Fq^{n_{m-1}}$.
+Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements. Let $n_m$ be a sequence of natural numbers. Consider the sequence of finite vector spaces $\Fqn{n_m}$ indexed by $m$.  We iteratively construct a sequence $A_m$ of boundary maps from $\Fq^{n_m}$ into $\Fq^{n_{m-1}}$.
 
 Let $A_0:\Fq^{n_0} \to 0$ be the zero map. Suppose for $m>0$ that $A_{m}:\Fq^{n_m} \to \Fq^{n_{m-1}}$ is known. Let $A_{m+1}$ be the random map that is given by the random $(n_{m})\times (n_{m+1})$ matrix whose entries are chosen i.i.d. uniformly from $\Fq$, subject to the condition that $A_{m+1}A_{m} = 0$.
 
@@ -18,11 +18,12 @@ P^m_k(r) = \mathbb{P}\left[\beta_m = k-r | \nul(A_{m}) = k\right].
 \]
 \end{remark}
 
-We are now ready to state our first theorem. \mz{If we know anything about $\lim_{q\to\infty} \Fq$, we should state it here.}
+\mz{If we know anything about $\lim_{q\to\infty} \Fq$, we should state it here.}
 
-%\mc{The following theorem is no longer true in general. It fails if $n_{m+1} < k$, but it is still true if $n_m = n_{m+1}$. One possible fix is to just impose $k \leq n_{m+1}$. This proposed fix may be   unnatural. In any case, there should be some condition on $k$ in the statement, since its a bound variable.}
+
+We are now ready to state our first theorem.
+
 \mz{Letting $k\leq n_{m+1}$ seems fine to me, but what about Definition \ref{defPkmr}?}
-
 
 \begin{theorem}\label{Condptoinfty}
 Let $\beta_m$ be the $m$-th Betti number of a random chain complex.  If $k\leq n_{m+1}$, then
@@ -88,29 +89,82 @@ which goes to $n$ has $q$ goes to infinity by Theorem~\ref{Condptoinfty}.
 \end{proof}
 \end{corollary}
 
-We next derive explicit formulas for the distributions of the Betti numbers of a random chain complex.
+We next derive explicit formulas for the distributions of the Betti numbers of a random chain complex. We first need a lemma
 
-\mz{We'll have to say something about the sequence $b_j$ so that each entry lies in an appropriate range.}
+\begin{lemma}\label{lemProbranks}
+Let $(\Fq^{n_m}, A_m)$ be a random chain complex with $A_0:\Fq^{n_0}\to 0$.  Then
+\begin{align*}
+ &  \mathbb{P}\left[\rank(A_{m+1}) = n_{m+1} - k\right]\\
+=& 	\sum_{i_m=0}^{n_m} P_{i_m}^{m}\left(n_{m+1} -k\right)
+	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_m - i_m\right)
+		\cdots
+	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right) 
+\end{align*}
+\end{lemma}
+\begin{proof}
+The proof is by induction on $m$. For the basis step $m=1$, we have
+\begin{align*}
+\mathbb{P}\left[\rank(A_1) = n_1 - k\right]
+	=& \sum_{i_0=0}^{n_0}\mathbb{P}\left [\rank(A_1)= n_1 - k|\nul (A_0) = i_0\right]
+		\mathbb{P}\left[\nul(A_0) = i_0 \right]\\
+	=& \mathbb{P}\left [\rank(A_1)= n_1 - k|\nul (A_0) = n_0\right]\\
+	=& P_{n_0}^0(n_1 - k).
+\end{align*}
+The first equality follows by the Law of Total Probability, and the second equality follows because $A_0$ is the zero map.
 
-\mz{Note that conditioning on $A_mA_{m+1}$ doesn't do anything, because this is a random chain complex?}
-
-\mz{We need to have $n_m = n$ for this part so that all the rank plus nullity stuff works out.}
+For the inductive step, suppose that
+\begin{align*}
+ &  \mathbb{P}\left[\rank(A_{m}) = n_{m} - i_{m}\right]\\
+=& 	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -i_{m}\right)
+	\sum_{i_{m-2}=0}^{n_{m-2}} P_{i_{m-2}}^{m-2}\left(n_{m-1} - i_{m-1}\right)
+		\cdots
+	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right).
+\end{align*}
+We must show that
+\begin{align*}
+ &  \mathbb{P}\left[\rank(A_{m+1}) = n_{m+1} - k\right]\\
+=& 	\sum_{i_m=0}^{n_m} P_{i_m}^{m}\left(n_{m+1} -k\right)
+	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_m - i_m\right)
+		\cdots
+	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right) 
+\end{align*}
+Note that
+\begin{align*}
+ &	\mathbb{P}\left[\rank(A_{m+1}) = n_{m+1} - k\right]\\
+=& 	\sum_{i_{m}}^{n_{m}} \mathbb{P}\left[ \rank(A_{m+1}) = n_{m+1} - k  \right|\nul(A_m) = i_m]
+		\mathbb{P}\left[\nul(A_m) = i_m\right]\\
+=&  \sum_{i_{m}}^{n_{m}} P_{i_m}^{n_m}(n_{m+1} - k)
+		\mathbb{P}\left[n_m - \rank(A_m) = i_m\right]\\
+=&	\sum_{i_{m}}^{n_{m}} P_{i_m}^{n_m}(n_{m+1} - k)
+		\mathbb{P}\left[\rank(A_m) = n_m- i_m\right].\\
+\end{align*}
+The desired result now follows by the induction hypothesis.
+\end{proof}
 
 \begin{theorem} Let $\beta_j$ be the $j$-th Betti number of the random chain complex $(\Fq^{n} , A_m)$. Then
-  \[
-    \bP[\beta_j = b_j] = \sum_{i_j=0}^{n} P^j_{i_j}(i_j-b_j)
-    \sum_{i_{j-1}=0}^{n_{j}} P^{j-1}_{i_{j-1}}(n-i_j) \cdots
-    \sum_{i_1=0}^{n}P^1_{i_1}(n-i_2)
-    P^0_{n}(n_1-i_1).
-  \]
+	\[    
+    \bP[\beta_j = b] = \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\sum_{i_m=0}^{n_m} P_{i_m}^{m}\left(n_{m+1} -k\right)
+		\cdots
+	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right).
+    \]
 \end{theorem}
 \begin{proof}
-The proof is by induction on $j$.  For the basis case $j=0$, we have that $\nul(A_0) = n_0$.  Therefore, by Theorem \ref{Num_mbyn_rankr}, we have
+We have
+
 \begin{align*}
-  \mathbb{P}[\beta_0 = b_0] 
-   &= \mathbb{P}[\rank(A_1) = n - b_0] \\
-   &= \mathbb{P}[\rank(A_1) = n - b_0 | \nul(A_0) = n] \\
-%  &= \frac{1}{q^{n^2}} \qbin{n}{n_0-b_0} \, (q^{n_0}-1) (q^{n_0} - q) \cdots (q^{n_0} - q^{{n_0}-b_0-1}) \\
-   &= P^0_{n}(n_0 - b_0)
+  \mathbb{P}[\beta_{m} = b] 
+   &= \mathbb{P}[\nul(A_{m}) - \rank(A_{m+12}) = b]\\
+   &= \mathbb{P}[\rank(A_{m+1}) = \nul(A_{m}) - b]\\
+   &= \sum_{k=0}^{n_{m}}\mathbb{P}[\rank(A_{m+1}) = k - b| \nul(A_{m})=k] \mathbb{P}[\nul(A_{m}) = k]\\
+   &= \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\mathbb{P}[n_{m+1} - \rank(A_{m}) = k]\\
+   &= \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\mathbb{P}[\rank(A_{m+1}) = n_{m} - k]\\ 
 \end{align*}
+By Lemma \ref{lemProbranks} we have
+\begin{align*}
+ & \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\mathbb{P}[\rank(A_{m+1}) = n_{m} - k] \\
+=& \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\sum_{i_m=0}^{n_m} P_{i_m}^{m}\left(n_{m+1} -k\right)
+		\cdots
+	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right), 
+\end{align*}
+as desired.
 \end{proof}
