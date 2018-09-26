@@ -1,20 +1,41 @@
-Recall that a chain complex consists of a pair of sequences $(C_n, \delta_n)$, where the $C_n$ are appropriate spaces (vector spaces, groups, modules, etc.) and the $\delta_n$ are maps, $\delta_n: C_n \to C_{n-1}$ such that $\delta_{n-1}\delta_n = 0$.  
+Recall that a chain complex consists of a pair of sequences $(C_n, \delta_n)$,
+where the $C_n$ are appropriate spaces (vector spaces, groups, modules, etc.)
+and the $\delta_n$ are maps, $\delta_n: C_n \to C_{n-1}$ such that
+$\delta_{n-1}\delta_n = 0$.  
 
-Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements. Let $n_m$ be a sequence of natural numbers. Consider the sequence of finite vector spaces $\Fqn{n_m}$ indexed by $m$.  We iteratively construct a sequence $A_m$ of boundary maps from $\Fq^{n_m}$ into $\Fq^{n_{m-1}}$.
+Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements. Let
+$n_m$ be a sequence of natural numbers. Consider the sequence of finite vector
+spaces $\Fqn{n_m}$ indexed by $m$.  We iteratively construct a sequence $A_m$
+of boundary maps from $\Fq^{n_m}$ into $\Fq^{n_{m-1}}$.
 
-Let $A_0:\Fq^{n_0} \to 0$ be the zero map. Suppose for $m>0$ that $A_{m}:\Fq^{n_m} \to \Fq^{n_{m-1}}$ is known. Let $A_{m+1}$ be the random map that is given by the random $(n_{m})\times (n_{m+1})$ matrix whose entries are chosen i.i.d. uniformly from $\Fq$, subject to the condition that $A_{m+1}A_{m} = 0$.
+Let $A_0:\Fq^{n_0} \to 0$ be the zero map. Suppose for $m>0$ that
+$A_{m}:\Fq^{n_m} \to \Fq^{n_{m-1}}$ is known. Let $A_{m+1}$ be the random map
+that is given by the random $(n_{m})\times (n_{m+1})$ matrix whose entries are
+chosen i.i.d. uniformly from $\Fq$, subject to the condition that $A_{m+1}A_{m}
+= 0$.
 
-\begin{definition}
-Let $n_m$ be a sequence of natural numbers. A \textbf{random chain complex} is a pair $(\Fqn{n_m},A_m)$, where $A_m$ is an iteratively defined sequence of random linear transformations given by random $(n_{m-1})\times (n_m)$ matrices, as defined above.
+\begin{definition} 
+  \label{defn:random_chain_cx}
+  Let $n_m$ be a sequence of natural numbers. A \textbf{random chain complex}
+  is a pair $(\Fqn{n_m},A_m)$, where $A_m$ is an iteratively defined sequence
+  of random linear transformations given by random $(n_{m-1})\times (n_m)$
+  matrices, as defined above.
 \end{definition}
 
-We wish to investigate the probabilistic properties of the homology of a random chain complex.  We are primarily interested in the distribution of the Betti numbers $\beta_m := \dim(H_m(A_\ast; \Fqn{n}))$.  Recall that $H_m(A_\ast;\Fqn{n}) = \ker (A_{m})/ A_{m+1}(\Fqn{n})$, so if $k= \ker(A_m)$, then $\beta_m = k - \rank(A_{m+1})$.  We are therefore interested in the probabilistic properties of $\rank(A_{m+1})$ given that $A_{m}A_{m+1} = 0$ and that $\nul(A_{m}) = k$. 
+We wish to investigate the probabilistic properties of the homology of a random
+chain complex.  We are primarily interested in the distribution of the Betti
+numbers $\beta_m := \dim(H_m(A_\ast; \Fqn{n}))$.  Recall that
+$H_m(A_\ast;\Fqn{n}) = \ker (A_{m})/ A_{m+1}(\Fqn{n})$, so if $k= \ker(A_m)$,
+then $\beta_m = k - \rank(A_{m+1})$.  We are therefore interested in the
+probabilistic properties of $\rank(A_{m+1})$ given that $A_{m}A_{m+1} = 0$ and
+that $\nul(A_{m}) = k$. 
 
 
 \begin{remark}
-As the $A_m$ of a random chain complex are uniformly distributed, Definition \ref{defPkmr} immediately gives us that
+As the $A_m$ of a random chain complex are uniformly distributed, Definition
+\ref{defPkmr} immediately gives us that
 \[
-P^m_k(r) = \mathbb{P}\left[\beta_m = k-r | \nul(A_{m}) = k\right].
+  P^m_k(r) = \mathbb{P}\left[\beta_m = k-r | \nul(A_{m}) = k\right].
 \]
 \end{remark}
 

@@ -16,6 +16,7 @@
 \DeclareMathOperator{\im}{\mathrm{im}}
 %\DeclareMathOperator{\ker}{\mathrm{ker}}
 
+%\linespread{2}
 
 
 \usepackage[usenames,dvipsnames]{color}
@@ -27,6 +28,7 @@
 % abbreviations 
 \newcommand{\qbin}[2]{\begin{bmatrix}{#1}\\ {#2}\end{bmatrix}_q}
 \newcommand{\Fq}{\mathbb{F}_q}
+\newcommand{\N}{\mathbb{N}}
 \newcommand\Fqn[1]{\mathbb{F}_q^{#1}}
 \newcommand{\nul}{\mathrm{nul}}
 \newcommand{\bP}{\mathbb{P}}
@@ -41,7 +43,7 @@
 \date{\today}
 \begin{document}
 \begin{abstract}
-We introduce a random chain complex over a finite
+We introduce a model of random chain complexes over a finite
 field. The randomness in our complex comes from choosing the entries in the
 matrices that represent the boundary maps uniformly over $\mathbb{F}_q$,
 conditioned on ensuring that the composition of consecutive boundary maps is
@@ -51,6 +53,7 @@ properties of this random chain complex.
 \maketitle
 
 
+\mc{Do we want to choose $n_m$ randomly?}
 \section{Introduction}
 \input{Intro.tex}
 %---------------------------------------------------
