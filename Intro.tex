@@ -45,14 +45,15 @@ properties of interest, and is precisely what homology reveals.
 
 \subsection*{Main Results}
 
-Let $R$ be a ring.  Formally, a {\em chain complex $(C_n, \delta_n)$ } is a
+Let $R$ be a ring.  Formally, a {\em chain complex $(C_n, \delta_n)$ with coefficients
+in $R$} is a
 sequence of $R$-modules, denoted $C_n$, together with a sequence of linear
 transformations 
 \[
   \cdots \xrightarrow{\delta_{n+1}} C_n \xrightarrow{\delta_n}
   C_{n-1} \xrightarrow{\delta_{n-1}} \cdots
 \]
-such that $\delta_{n-1}\delta_n = 0$ for all $n$. The maps $\delta_n$ are called the boundary maps of the chain
+such that $\delta_{n-1}\delta_n = 0$ for all $n \in \Z$. The maps $\delta_n$ are called the boundary maps of the chain
 complex, and the condition $\delta_{n-1} \delta_n = 0$ is known as the boundary
 condition; see~\cite{hatcher2002algebraic} for further details.
 
@@ -79,10 +80,13 @@ Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements.
 We build a random chain complex as follows (see Definition~\ref{defn:random_chain_cx}
 for a precise statement). First, pick a 
 sequence of integers $(n_m)$, where $m \in \N$. Next, we inductively
-build random linear transformations $A_m : \Fqn{n_m} \lra \Fqn{n_{m-1}}$
-for all $m$, subject to the contraint $A_{m-1} A_m = 0$. Fix the 
-standard basis for $\Fqn{}$, so that it suffices to construct random
-matrices $A_m \in M_{n_{m-1} \times n_m}(\Fqn{})$. We do so by 
+build random linear transformations 
+\[
+  A_m : \Fqn{n_m} \lra \Fqn{n_{m-1}} \, ,
+\]
+for all $m$, subject to the contraint $A_{m-1} A_m = 0$. By fixing the
+standard basis for $\Fqn{}$, it suffices to construct random
+matrices $n_{m-1} \times n_m$ matrices $A_m$. We do so by 
 chooising matrix entries i.i.d. from the uniform distribution on
 $\Fqn{}$. 
 
@@ -97,9 +101,45 @@ $\Fqn{}$.
 %\]
 %where $A_{i+1}A_i=0$ for every $i$. 
 
+The boundary condition $A_{m-1}A_m=0$ forces $\im A_m \subseteq \ker A_{m-1}$.
+The {\em homomlogy} of a chain complex measures the deviation of this containment
+from an equality. Since we work with field coefficients, this deviation can
+be understood in terms of rank
+\begin{equation}
+  \beta_m := \mathrm{rank} \left(\ker A_{m-1} / \im A_m \right)\, .
+  \label{eqn:betti_numbers}
+\end{equation}
+
+Our first main result shows that as $q \ra \infty$, the homology of a 
+random chain complex tends to its minimal value.
+
+\begin{theorem}
+  For a random chain complex $(\Fqn{n_m},A_m)$, we have
+  \[
+    \bP[\beta_m = \max(0,n_m - \min(n_{m},n_{m-1}) - \min(n_m,n_{m+1}))] \ra 1 
+    \mbox{ as } q \ra \infty  \, .
+  \]
+\end{theorem}
+
+As a special case of the above theorem, consider when the dimensions $\{n_m\}$
+are monotonic, e.g., constant. In this case, 
+$\beta_m = 0$ is the most likely scenario.
+
 We have two main results. We first show that, as $q$ goes to infinity, homology
 is concentrated in dimension zero.  We then derive an explicit formula for the
 distribution of the Betti numbers.
+
+Our second result is an explicit formula for the distribution
+of the betti numbers.
+\begin{theorem} Let $\beta_j$ be the $j$-th Betti number of the random chain complex $(\Fq^{n} , A_m)$. Then
+	\[    
+    \bP[\beta_j = b] = \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\sum_{i_m=0}^{n_m} P_{i_m}^{m}\left(n_{m+1} -k\right)
+		\cdots
+		\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right) \, ,
+    \]
+    where $P^l_k(r)$ is given in Eq.~\eqref{eqn:Pmkr}.
+\end{theorem}
+
 
 
 \subsection*{Related Work} There is another notion of random chain complex in the 

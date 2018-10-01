@@ -56,11 +56,9 @@ Let $\beta_m$ be the $m$-th Betti number of a random chain complex.  If $k\leq n
 \begin{proof}
 We have
 	\begin{eqnarray*}
-	&&\mathbb{P}\left[\beta_m = 0|A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right]\\ 
+	\mathbb{P}\left[\beta_m = 0|A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right]
     &=& P^m_k(k)\\
-    &=& \frac{\prod_{j=0}^{k-1}(q^{n_{m+1}}-q^{j})
-		\prod_{j=0}^{k-1}(q^k - q^j )}
-		{q^{kn_{m+1}} \prod_{j=0}^{k-1} (q^k-q^j)}\\
+    &=& q^{-kn_{m+1}}\prod_{j=0}^{r-1} \frac{(q^m-q^j) (q^n - q^j)}{q^r - q^j}  \\
 		&=& \frac{\prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j)}
 		{q^{kn_{m+1}}} \\
 		%&=& \frac{\prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j)}{q^{n_{m+1}k}}\\
@@ -100,13 +98,13 @@ The conditional expectation of the $m$-th Betti number is given by
 	&=& \sum_{b=1}^n b \mathbb{P}(\beta_m = b | A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ) \, .
 	\end{eqnarray*}
 By Corollary \ref{condtozero}, all terms with $b< n$ in this sum tend to 
-$0$ as $q$ goes to infinity. 
+$0$ as $q$ tends to infinity. 
 
 On the other hand, when $b=n$, 
 \[
 n\mathbb{P}(\beta_m=0| A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ),
 \]
-which goes to $n$ has $q$ goes to infinity by Theorem~\ref{Condptoinfty}.
+which goes to $n$ has $q$ tends to infinity by Theorem~\ref{Condptoinfty}.
 \end{proof}
 \end{corollary}
 
@@ -164,11 +162,13 @@ The desired result now follows by the induction hypothesis.
 
 \begin{theorem} Let $\beta_j$ be the $j$-th Betti number of the random chain complex $(\Fq^{n} , A_m)$. Then
 	\[    
-    \bP[\beta_j = b] = \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\sum_{i_m=0}^{n_m} P_{i_m}^{m}\left(n_{m+1} -k\right)
+    \bP[\beta_j = b] = \sum_{i_j=0}^{n_{j}} P_{i_j}^{j}(i_j-b)
+    \sum_{i_{j-1}=0}^{n_{j-1}} P_{i_{j-1}}^{j-1}\left(n_{j} -i_j\right)
 		\cdots
 	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right).
     \]
 \end{theorem}
+\mc{re-write proof.}
 \begin{proof}
 We have
 
