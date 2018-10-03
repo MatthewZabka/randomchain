@@ -115,16 +115,20 @@ random chain complex tends to its minimal value.
 
 \begin{theorem}
   \label{thm:qtoinfty}
+  Set $N_m = \max(0,n_m - \min(n_{m},n_{m-1}) - \min(n_m,n_{m+1}))$. 
   For a random chain complex $(\Fqn{n_m},A_m)$, we have
   \[
-    \bP[\beta_m = \max(0,n_m - \min(n_{m},n_{m-1}) - \min(n_m,n_{m+1}))] \ra 1 
+    \bP[\beta_m = N_m] \ra 1 
     \mbox{ as } q \ra \infty  \, .
   \]
 \end{theorem}
 
-As a special case of the above theorem, consider when the dimensions $\{n_m\}$
-are monotonic, e.g., constant. In this case, 
-$\beta_m = 0$ is the most likely scenario.
+\begin{remark}
+  \label{rem:monotone}
+  As a special case of the above theorem, consider when $\{n_m\}$
+  is monotonic, e.g., either constant or increasing. In this case, 
+  $N_m = 0$, and hence homology is concentrated in degree 0.
+\end{remark}
 
 We have two main results. We first show that, as $q$ goes to infinity, homology
 is concentrated in dimension zero.  We then derive an explicit formula for the
@@ -162,7 +166,7 @@ $\bP[\beta_0 = 0] \ra 1$ ($n$-even) or $\bP[\beta_1 = 0] \ra 1$ ($n$-odd)
 as $q \ra \infty$. One should interpret this result as the fact that
 homology concentrates in the lowest possible dimension as $q \ra \infty$.
 This result is a special case of Theorem~\ref{thm:qtoinfty} 
-where $n_m \equiv n$ for all $m$.
+where $n_m \equiv n$ for all $m$ (c.f. Remark~\ref{rem:monotone}).
 
 Their second main result~\cite[Thm 2.2]{ginzburg2017random} shows that
 \[
