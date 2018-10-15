@@ -45,13 +45,15 @@ As the $A_m$ of a random chain complex are uniformly distributed, Definition
 We are now ready to state our first theorem.
 
 \mz{Letting $k\leq n_{m+1}$ seems fine to me, but what about Definition \ref{defPkmr}?}
+\mc{I don't think there's an issue with Definition~\ref{defPkmr} now.}
 
-\begin{theorem}\label{Condptoinfty}
+\begin{lemma}
+  \label{lem:condqtoinfty}
 Let $\beta_m$ be the $m$-th Betti number of a random chain complex.  If $k\leq n_{m+1}$, then
 \[
 \mathbb{P}\left[\beta_m=N_m| \nul(A_{m}) = k \right] \to 1 \textrm{ as } q\to\infty.
 \]
-\end{theorem}
+\end{lemma}
 
 \begin{proof}
 We have
@@ -67,6 +69,38 @@ We have
 	\end{eqnarray*}
 which tends to 1 as $q\to\infty$.  
 \end{proof}
+
+We are now in a position to prove Theorem~\ref{thm:qtoinfty}.
+
+\begin{proof}[Proof of Theorem~\ref{thm:qtoinfty}]
+  Consider the law of total probability
+  \begin{equation}
+    \label{eqn:totalbm}
+    \bP[\beta_m = j] = \sum_{k=0}^{n_m} \bP[\beta_m = j \st \nul(A_m) = k]
+    \bP[\nul(A_m) = k] \, .
+  \end{equation}
+   Since $0 \leq \nul(A_m) \leq n_m$, we have that $\bP[\nul(A_m) = k]$ is
+   finite for all $k$ and for all primes $q$.  It suffices to show that 
+   $\bP[\beta_m =N_m \st \nul(A_m) = k] \ra 1$ as $q \ra \infty$.
+   
+   By Lemma~\ref{lem:condqtoinfty}, every
+   term of Eq.~\eqref{eqn:totalbm} with $k\leq n_{m+1}$ tend to 0 as $q \ra \infty$.
+   On the other hand, if $k>n_{m+1}$, there are two cases to consider.
+   If $n_m \leq n_{m+1}$, then $n_m \leq n_{m+1} < k$, which is a contradiction.
+   Otherwise, $n_m > n_{m+1}$, in which case $N_m = 0$. Hence, we have
+   \begin{align*}
+     \bP[\beta_m = 0 \st \nul(A_m) = k] &= q^{-k n_{m+1}} \prod_{j=0}^{k-1}q^{n_{m+1}}-q^j \\
+     &= \prod_{j=0}^{k-1} 1 - q^{j-n_{m+1}} \, ,
+   \end{align*}
+   which tends to 1 as $q \ra \infty$.
+ \end{proof}
+
+
+
+
+  
+
+
 
 The previous theorem immediately leads to two corollaries.  
 \mc{Fix the following two Corollaries.}
@@ -84,7 +118,7 @@ We have that
     &=& 1 - \sum_{j\neq b}\mathbb{P}[\beta_0 = j \st A_{m}A_{m+1} = 0, \nul(A_{m}) = k ]\\
     &\leq& 1 - \mathbb{P}(\beta_m = 0|A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ).
 	\end{eqnarray*}
-By Theorem~\ref{Condptoinfty}, this goes to $0$ as $q$ goes to infinity.
+By Lemma~\ref{lem:condqtoinfty}, this goes to $0$ as $q$ goes to infinity.
 \end{proof}
 
 \begin{corollary}
@@ -105,7 +139,7 @@ On the other hand, when $b=n$,
 \[
 n\mathbb{P}(\beta_m=0| A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ),
 \]
-which goes to $n$ has $q$ tends to infinity by Theorem~\ref{Condptoinfty}.
+which goes to $n$ has $q$ tends to infinity by Lemma~\ref{lem:condqtoinfty}.
 \end{proof}
 \end{corollary}
 

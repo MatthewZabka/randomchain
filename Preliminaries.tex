@@ -77,8 +77,6 @@ this out?}
 \end{proof}
 
 %We now turn our attention to a sequence of random matrices.
-\mz{I've moved this stuff to Section 2. We can talk about this}
-\mc{Is it ok to remove this now?}
 
 \begin{definition}\label{defPkmr}
 Let $n_m$ be a sequence of natural numbers. Let $B_m$ be a sequence of random $(n_m) \times (n_{m-1})$ matrices whose entries are chosen i.i.d. uniformly from $\Fq$. Let $r$ be a non-negative integer.  Define 
@@ -87,17 +85,15 @@ Let $n_m$ be a sequence of natural numbers. Let $B_m$ be a sequence of random $(
   \left[\rank(B_{m+1}) = r|B_{m}B_{m+1} = 0, \nul(B_{m}) = k \right] \, .
 \]
 \end{definition}
-\mc{Change this definition to handle the cases below.}
 
-
-Lemma~\ref{Num_mbyn_rankr} gives us the following.
+%Lemma~\ref{Num_mbyn_rankr} gives us the following.
 
 \begin{lemma}\label{lemPkmr} With $B_m$ defined as in Definition \ref{defPkmr}, we have that
   \begin{equation}
     P^m_k(r) = 
     \begin{cases}
       {\displaystyle 
-      q^{-kn_{m+1}}\prod_{j=0}^{r-1} \frac{(q^m-q^j) (q^n - q^j)}{q^r - q^j} }
+      q^{-kn_{m+1}}\prod_{j=0}^{r-1} \frac{(q^{n_{m+1}}-q^j) (q^k - q^j)}{q^r - q^j} }
 %	\frac{\left(\prod_{j=0}^{r-1}\left(q^{n_{m+1}}-q^{j}\right)\right)
 %	\left(\prod_{j=0}^{r-1}\left(q^k - q^j \right) \right)}
 %      {q^{kn_{m+1}} \left(\prod_{j=0}^{r-1} \left(q^r-q^j\right)\right)}}
