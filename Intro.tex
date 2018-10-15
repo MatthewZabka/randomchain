@@ -1,15 +1,4 @@
 
-The tools of algebraic topology have become very popular in the
-analysis of large data sets~\cite{carlsson_topology_2009, ghrist_barcodes:_2008,
-latala_persistent_2013}. Homological methods arising from
-topology are scale-invariant, non-parametric, and importantly,
-robust with respect to noise. This is increasingly important
-for data arising from real-world applications, especially those
-with low signal-to-noise ratio. All of these properties
-leads one to investigate the properties of random topological
-phenomena. The main goal of such theoretical considerations is to
-develop a better understanding of noise and noise models, appropriate
-for accurate data modelling in these contexts.
 
 There have been a variety of attempts to randomize topological
 constructions. Most famously, Erdos and Renyi introduced a model
@@ -113,7 +102,7 @@ be understood in terms of rank
 Our first main result shows that as $q \ra \infty$, the homology of a 
 random chain complex tends to its minimal value.
 
-\begin{theorem}
+\begin{bigthm}
   \label{thm:qtoinfty}
   Set $N_m = \max(0,n_m - \min(n_{m},n_{m-1}) - \min(n_m,n_{m+1}))$. 
   For a random chain complex $(\Fqn{n_m},A_m)$, we have
@@ -121,22 +110,27 @@ random chain complex tends to its minimal value.
     \bP[\beta_m = N_m] \ra 1 
     \mbox{ as } q \ra \infty  \, .
   \]
-\end{theorem}
+\end{bigthm}
+
+\begin{remark}
+  \label{rem:smallest}
+  The number $N_m$ of Theorem~\ref{thm:qtoinfty} represents the smallest
+  possible value of $\beta_m$. Therefore, we interpret Theorem~\ref{thm:qtoinfty}
+  as the statement that the rank of the homology is as small as possible as 
+  $q \ra \infty$.
+\end{remark}
 
 \begin{remark}
   \label{rem:monotone}
   As a special case of the above theorem, consider when $\{n_m\}$
   is monotonic, e.g., either constant or increasing. In this case, 
-  $N_m = 0$, and hence homology is concentrated in degree 0.
+  $N_m = 0$, and the homology is trivial in probability as $q \ra \infty$.
 \end{remark}
 
-We have two main results. We first show that, as $q$ goes to infinity, homology
-is concentrated in dimension zero.  We then derive an explicit formula for the
-distribution of the Betti numbers.
 
-Our second result is an explicit formula for the distribution
+Our second main result is an explicit formula for the distribution
 of the Betti numbers.
-\begin{theorem} 
+\begin{bigthm} 
   \label{thm:bettinum}
   Let $\beta_j$ be the $j$-th Betti number of the random chain complex
   $(\Fq^{n} , A_m)$. Then
@@ -146,7 +140,7 @@ of the Betti numbers.
     \sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right).
   \]
   where $P^l_k(r)$ is given in Eq.~\eqref{eqn:Pmkr}.
-\end{theorem}
+\end{bigthm}
 
 \subsection*{Related Work} There are other notions of random chain complex
 one could consider. In~\cite{ginzburg2017random}, Ginzburg and Pasechnik investigate
@@ -168,9 +162,10 @@ homology concentrates in the lowest possible dimension as $q \ra \infty$.
 This result is a special case of Theorem~\ref{thm:qtoinfty} 
 where $n_m \equiv n$ for all $m$ (c.f. Remark~\ref{rem:monotone}).
 
-Their second main result~\cite[Thm 2.2]{ginzburg2017random} shows that
+Their second main result~\cite[Thm 2.2]{ginzburg2017random} shows that 
+the following limit exists and is bounded
 \[
-  0 \leq \lim_{n \ra \infty} \bP[\beta_r = j] \leq 1 \, ,
+  0 < \lim_{n \ra \infty} \bP[\beta_r = j] < 1 \, ,
 \]
 for all $r$ and $j$. Based on explicit bounds, they provide analytic
 formulas for the quantity $\lim_{n\ra \infty}\bP[\beta_j=r]$ in terms
