@@ -1,7 +1,9 @@
 \documentclass{amsart}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
 \usepackage{amssymb, mathtools, amsthm}
 \usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
 
 
 \newtheorem{theorem}{Theorem}[section]
@@ -29,6 +31,7 @@
 \newcommand{\qbin}[2]{\begin{bmatrix}{#1}\\ {#2}\end{bmatrix}_q}
 \newcommand{\Fq}{\mathbb{F}_q}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
 \newcommand\Fqn[1]{\mathbb{F}_q^{#1}}
 \newcommand{\nul}{\mathrm{nul}}
 \newcommand{\bP}{\mathbb{P}}
@@ -63,7 +66,9 @@ properties of this random chain complex.
 \section{The Homology of a Random Chain Complex}\label{SecCondComp}
 \input{Rand_Complex.tex}
 %-------------------------------------------------
-%\input{Conjectures.tex}
+\section{Conjectures}
+\input{Conjectures.tex}
+
 \bibliography{master}
 \bibliographystyle{plain}
   

@@ -1,7 +1,11 @@
-This section consists of several lemmas that count the number of elements in various sets related to finite vector spaces over $\mathbb{F}_q$.  We provide proofs for these lemmas, but an interested reader can see \cite{stanley2011enumerative} for further details. 
+This section consists of several lemmas that count the number of elements in
+various sets related to finite vector spaces over $\mathbb{F}_q$.  We provide
+proofs for these lemmas, and the interested reader can
+see~\cite{stanley2011enumerative} for further details. 
 \begin{lemma}\label{NumkTup}
   The number of ordered, linearly independent $k$-tuples of vectors in $\Fqn{n}$  is
 \[
+\prod_{j=0}^{k-1} \left(q^n - q^j\right) = 
 (q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n - q^{k-2})(q^n-q^{k-1}).
 \]
 \end{lemma}
@@ -15,41 +19,66 @@ The number $\qbin{n}{k}$ defined in the next theorem is known as the $q$-binomia
 \begin{lemma}\label{NumkSub}
   The number of $k$-dimensional subspaces of $\Fqn{n}$ is
 \[
-\qbin{n}{k} = \frac{(q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n - q^{k-2})(q^n-q^{k-1})}{(q^k-1)(q^k-q)(q^k-q^2)\cdots(q^k - q^{k-2})(q^k-q^{k-1})}.
+%\qbin{n}{k} = \frac{(q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n - q^{k-2})(q^n-q^{k-1})}{(q^k-1)(q^k-q)(q^k-q^2)\cdots(q^k - q^{k-2})(q^k-q^{k-1})}.
+  \qbin{n}{k} = \prod_{j=0}^{k-1} \frac{q^n-q^j}{q^k-q^j} \, .
 \]
 \end{lemma}
 
 
 \begin{proof}
-  Let $\qbin{n}{k}$ denote the number of $k$-dimensional subspaces of $\Fqn{n}$ and $N(q,k)$ be the number of ordered, linear independent $k$-tuples of vectors in $\Fqn{n}$.  Then Corollary \ref{NumkTup} gives
-\begin{equation}\label{Nqk1}
-N(q,k) = (q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n - q^{k-2})(q^n-q^{k-1}).
-\end{equation}
-We may also find $N(q,k)$ another way: We can first choose a $k$-dimensional subspace and then choose the independent vectors in our $k$-tuple from the chosen subspace.  There are $\qbin{n}{k}$ $k$-dimensional subspaces of $\Fqn{n}$.  Then, there are $q^k-1$ choices for the first vector in the $k$-tuple, and, for $1<m \leq k$, there are $q^k - q^{m-1}$ vectors for the $m$-th vector in the $k$-tuple.  Thus
-\begin{equation}\label{Nqk2}
-N(q,k) = \qbin{n}{k}(q^k-1)(q^k-q)(q^k-q^2)\cdots(q^k - q^{k-2})(q^k-q^{k-1}).
-\end{equation}
-Equations (\ref{Nqk1}) and (\ref{Nqk2}) give the required result.
+  Let $\qbin{n}{k}$ denote the number of $k$-dimensional subspaces of $\Fqn{n}$
+  and $N(q,k)$ be the number of ordered, linear independent $k$-tuples of
+  vectors in $\Fqn{n}$.  Then Lemma~\ref{NumkTup} gives
+  \begin{equation}
+    \label{Nqk1}
+%    N(q,k) = (q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n - q^{k-2})(q^n-q^{k-1}).
+    N(q,k) = \prod_{j=0}^{k-1} q^n-q^j \, .
+  \end{equation}
+  We may also find $N(q,k)$ another way: first choose a $k$-dimensional
+  subspace and then choose the independent vectors in our $k$-tuple from the
+  chosen subspace.  There are $\qbin{n}{k}$ $k$-dimensional subspaces of
+  $\Fqn{n}$.  There are $q^k-1$ choices for the first vector in the
+  $k$-tuple, and, for $1<m \leq k$, there are $q^k - q^{m-1}$ vectors for the
+  $m$-th vector in the $k$-tuple.  Thus
+  \begin{equation}\label{Nqk2}
+  %  N(q,k) = \qbin{n}{k}(q^k-1)(q^k-q)(q^k-q^2)\cdots(q^k - q^{k-2})(q^k-q^{k-1}).
+    N(q,k) = \qbin{n}{k}\prod_{j=0}^{k-1} q^k - q^j \, .
+  \end{equation}
+  Equations~\eqref{Nqk1}~and~\eqref{Nqk2} give the desired result.
 \end{proof}
 
-Using Lemmas \ref{NumkSub} and \ref{Nqk1}, we can count the number of matrices with of a given rank. The following lemma will aid us in Section \ref{SecCondComp}.
+Using Lemmas~\ref{NumkTup}~and~\ref{NumkSub}, we can count the number of matrices
+with of a given rank. %The following lemma will aid us in Section
+%\ref{SecCondComp}.
 
 \begin{lemma}\label{Num_mbyn_rankr}
-The number of $m\times n$ matrices with entries in $\Fq$ of rank $r$ is given by
-\begin{align*}
-	&\qbin{m}{r}(q^n-1)(q^n-q)\cdots (q^n-q^{r-1})\\
-   =& \qbin{n}{r}(q^m-1)(q^m-q)\cdots (q^m-q^{r-1})\\
-   =& \frac{(q^m-1) (q^m-q) \cdots (q^m-q^{r-1})\cdot
-            (q^n-1) (q^n-q) \cdots (q^n-q^{r-1})}
-	 		      {(q^r-1)(q^r - q)(q^r - q^2)\cdots (q^r - q^{r-2})(q^r-q^{r-1})}
-\end{align*}
+The number of $m\times n$ matrices of rank $r$ with entries in $\Fq$ is given by
+\begin{equation*}
+%	&\qbin{m}{r}(q^n-1)(q^n-q)\cdots (q^n-q^{r-1})\\
+%   =& \qbin{n}{r}(q^m-1)(q^m-q)\cdots (q^m-q^{r-1})\\
+%   =& \frac{(q^m-1) (q^m-q) \cdots (q^m-q^{r-1})\cdot
+%            (q^n-1) (q^n-q) \cdots (q^n-q^{r-1})}
+%      {(q^r-1)(q^r - q)(q^r - q^2)\cdots (q^r - q^{r-2})(q^r-q^{r-1})} \\
+%      =& \prod_{j=0}^{r-1} \frac{(q^m-q^j) (q^n - q^j)}{q^r - q^j} \, .
+      \prod_{j=0}^{r-1} \frac{(q^m-q^j) (q^n - q^j)}{q^r - q^j} \, .
+\end{equation*}
 \end{lemma}
-
+\mc{Redo this statement and proof. This proof uses 'homogeneity' of
+  rank $r$ subspaces of vector space over finite fields, i.e., all
+  that matters is the rank, not the actual subspace. Should we point
+this out?}
 \begin{proof}
-  Let $W$ be a fixed $r$-dimensional subspace of $\Fqn{n}$.  Then the number of matrices whose column space is $W$ is given by the number of $r\times n$ matrices with rank $r$.  This number is given by Lemma \ref{NumkTup}. The number of $r$-dimensional subspaces of $\Fqn{n}$ is $\qbin{m}{r}$, as stated in Lemma \ref{NumkSub}.  The product of these is the number of $m\times n$ rank $r$ matrices.
+  Let $W$ be a fixed $r$-dimensional subspace of $\Fqn{n}$.  The number of
+  matrices whose column space is $W$ is given by the number of $r\times n$
+  matrices with rank $r$.  This number is given by Lemma \ref{NumkTup}. The
+  number of $r$-dimensional subspaces of $\Fqn{n}$ is $\qbin{m}{r}$, as stated
+  in Lemma \ref{NumkSub}.  The product of these is the number of $m\times n$
+  rank $r$ matrices.
 \end{proof}
 
-We now turn our attention to a sequence of random matrices.\mz{I've moved this stuff to Section 2. We can talk about this}
+%We now turn our attention to a sequence of random matrices.
+\mz{I've moved this stuff to Section 2. We can talk about this}
+\mc{Is it ok to remove this now?}
 
 \begin{definition}\label{defPkmr}
 Let $n_m$ be a sequence of natural numbers. Let $B_m$ be a sequence of random $(n_m) \times (n_{m-1})$ matrices whose entries are chosen i.i.d. uniformly from $\Fq$. Let $r$ be a non-negative integer.  Define 
@@ -58,31 +87,36 @@ Let $n_m$ be a sequence of natural numbers. Let $B_m$ be a sequence of random $(
   \left[\rank(B_{m+1}) = r|B_{m}B_{m+1} = 0, \nul(B_{m}) = k \right] \, .
 \]
 \end{definition}
+\mc{Change this definition to handle the cases below.}
 
 
 Lemma~\ref{Num_mbyn_rankr} gives us the following.
 
 \begin{lemma}\label{lemPkmr} With $B_m$ defined as in Definition \ref{defPkmr}, we have that
-\[
-P^m_k(r) = \begin{cases}
-  {\displaystyle \frac{\left(\prod_{j=0}^{r-1}\left(q^{n_{m+1}}-q^{j}\right)\right)
-  \left(\prod_{j=0}^{r-1}\left(q^k - q^j \right) \right)}
-  {q^{kn_{m+1}} \left(\prod_{j=0}^{r-1} \left(q^r-q^j\right)\right)}}
-            					& \textrm{ if } k\neq 0, r \leq k \\
-           0					& \textrm{ if }  r>k,\\
-           1					& \textrm{ if } r = k = 0.
-            \end{cases}
-\]
+  \begin{equation}
+    P^m_k(r) = 
+    \begin{cases}
+      {\displaystyle 
+      q^{-kn_{m+1}}\prod_{j=0}^{r-1} \frac{(q^m-q^j) (q^n - q^j)}{q^r - q^j} }
+%	\frac{\left(\prod_{j=0}^{r-1}\left(q^{n_{m+1}}-q^{j}\right)\right)
+%	\left(\prod_{j=0}^{r-1}\left(q^k - q^j \right) \right)}
+%      {q^{kn_{m+1}} \left(\prod_{j=0}^{r-1} \left(q^r-q^j\right)\right)}}
+      & \textrm{ if } k\neq 0, r \leq k, \\
+           0	& \textrm{ if }  r>k,\\
+           1	& \textrm{ if } r = k = 0.
+	 \end{cases}
+	 \label{eqn:Pmkr}
+       \end{equation}
 \end{lemma}
 \begin{proof}
 Let $k= \nul(B_{m})$ and suppose $B_mB_{m+1} = 0$.  Then $B_{m+1}$ maps $\Fq^{n_{m+1}}$ into the kernel of $B_m$, and thus $\rank(B_{m+1}) \leq k$.  Therefore, if $r>k$, we have $P^m_k(r) = 0$.  Further, if $k=0$, then $\rank(B_{m+1}) = 0$, so $P^m_0(0) = 1$.
 
 On the other hand, suppose $k\neq 0$ and $r\leq k$.  Then, $B_{m+1}$ represents a linear transformation from $\Fq^{n_{m+1}}$ into a $k$-dimensional subspace of $\Fq^{n_{m}}$. Thus, by changing basis, $B_{m+1}$ can be represented by a $(n_{m+1}) \times k$ matrix.  There are $q^{kn_{m+1}}$ such matrices, and, by Lemma \ref{Num_mbyn_rankr}, there are 
 \[
- \displaystyle \frac{\left(\prod_{j=0}^{r-1}\left(q^{n_{m+1}}-q^{j}\right)\right)
-  \left(\prod_{j=0}^{r-1}\left(q^k - q^j \right) \right)}
-  {\prod_{j=0}^{r-1} \left(q^r-q^j\right)}
+% \displaystyle \frac{\left(\prod_{j=0}^{r-1}\left(q^{n_{m+1}}-q^{j}\right)\right)
+%  \left(\prod_{j=0}^{r-1}\left(q^k - q^j \right) \right)}
+%  {\prod_{j=0}^{r-1} \left(q^r-q^j\right)}
+  \prod_{j=0}^{r-1} \frac{(q^{n_{m+1}}-q^j) ( q^k - q^j)}{q^r-q^j}
 \]
 such matrices of rank $r$.
-
 \end{proof}
