@@ -14,8 +14,6 @@ see~\cite{stanley2011enumerative} for further details.
 Since first vector in the $k$-tuple may be any vector except for the zero vector, there are $q^n-1$ choices for the first vector.  For $1<m \leq k$, the $m$-th vector in the $k$-tuple may be any vector that is not a linear combination of the previously chosen $m-1$ vectors. So there are $q^n - q^{m-1}$ choices for the $m$-th vector.
 \end{proof}
 
-The number $\qbin{n}{k}$ defined in the next theorem is known as the $q$-binomial coefficient.
-
 \begin{lemma}\label{NumkSub}
   The number of $k$-dimensional subspaces of $\Fqn{n}$ is
 \[
@@ -24,9 +22,8 @@ The number $\qbin{n}{k}$ defined in the next theorem is known as the $q$-binomia
 \]
 \end{lemma}
 
-
 \begin{proof}
-  Let $\qbin{n}{k}$ denote the number of $k$-dimensional subspaces of $\Fqn{n}$
+  Let $\left[\begin{smallmatrix}n\\k\end{smallmatrix}\right]_q$ denote the number of $k$-dimensional subspaces of $\Fqn{n}$
   and $N(q,k)$ be the number of ordered, linear independent $k$-tuples of
   vectors in $\Fqn{n}$.  Then Lemma~\ref{NumkTup} gives
   \begin{equation}
@@ -36,10 +33,11 @@ The number $\qbin{n}{k}$ defined in the next theorem is known as the $q$-binomia
   \end{equation}
   We may also find $N(q,k)$ another way: first choose a $k$-dimensional
   subspace and then choose the independent vectors in our $k$-tuple from the
-  chosen subspace.  There are $\qbin{n}{k}$ $k$-dimensional subspaces of
-  $\Fqn{n}$.  There are $q^k-1$ choices for the first vector in the
-  $k$-tuple, and, for $1<m \leq k$, there are $q^k - q^{m-1}$ vectors for the
-  $m$-th vector in the $k$-tuple.  Thus
+  chosen subspace.  There are
+  $\left[\begin{smallmatrix}n\\k\end{smallmatrix}\right]_q$ $k$-dimensional
+  subspaces of $\Fqn{n}$.  There are $q^k-1$ choices for the first vector in
+  the $k$-tuple, and, for $1<m \leq k$, there are $q^k - q^{m-1}$ vectors for
+  the $m$-th vector in the $k$-tuple.  Thus
   \begin{equation}\label{Nqk2}
   %  N(q,k) = \qbin{n}{k}(q^k-1)(q^k-q)(q^k-q^2)\cdots(q^k - q^{k-2})(q^k-q^{k-1}).
     N(q,k) = \qbin{n}{k}\prod_{j=0}^{k-1} q^k - q^j \, .
@@ -47,8 +45,10 @@ The number $\qbin{n}{k}$ defined in the next theorem is known as the $q$-binomia
   Equations~\eqref{Nqk1}~and~\eqref{Nqk2} give the desired result.
 \end{proof}
 
-Using Lemmas~\ref{NumkTup}~and~\ref{NumkSub}, we can count the number of matrices
-with of a given rank. %The following lemma will aid us in Section
+The number $\left[\begin{smallmatrix}n\\k\end{smallmatrix}\right]_q$ defined above is known as the $q$-binomial
+coefficient~\cite{stanley2011enumerative}.  
+Lemmas~\ref{NumkTup}~and~\ref{NumkSub} combine to count the number of matrices
+of a given rank. %The following lemma will aid us in Section
 %\ref{SecCondComp}.
 
 \begin{lemma}\label{Num_mbyn_rankr}
@@ -82,7 +82,7 @@ this out?}
 Let $n_m$ be a sequence of natural numbers. Let $B_m$ be a sequence of random $(n_m) \times (n_{m-1})$ matrices whose entries are chosen i.i.d. uniformly from $\Fq$. Let $r$ be a non-negative integer.  Define 
 \[
   P^m_k(r) := \mathbb{P} 
-  \left[\rank(B_{m+1}) = r|B_{m}B_{m+1} = 0, \nul(B_{m}) = k \right] \, .
+  \left[\rank(B_{m+1}) = r \st B_{m}B_{m+1} = 0, \nul(B_{m}) = k \right] \, .
 \]
 \end{definition}
 

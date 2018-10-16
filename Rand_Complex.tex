@@ -8,18 +8,15 @@
 %spaces $\Fqn{n_m}$ indexed by $m$.  We iteratively construct a sequence $A_m$
 %of boundary maps from $\Fq^{n_m}$ into $\Fq^{n_{m-1}}$.
 
-Let $A_0:\Fq^{n_0} \to 0$ be the zero map. Suppose for $m>0$ that
-$A_{m}:\Fq^{n_m} \to \Fq^{n_{m-1}}$ is known. Let $A_{m+1}$ be the random map
-that is given by the random $(n_{m})\times (n_{m+1})$ matrix whose entries are
-chosen i.i.d. uniformly from $\Fq$, subject to the condition that $A_{m+1}A_{m}
-= 0$.
-
 \begin{definition} 
   \label{defn:random_chain_cx}
-  Let $n_m$ be a sequence of natural numbers. A \textbf{random chain complex}
-  is a pair $(\Fqn{n_m},A_m)$, where $A_m$ is an iteratively defined sequence
-  of random linear transformations given by random $(n_{m-1})\times (n_m)$
-  matrices, as defined above.
+  Let $n_m$ be a sequence of natural numbers and let $A_0:\Fq^{n_0} \to 0$ be the zero map. 
+  Suppose for $m>0$ that
+  $A_{m}:\Fq^{n_m} \to \Fq^{n_{m-1}}$ is known. Let $A_{m+1}$ be the random linear
+  transformation given by the random $(n_{m})\times (n_{m+1})$ matrix whose entries are
+  chosen i.i.d. uniformly from $\Fq$, subject to the condition that $A_{m+1}A_{m}
+  = 0$.
+  A {\bf random chain complex} is a sequence of pairs $(\Fqn{n_m},A_m)$ for $m \in \Z$.
 \end{definition}
 
 We wish to investigate the probabilistic properties of the homology of a random
@@ -35,7 +32,7 @@ that $\nul(A_{m}) = k$.
 As the $A_m$ of a random chain complex are uniformly distributed, Definition
 \ref{defPkmr} immediately gives us that
 \[
-  P^m_k(r) = \mathbb{P}\left[\beta_m = k-r | \nul(A_{m}) = k\right].
+  P^m_k(r) = \mathbb{P}\left[\beta_m = k-r \st \nul(A_{m}) = k\right].
 \]
 \end{remark}
 
@@ -51,14 +48,14 @@ We are now ready to state our first theorem.
   \label{lem:condqtoinfty}
 Let $\beta_m$ be the $m$-th Betti number of a random chain complex.  If $k\leq n_{m+1}$, then
 \[
-\mathbb{P}\left[\beta_m=N_m| \nul(A_{m}) = k \right] \to 1 \textrm{ as } q\to\infty.
+\mathbb{P}\left[\beta_m=N_m \st \nul(A_{m}) = k \right] \to 1 \textrm{ as } q\to\infty.
 \]
 \end{lemma}
 
 \begin{proof}
 We have
 	\begin{eqnarray*}
-	\mathbb{P}\left[\beta_m = 0|A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right]
+	\mathbb{P}\left[\beta_m = 0 \st A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right]
     &=& P^m_k(k)\\
     &=& q^{-kn_{m+1}}\prod_{j=0}^{r-1} \frac{(q^m-q^j) (q^n - q^j)}{q^r - q^j}  \\
 		&=& \frac{\prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j)}
