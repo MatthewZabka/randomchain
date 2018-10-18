@@ -67,31 +67,50 @@ As the $A_m$ of a random chain complex are uniformly distributed, Definition
 
 We are now ready to state our first theorem.
 
-\mz{Letting $k\leq n_{m+1}$ seems fine to me, but what about Definition \ref{defPkmr}?}
-\mc{I don't think there's an issue with Definition~\ref{defPkmr} now.}
 
 \begin{lemma}
   \label{lem:condqtoinfty}
 Let $\beta_m$ be the $m$-th Betti number of a random chain complex.  If $k\leq n_{m+1}$, then
 \[
-\mathbb{P}\left[\beta_m=N_m \st \nul(A_{m}) = k \right] \to 1 \textrm{ as } q\to\infty.
+\mathbb{P}\left[\beta_m= 0 \st \nul(A_{m}) = k \right] \to 1 \textrm{ as } q\to\infty.
+\]
+\end{lemma}
+\mz{I had to fix a bunch of the indexing here.  Please double check!}
+\begin{proof}
+We have
+	\begin{align*}
+	\mathbb{P}\left[\beta_m = 0 \st A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right]
+    =& P^m_k(k)\\
+    =& q^{-kn_{m+1}}\prod_{j=0}^{k-1} \frac{(q^{n_m+1}-q^j) (q^k - q^j)}{q^k - q^j}  \\
+		=& \frac{1}{q^{kn_{m+1}}} \prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j) \\
+		%=& \frac{\prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j)}{q^{n_{m+1}k}}\\
+		=& \frac{q^{kn_{m+1}}}{q^{kn_{m+1}}}\prod_{j=0}^{k-1}(1-q^{j-n_{m+1}})\\
+		=& \prod_{j=0}^{k-1} (1-q^{j-n_{m+1}}).
+	\end{align*}
+Since the index $j$ is less than $k$, and since $k$ is less than $n_{m+1}$, this product tends to $1$ as $q\to\infty$.  
+\end{proof}
+
+\mz{Exposition here regarding if $k > n_{m+1}$, then the smallest possible rank of $H_m$ is greater than $0$? Maybe an example?}
+
+\begin{lemma}
+  \label{lem:condqtoinfty2}
+Let $\beta_m$ be the $m$-th Betti number of a random chain complex.  If $k > n_{m+1}$, then
+\[
+\mathbb{P}\left[\beta_m= k - n_{m+1} \st \nul(A_{m}) = k \right] \to 1 \textrm{ as } q\to\infty.
 \]
 \end{lemma}
 
 \begin{proof}
-We have
-	\begin{eqnarray*}
+Since $k$ must be less than or equal to $n_m$, we have that $n_{m+1} < k \leq n_m$.  So
+	\begin{align*}
 	\mathbb{P}\left[\beta_m = 0 \st A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right]
-    &=& P^m_k(k)\\
-    &=& q^{-kn_{m+1}}\prod_{j=0}^{r-1} \frac{(q^m-q^j) (q^n - q^j)}{q^r - q^j}  \\
-		&=& \frac{\prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j)}
-		{q^{kn_{m+1}}} \\
-		%&=& \frac{\prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j)}{q^{n_{m+1}k}}\\
-		&=& \frac{q^{kn_{m+1}}}{q^{kn_{m+1}}}\prod_{j=0}^{k-1}(1-q^{j-n_{m+1}})\\
-		&=& \prod_{j=0}^{k-1} (1-q^{j-n_{m+1}}),
-	\end{eqnarray*}
-which tends to 1 as $q\to\infty$.  
+    =& P^m_k(n_{m+1})\\
+    =& q^{-kn_{m+1}}\prod_{j=0}^{n_{m+1}-1} \left(\frac{(q^{n_{m+1}} - q^j)(q^k - q^j)}{q^{n_{m+1}} - q^j}  \right)  \\
+    =&  \prod_{j=0}^{n_{m+1}-1}(1-q^{j-k}).
+	\end{align*}
+Since the index $j$ is less than to $n_{m+1}$, which is less than $k$, this product goes to $1$ as $q$ goes to infinity.
 \end{proof}
+
 
 We are now in a position to prove Theorem~\ref{thm:qtoinfty}.
 
