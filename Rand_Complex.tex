@@ -19,13 +19,39 @@
   A {\bf random chain complex} is a sequence of pairs $(\Fqn{n_m},A_m)$ for $m \in \Z$.
 \end{definition}
 
+\mc{What do you think of the following more general definition?}
+
+\begin{definition}
+  Let $n_m$ be a sequence of natural numbers indexed by $m \in \Z$. 
+  A {\bf random chain complex} is a sequence of pairs $(\Fqn{n_m},A_m)$
+  such that each $A_m: \Fqn{n_{m+1}} \ra \Fqn{n_m}$ is a 
+  random matrix whose entries are chosen i.i.d. uniformly from $\Fqn{}$,
+  subject to the condition $A_{m+1}A_m = 0$, for all $m \in \Z$.
+\end{definition}
+
+\mc{We could even get crazier, and we might want to for our CW complexes
+  stuff. Define a {\em model for a random chain complex} to be the above
+  together with a probability distribution on $\Fqn{}$. Then the above 
+  is the model with the uniform distribution. This might be more interesting
+  topologically since we might want to do things like Bernoulli with a small
+  parameter, so that our spaces aren't uniformly complicated. Maybe
+  we want to build spaces whose attaching maps tends to have smaller degree, rather
+  than uniform on $\Fqn{}$. Importantly, we wouldn't
+  use anything other than the uniform distribution here, but still, we would
+be the first to make the definition.}
+
+
+
+
+
 We wish to investigate the probabilistic properties of the homology of a random
 chain complex.  We are primarily interested in the distribution of the Betti
-numbers $\beta_m := \dim(H_m(A_\ast; \Fqn{n}))$.  Recall that
-$H_m(A_\ast;\Fqn{n}) = \ker (A_{m})/ A_{m+1}(\Fqn{n})$, so if $k= \ker(A_m)$,
-then $\beta_m = k - \rank(A_{m+1})$.  We are therefore interested in the
-probabilistic properties of $\rank(A_{m+1})$ given that $A_{m}A_{m+1} = 0$ and
-that $\nul(A_{m}) = k$. 
+numbers $\beta_m = \ker A_m - \im A_{m+1}$.
+%:= \dim(H_m(A_\ast; \Fqn{n}))$.  Recall that
+%$H_m(A_\ast;\Fqn{n}) = \ker (A_{m})/ A_{m+1}(\Fqn{n})$, so if $k= \ker(A_m)$,
+%then $\beta_m = k - \rank(A_{m+1})$.  We are therefore interested in the
+%probabilistic properties of $\rank(A_{m+1})$ given that $A_{m}A_{m+1} = 0$ and
+%that $\nul(A_{m}) = k$. 
 
 
 \begin{remark}
@@ -105,7 +131,7 @@ The previous theorem immediately leads to two corollaries.
 \begin{corollary}\label{condtozero}
 Let $\beta_m$ be the $m$-th Betti number of a random chain complex. Let $b$ be a positive integer that is less than or equal to $k$. Then 
 \[
-\mathbb{P}[\beta_m = b| \nul(A_{m}) = k ] \to 0 \textrm{ as } q\to\infty.
+\mathbb{P}[\beta_m = b \st \nul(A_{m}) = k ] \to 0 \textrm{ as } q\to\infty.
 \]
 \end{corollary}
 \begin{proof}
@@ -113,7 +139,7 @@ We have that
 	\begin{eqnarray*}
 	&&\mathbb{P}[\beta_m = b \st A_{m}A_{m+1} = 0, \nul(A_{m}) = k ]\\
     &=& 1 - \sum_{j\neq b}\mathbb{P}[\beta_0 = j \st A_{m}A_{m+1} = 0, \nul(A_{m}) = k ]\\
-    &\leq& 1 - \mathbb{P}(\beta_m = 0|A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ).
+    &\leq& 1 - \mathbb{P}[\beta_m = 0 \st A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ].
 	\end{eqnarray*}
 By Lemma~\ref{lem:condqtoinfty}, this goes to $0$ as $q$ goes to infinity.
 \end{proof}
@@ -121,20 +147,20 @@ By Lemma~\ref{lem:condqtoinfty}, this goes to $0$ as $q$ goes to infinity.
 \begin{corollary}
 Let $\beta_m$ be the $m$-th Betti number of a random chain complex.  Then 
 \[
-\mathbb{E}[\beta_m | \nul(A_{m}) = k ] \to  N_m\textrm{ as } q\to\infty.
+\mathbb{E}[\beta_m \st \nul(A_{m}) = k ] \to  N_m\textrm{ as } q\to\infty.
 \]
 \begin{proof}
 The conditional expectation of the $m$-th Betti number is given by
 	\begin{eqnarray*}
-	& & \mathbb{E}[\beta_m | A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ]\\
-	&=& \sum_{b=1}^{n_m} b \mathbb{P}(\beta_m = b | A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ) \, .
+	& & \mathbb{E}[\beta_m \st A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ]\\
+	&=& \sum_{b=1}^{n_m} b \mathbb{P}[\beta_m = b \st A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ] \, .
 	\end{eqnarray*}
 By Corollary \ref{condtozero}, all terms with $b< n$ in this sum tend to 
 $0$ as $q$ tends to infinity. 
 
 On the other hand, when $b=n$, 
 \[
-n\mathbb{P}(\beta_m=0| A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ),
+n\mathbb{P}(\beta_m=0\st A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ),
 \]
 which goes to $n$ has $q$ tends to infinity by Lemma~\ref{lem:condqtoinfty}.
 \end{proof}
@@ -156,9 +182,9 @@ Let $(\Fq^{n_m}, A_m)$ be a random chain complex with $A_0:\Fq^{n_0}\to 0$.  The
 The proof is by induction on $m$. For the basis step $m=1$, we have
 \begin{align*}
 \mathbb{P}\left[\rank(A_1) = n_1 - k\right]
-	=& \sum_{i_0=0}^{n_0}\mathbb{P}\left [\rank(A_1)= n_1 - k|\nul (A_0) = i_0\right]
+	=& \sum_{i_0=0}^{n_0}\mathbb{P}\left [\rank(A_1)= n_1 - k\st\nul (A_0) = i_0\right]
 		\mathbb{P}\left[\nul(A_0) = i_0 \right]\\
-	=& \mathbb{P}\left [\rank(A_1)= n_1 - k|\nul (A_0) = n_0\right]\\
+	=& \mathbb{P}\left [\rank(A_1)= n_1 - k\st\nul (A_0) = n_0\right]\\
 	=& P_{n_0}^0(n_1 - k).
 \end{align*}
 The first equality follows by the Law of Total Probability, and the second equality follows because $A_0$ is the zero map.
@@ -182,12 +208,12 @@ We must show that
 Note that
 \begin{align*}
  &	\mathbb{P}\left[\rank(A_{m+1}) = n_{m+1} - k\right]\\
-=& 	\sum_{i_{m}}^{n_{m}} \mathbb{P}\left[ \rank(A_{m+1}) = n_{m+1} - k  \right|\nul(A_m) = i_m]
-		\mathbb{P}\left[\nul(A_m) = i_m\right]\\
+=& 	\sum_{i_{m}}^{n_{m}} \mathbb{P}\left[ \rank(A_{m+1}) = n_{m+1} - k  
+\st \nul(A_m) = i_m\right] \mathbb{P}\left[\nul(A_m) = i_m\right]\\
 =&  \sum_{i_{m}}^{n_{m}} P_{i_m}^{n_m}(n_{m+1} - k)
 		\mathbb{P}\left[n_m - \rank(A_m) = i_m\right]\\
 =&	\sum_{i_{m}}^{n_{m}} P_{i_m}^{n_m}(n_{m+1} - k)
-		\mathbb{P}\left[\rank(A_m) = n_m- i_m\right].\\
+		\mathbb{P}\left[\rank(A_m) = n_m- i_m\right].
 \end{align*}
 The desired result now follows by the induction hypothesis.
 \end{proof}
@@ -208,7 +234,7 @@ We have
   \mathbb{P}[\beta_{m} = b] 
    &= \mathbb{P}[\nul(A_{m}) - \rank(A_{m+1}) = b]\\
    &= \mathbb{P}[\rank(A_{m+1}) = \nul(A_{m}) - b]\\
-   &= \sum_{k=0}^{n_{m}}\mathbb{P}[\rank(A_{m+1}) = k - b| \nul(A_{m})=k] \mathbb{P}[\nul(A_{m}) = k]\\
+   &= \sum_{k=0}^{n_{m}}\mathbb{P}[\rank(A_{m+1}) = k - b\st \nul(A_{m})=k] \mathbb{P}[\nul(A_{m}) = k]\\
    &= \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\mathbb{P}[n_{m+1} - \rank(A_{m}) = k]\\
    &= \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\mathbb{P}[\rank(A_{m+1}) = n_{m} - k]\\ 
 \end{align*}

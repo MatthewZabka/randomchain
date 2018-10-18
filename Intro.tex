@@ -45,6 +45,16 @@ are called the boundary maps of the chain complex, and the equation
 $\delta_{n-1} \delta_n = 0$ is known as the boundary condition;
 see~\cite{hatcher2002algebraic} for further details.
 
+The boundary condition $A_{m-1}A_m=0$ forces $\im A_m \subseteq \ker A_{m-1}$.
+The {\em homology} of a chain complex measures the deviation of this containment
+from equality
+\begin{equation}
+  \label{eqn:hom}
+  H_m(C_*;R) = \frac{\ker A_{m-1}}{\im A_m} \, .
+\end{equation}
+When the chain complex arises from singular chains on a topological
+space, the homology is a very powerful invariant in algebraic topology.
+\mc{expand this}
 %Formally, a {\em chain complex $(C_n, \delta_n)$ } is a sequence of modules,
 %denoted $C_n$, and a sequence of linear transformations $\delta_n : C_n \to
 %C_{n-1}$ that satisfy the `boundary' condition $\delta_{n-1}\delta_n = 0$ for
@@ -64,10 +74,18 @@ see~\cite{hatcher2002algebraic} for further details.
 %\]
 %where $A_{i+1}A_i=0$ for every $i$. 
 
+\mc{Do we need an iterative construction like this? I don't think so:
+people work with unbounded chain complexes all the time. Equivalently,
+building a $\Z$-graded chain complex doesn't rely on an induction or anything.
+E.g.: take $C_n = R$ for all $n \in \Z$ and take all the maps to be zero. 
+This is a perfectly good chain complex that doesn't \emph{start} anywhere.
+This would allow us to define a more general object, even if we never work
+with it.}
+
 Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements.  We
 build a random chain complex with coefficients in $\Fqn{}$ as follows (see
 Definition~\ref{defn:random_chain_cx} for a precise statement). First, pick a
-\mc{We or not?} sequence of integers $(n_m)$, where $m \in \N$. We
+\mc{subject:We or not?} sequence of integers $(n_m)$, where $m \in \N$. We
 inductively build random linear transformations 
 \[
   A_m : \Fqn{n_m} \lra \Fqn{n_{m-1}} \, ,
@@ -89,9 +107,7 @@ $\Fqn{}$.
 %\]
 %where $A_{i+1}A_i=0$ for every $i$. 
 
-The boundary condition $A_{m-1}A_m=0$ forces $\im A_m \subseteq \ker A_{m-1}$.
-The {\em homology} of a chain complex measures the deviation of this containment
-from equality. Since we work with field coefficients, this deviation can
+Since we work with field coefficients, this deviation can
 be understood in terms of rank
 \begin{equation}
   \beta_m := \mathrm{rank} \left(\ker A_{m-1} / \im A_m \right)\, .
