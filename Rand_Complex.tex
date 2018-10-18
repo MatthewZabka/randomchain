@@ -103,7 +103,7 @@ Let $\beta_m$ be the $m$-th Betti number of a random chain complex.  If $k > n_{
 \begin{proof}
 Since $k$ must be less than or equal to $n_m$, we have that $n_{m+1} < k \leq n_m$.  So
 	\begin{align*}
-	\mathbb{P}\left[\beta_m = 0 \st A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right]
+	\mathbb{P}\left[\beta_m = k - n_{m+1} \st A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right]
     =& P^m_k(n_{m+1})\\
     =& q^{-kn_{m+1}}\prod_{j=0}^{n_{m+1}-1} \left(\frac{(q^{n_{m+1}} - q^j)(q^k - q^j)}{q^{n_{m+1}} - q^j}  \right)  \\
     =&  \prod_{j=0}^{n_{m+1}-1}(1-q^{j-k}).
