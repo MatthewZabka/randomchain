@@ -19,6 +19,12 @@ grasp on what's really going on.
 \begin{question} 
   What is the max of $\bP[\beta_1=b]$, as a function of $b$? For
   what $b$ is the max attained? The same questions for $\bP[\beta_2=b]$.
+  \mc{I think our new stuff shows that $\bP[\beta_1=b]$ attains its maximum
+    at $b = N_m$. Of course, this is in the limit as $q \ra \infty$, but maybe
+    there's an argument that says for fixed $q$, $\bP[\beta_1=b]$ is a 
+    decreasing function of $b$, and therefore it attains its maximum at
+    the minimal value of $b$. And there should be nothing special to $\beta_1$
+  here, and should hold for $\beta_k$ in general.}
 \end{question}
 
 \begin{question}
@@ -36,13 +42,13 @@ grasp on what's really going on.
 Using the same logic as the previous theorem, I'm {\em pretty sure} we have
 the following.
 
-\begin{conjecture}
-  \[
-    \bP[\rank A_m = r_m] = \sum_{i_{m-1}=0}^{n_{m-1}} P^{m-1}_{i_{m-1}}(r_m)
-    \sum_{i_{m-2} = 0}^{n_{m-2}} P^{m-2}_{i_{m-2}}(n_{m-1}- i_{m-1})
-    \cdots \sum_{i_1 = 0}^{n_2}P^1_{i_1}(n_2-i_2) P^0_{n_0}(n_1-i_1)
-  \]
-\end{conjecture}
+%\begin{conjecture}
+%  \[
+%    \bP[\rank A_m = r_m] = \sum_{i_{m-1}=0}^{n_{m-1}} P^{m-1}_{i_{m-1}}(r_m)
+%    \sum_{i_{m-2} = 0}^{n_{m-2}} P^{m-2}_{i_{m-2}}(n_{m-1}- i_{m-1})
+%    \cdots \sum_{i_1 = 0}^{n_2}P^1_{i_1}(n_2-i_2) P^0_{n_0}(n_1-i_1)
+%  \]
+%\end{conjecture}
 
 
 \begin{question} What distribution does the random variable

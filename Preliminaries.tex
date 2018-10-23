@@ -98,14 +98,17 @@ Let $n_m$ be a sequence of natural numbers. Let $B_m$ be a sequence of random $(
 %	\left(\prod_{j=0}^{r-1}\left(q^k - q^j \right) \right)}
 %      {q^{kn_{m+1}} \left(\prod_{j=0}^{r-1} \left(q^r-q^j\right)\right)}}
       & \textrm{ if } k\neq 0, r \leq k, \\
-           0	& \textrm{ if }  r>k,\\
+      0	& \textrm{ if }  r>k, r<0, \textrm{ or } k<0, \\
            1	& \textrm{ if } r = k = 0.
 	 \end{cases}
 	 \label{eqn:Pmkr}
        \end{equation}
 \end{lemma}
 \begin{proof}
-Let $k= \nul(B_{m})$ and suppose $B_mB_{m+1} = 0$.  Then $B_{m+1}$ maps $\Fq^{n_{m+1}}$ into the kernel of $B_m$, and thus $\rank(B_{m+1}) \leq k$.  Therefore, if $r>k$, we have $P^m_k(r) = 0$.  Further, if $k=0$, then $\rank(B_{m+1}) = 0$, so $P^m_0(0) = 1$.
+Let $k= \nul(B_{m})$ and suppose $B_mB_{m+1} = 0$.  Then $B_{m+1}$ maps
+$\Fq^{n_{m+1}}$ into the kernel of $B_m$, and thus $\rank(B_{m+1}) \leq k$.
+Therefore, if $r>k$, we have $P^m_k(r) = 0$.  Further, if $k=0$, then
+$\rank(B_{m+1}) = 0$, so $P^m_0(0) = 1$. 
 
 On the other hand, suppose $k\neq 0$ and $r\leq k$.  Then, $B_{m+1}$ represents a linear transformation from $\Fq^{n_{m+1}}$ into a $k$-dimensional subspace of $\Fq^{n_{m}}$. Thus, by changing basis, $B_{m+1}$ can be represented by a $(n_{m+1}) \times k$ matrix.  There are $q^{kn_{m+1}}$ such matrices, and, by Lemma \ref{Num_mbyn_rankr}, there are 
 \[
