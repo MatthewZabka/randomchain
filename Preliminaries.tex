@@ -91,16 +91,16 @@ Let $n_m$ be a sequence of natural numbers. Let $B_m$ be a sequence of random $(
 \begin{lemma}\label{lemPkmr} With $B_m$ defined as in Definition \ref{defPkmr}, we have that
   \begin{equation}
     P^m_k(r) = 
-    \begin{cases}
-      {\displaystyle 
-      q^{-kn_{m+1}}\prod_{j=0}^{r-1} \frac{(q^{n_{m+1}}-q^j) (q^k - q^j)}{q^r - q^j} }
+   % \begin{cases}
+      %{\displaystyle 
+    q^{-kn_{m+1}}\prod_{j=0}^{r-1} \frac{(q^{n_{m+1}}-q^j) (q^k - q^j)}{q^r - q^j} \, . % }
 %	\frac{\left(\prod_{j=0}^{r-1}\left(q^{n_{m+1}}-q^{j}\right)\right)
 %	\left(\prod_{j=0}^{r-1}\left(q^k - q^j \right) \right)}
 %      {q^{kn_{m+1}} \left(\prod_{j=0}^{r-1} \left(q^r-q^j\right)\right)}}
-      & \textrm{ if } k\neq 0, r \leq k, \\
-      0	& \textrm{ if }  r>k, r<0, \textrm{ or } k<0, \\
-           1	& \textrm{ if } r = k = 0.
-	 \end{cases}
+%      & \textrm{ if } k\neq 0, r \leq k, \\
+%      0	& \textrm{ if }  r>k, r<0, \textrm{ or } k<0, \\
+%           1	& \textrm{ if } r = k = 0.
+%	 \end{cases}
 	 \label{eqn:Pmkr}
        \end{equation}
 \end{lemma}
@@ -119,3 +119,8 @@ On the other hand, suppose $k\neq 0$ and $r\leq k$.  Then, $B_{m+1}$ represents 
 \]
 such matrices of rank $r$.
 \end{proof}
+
+\begin{remark}
+  We adopt the convention that the empty product is 1, so that Lemma~\ref{lemPkmr} gives $P^m_0(0) = 1$. 
+  For impossible cases, like $r>k$ or $k<0$, Eq.~\eqref{eqn:Pmkr} gives 0.
+\end{remark}

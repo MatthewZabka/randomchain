@@ -7,14 +7,15 @@
 
 
 \newtheorem{theorem}{Theorem}[section]
+\newtheorem{bigthm}{Theorem}
+\renewcommand{\thebigthm}{\Alph{bigthm}}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{question}[theorem]{Question}
-\newtheorem{bigthm}{Theorem}
-\renewcommand{\thebigthm}{\Alph{bigthm}}
 
 \DeclareMathOperator{\rank}{\mathrm{rank}}
 \DeclareMathOperator{\im}{\mathrm{im}}
