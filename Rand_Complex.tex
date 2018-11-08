@@ -111,6 +111,25 @@ Since $k$ must be less than or equal to $n_m$, we have that $n_{m+1} < k \leq n_
 Since the index $j$ is less than to $n_{m+1}$, which is less than $k$, this product goes to $1$ as $q$ goes to infinity.
 \end{proof}
 
+\mc{I've made this a separate lemma for now. Maybe we only need this, and not the previous
+two lemmas at all. Or maybe not.}
+
+\begin{lemma}
+  Fix $m$ and $k$. Then 
+  \[
+    \lim_{q \ra \infty} P^m_k(r) = 
+      \begin{cases}
+        1 & \mbox{ if } r = \min(k,n_{m+1}) \, , \\
+        0 & \mbox { else.}
+      \end{cases}
+    \]
+\end{lemma}
+
+\begin{proof}
+  Reproduce the two previous proofs, starting from $P^m_k(k)$ and $P^m_k(n_{m+1})$.
+\end{proof}
+
+
 
 We are now in a position to prove Theorem~\ref{thm:qtoinfty}.
 
