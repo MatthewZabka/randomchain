@@ -129,6 +129,21 @@ two lemmas at all. Or maybe not.}
   Reproduce the two previous proofs, starting from $P^m_k(k)$ and $P^m_k(n_{m+1})$.
 \end{proof}
 
+\begin{lemma}
+  Fix $m$ and $r$. Then
+  \[
+    \lim_{q \ra \infty} P^m_k(r) = 
+      \begin{cases}
+        1 & \mbox{ if } r < \min(n_m,n_{m+1}) \, \mbox{ and } \, k = r \, , \\
+        1 & \mbox{ if } r = \min(n_m,n_{m+1}) \, \mbox{ and }  \, k \geq r \, , \\
+        0 & \mbox { else.}
+      \end{cases}
+    \]
+\end{lemma}
+
+\begin{proof}
+  TBD
+\end{proof}
 
 
 We are now in a position to prove Theorem~\ref{thm:qtoinfty}.
