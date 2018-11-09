@@ -1,48 +1,59 @@
-%Recall that a chain complex consists of a pair of sequences $(C_n, \delta_n)$,
-%where the $C_n$ are appropriate spaces (vector spaces, groups, modules, etc.)
-%and the $\delta_n$ are maps, $\delta_n: C_n \to C_{n-1}$ such that
-%$\delta_{n-1}\delta_n = 0$.  
-%
-%Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements. Let
-%$n_m$ be a sequence of natural numbers. Consider the sequence of finite vector
-%spaces $\Fqn{n_m}$ indexed by $m$.  We iteratively construct a sequence $A_m$
-%of boundary maps from $\Fq^{n_m}$ into $\Fq^{n_{m-1}}$.
+% Recall that a chain complex consists of a pair of sequences $(C_n, \delta_n)$,
+% where the $C_n$ are appropriate spaces (vector spaces, groups, modules, etc.)
+% and the $\delta_n$ are maps, $\delta_n: C_n \to C_{n-1}$ such that
+% $\delta_{n-1}\delta_n = 0$.  
 
-\begin{definition} 
-  \label{defn:random_chain_cx}
-  Let $n_m$ be a sequence of natural numbers and let $A_0:\Fq^{n_0} \to 0$ be the zero map. 
-  Suppose for $m>0$ that
-  $A_{m}:\Fq^{n_m} \to \Fq^{n_{m-1}}$ is known. Let $A_{m+1}$ be the random linear
-  transformation given by the random $(n_{m})\times (n_{m+1})$ matrix whose entries are
-  chosen i.i.d. uniformly from $\Fq$, subject to the condition that $A_{m+1}A_{m}
-  = 0$.
-  A {\bf random chain complex} is a sequence of pairs $(\Fqn{n_m},A_m)$ for $m \in \Z$.
-\end{definition}
+% Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements. Let
+% $n_m$ be a sequence of natural numbers. Consider the sequence of finite vector
+% spaces $\Fqn{n_m}$ indexed by $m$.  We iteratively construct a sequence $A_m$
+% of boundary maps from $\Fq^{n_m}$ into $\Fq^{n_{m-1}}$.
 
-\mc{What do you think of the following more general definition?}
+% \begin{definition} \label{defn:random_chain_cx} Let $n_m$ be a sequence of
+%   natural numbers and let $A_0:\Fq^{n_0} \to 0$ be the zero map.  Suppose for
+%   $m>0$ that $A_{m}:\Fq^{n_m} \to \Fq^{n_{m-1}}$ is known. Let $A_{m+1}$ be the
+%   random linear transformation given by the random $(n_{m})\times (n_{m+1})$
+%   matrix whose entries are chosen i.i.d. uniformly from $\Fq$, subject to the
+%   condition that $A_{m+1}A_{m} = 0$.  A {\bf random chain complex} is a sequence
+%   of pairs $(\Fqn{n_m},A_m)$ for $m \in \Z$.  
+% \end{definition}
+
+\mc{What do you think of the following more general definition? In particular,
+what do you think of the wording?}
 
 \begin{definition}
-  Let $n_m$ be a sequence of natural numbers indexed by $m \in \Z$. 
-  A {\bf random chain complex} is a sequence of pairs $(\Fqn{n_m},A_m)$
-  such that each $A_m: \Fqn{n_{m+1}} \ra \Fqn{n_m}$ is a 
-  random matrix whose entries are chosen i.i.d. uniformly from $\Fqn{}$,
-  subject to the condition $A_{m+1}A_m = 0$, for all $m \in \Z$.
+  Let $n_m$ be a sequence of natural numbers indexed by $m \in \Z$.  A {\bf
+  model for a random chain complex over} $\Fqn{}$ consists of a probability
+  distribution $\varphi$ on $\Fqn{}$, together with a sequence of random matrices
+  $A_m: \Fqn{n_{m+1}} \ra \Fqn{n_m}$ whose entries are chosen with respect to
+  $\varphi$, subject to $A_{m+1}A_m = 0$ for all $m \in \Z$.
 \end{definition}
 
-\mc{We could even get crazier, and we might want to for our CW complexes
-  stuff. Define a {\em model for a random chain complex} to be the above
-  together with a probability distribution on $\Fqn{}$. Then the above 
-  is the model with the uniform distribution. This might be more interesting
-  topologically since we might want to do things like Bernoulli with a small
-  parameter, so that our spaces aren't uniformly complicated. Maybe
-  we want to build spaces whose attaching maps tends to have smaller degree, rather
-  than uniform on $\Fqn{}$. Importantly, we wouldn't
-  use anything other than the uniform distribution here, but still, we would
-be the first to make the definition.}
 
+\begin{definition}
+  The {\bf uniform random chain complex} is a model for a random chain complex
+  over $\Fqn{}$ with the uniform distribution on $\Fqn{}$. 
+  \label{defn:random_chain_cx}
+\end{definition}
 
+\mc{Re-write all this expository stuff}
 
+% \begin{definition}
+%   Let $n_m$ be a sequence of natural numbers indexed by $m \in \Z$. 
+%   A {\bf random chain complex} is a sequence of pairs $(\Fqn{n_m},A_m)$
+%   such that each $A_m: \Fqn{n_{m+1}} \ra \Fqn{n_m}$ is a 
+%   random matrix whose entries are chosen i.i.d. uniformly from $\Fqn{}$,
+%   subject to the condition $A_{m+1}A_m = 0$, for all $m \in \Z$.
+% \end{definition}
 
+% \mc{We could even get crazier, and we might want to for our CW complexes stuff.
+%   Define a {\em model for a random chain complex} to be the above together with
+%   a probability distribution on $\Fqn{}$. Then the above is the model with the
+%   uniform distribution. This might be more interesting topologically since we
+%   might want to do things like Bernoulli with a small parameter, so that our
+%   spaces aren't uniformly complicated. Maybe we want to build spaces whose
+%   attaching maps tends to have smaller degree, rather than uniform on $\Fqn{}$.
+% Importantly, we wouldn't use anything other than the uniform distribution here,
+% but still, we would be the first to make the definition.}
 
 We wish to investigate the probabilistic properties of the homology of a random
 chain complex.  We are primarily interested in the distribution of the Betti
