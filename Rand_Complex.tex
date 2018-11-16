@@ -230,14 +230,15 @@ which goes to $n$ has $q$ tends to infinity by Lemma~\ref{lem:condqtoinfty}.
 \end{proof}
 \end{corollary}
 
-We next derive explicit formulas for the distributions of the Betti numbers of a random chain complex. We first need a lemma
+We next derive explicit formulas for the distributions of the Betti numbers of a random chain complex. We first need a lemma.
 
+\mz{Mike!  Please check the following lemma and proof}
 \begin{lemma}\label{lemProbranks}
 Let $(\Fq^{n_m}, A_m)$ be a random chain complex with $A_0:\Fq^{n_0}\to 0$.  Then
 \begin{align*}
- &  \mathbb{P}\left[\rank(A_{m+1}) = n_{m+1} - k\right]\\
-=& 	\sum_{i_m=0}^{n_m} P_{i_m}^{m}\left(n_{m+1} -k\right)
-	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_m - i_m\right)
+ &  \mathbb{P}\left[\rank(A_{m}) = n_{m} - k\right]\\
+=& 	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -k\right)
+	\sum_{i_{m-2}=0}^{n_{m-2}} P_{i_{m-2}}^{m-2}\left(n_{m-2} - i_{m-2}\right)
 		\cdots
 	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right) 
 \end{align*}
@@ -255,29 +256,29 @@ The first equality follows by the Law of Total Probability, and the second equal
 
 For the inductive step, suppose that
 \begin{align*}
- &  \mathbb{P}\left[\rank(A_{m}) = n_{m} - i_{m}\right]\\
-=& 	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -i_{m}\right)
-	\sum_{i_{m-2}=0}^{n_{m-2}} P_{i_{m-2}}^{m-2}\left(n_{m-1} - i_{m-1}\right)
+ &  \mathbb{P}\left[\rank(A_{m-1}) = n_{m-1} - i_{m-1}\right]\\
+=& 	\sum_{i_{m-2}=0}^{n_{m-2}} P_{i_{m-2}}^{m-2}\left(n_{m-1} -i_{m-1}\right)
+	\sum_{i_{m-3}=0}^{n_{m-3}} P_{i_{m-3}}^{m-3}\left(n_{m-2} - i_{m-2}\right)
 		\cdots
 	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right).
 \end{align*}
 We must show that
 \begin{align*}
- &  \mathbb{P}\left[\rank(A_{m+1}) = n_{m+1} - k\right]\\
-=& 	\sum_{i_m=0}^{n_m} P_{i_m}^{m}\left(n_{m+1} -k\right)
-	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_m - i_m\right)
+ &  \mathbb{P}\left[\rank(A_{m}) = n_{m} - k\right]\\
+=& 	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -k\right)
+	\sum_{i_{m-2}=0}^{n_{m-2}} P_{i_{m-2}}^{m-2}\left(n_{m-1} - i_{m-1}\right)
 		\cdots
 	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right) 
 \end{align*}
 Note that
 \begin{align*}
- &	\mathbb{P}\left[\rank(A_{m+1}) = n_{m+1} - k\right]\\
-=& 	\sum_{i_{m}}^{n_{m}} \mathbb{P}\left[ \rank(A_{m+1}) = n_{m+1} - k  
-\st \nul(A_m) = i_m\right] \mathbb{P}\left[\nul(A_m) = i_m\right]\\
-=&  \sum_{i_{m}}^{n_{m}} P_{i_m}^{n_m}(n_{m+1} - k)
-		\mathbb{P}\left[n_m - \rank(A_m) = i_m\right]\\
-=&	\sum_{i_{m}}^{n_{m}} P_{i_m}^{n_m}(n_{m+1} - k)
-		\mathbb{P}\left[\rank(A_m) = n_m- i_m\right].
+ &	\mathbb{P}\left[\rank(A_{m}) = n_{m} - k\right]\\
+=& 	\sum_{i_{m-1}}^{n_{m-1}} \mathbb{P}\left[ \rank(A_{m}) = n_{m} - k  
+\st \nul(A_{m-1}) = i_{m-1}\right] \mathbb{P}\left[\nul(A_{m-1}) = i_{m-1}\right]\\
+=&  \sum_{i_{m-1}}^{n_{m-1}} P_{i_{m-1}}^{n_{m-1}}(n_{m} - k)
+		\mathbb{P}\left[n_{m-1} - \rank(A_{m-1}) = i_{m-1}\right]\\
+=&	\sum_{i_{m-2}}^{n_{m-2}} P_{i_{m-2}}^{n_{m-2}}(n_{m} - k)
+		\mathbb{P}\left[\rank(A_{m-1}) = n_{m-1}- i_{m-1}\right].
 \end{align*}
 The desired result now follows by the induction hypothesis.
 \end{proof}
@@ -290,7 +291,7 @@ The desired result now follows by the induction hypothesis.
 	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right).
     \]
 \end{theorem}
-\mc{re-write proof.}
+
 \begin{proof}
 We have
 
@@ -304,8 +305,8 @@ We have
 \end{align*}
 By Lemma \ref{lemProbranks} we have
 \begin{align*}
- & \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\mathbb{P}[\rank(A_{m+1}) = n_{m} - k] \\
-=& \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\sum_{i_m=0}^{n_m} P_{i_m}^{m}\left(n_{m+1} -k\right)
+ & \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\mathbb{P}[\rank(A_{m}) = n_{m} - k] \\
+=& \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -k\right)
 		\cdots
 	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right), 
 \end{align*}
