@@ -1,0 +1,83 @@
+In this section, we analyze Theorem~\ref{thm:bettinum} under the 
+limit $q \ra \infty$.
+
+\begin{proposition}
+  \label{prop:oneseq}
+Let $I_m:= \{0,1,\ldots, n_m\}$.  Let $I^{(j)}:= I_1\times\cdots \times I_j$.
+Then for every $j$ in $\mathbb{N}$, there exists exactly one $\mathbf{i}^\ast =
+(i_1^\ast,\ldots, i_j^\ast)$ in $I^{(j)}$ such that 
+\[
+  P_{i_{j-1}^\ast}^{j-1}(n_j-i_j^\ast)\cdots
+  P_{i_1^\ast}^1(n_2-i_2^\ast)P_{n_0}^0(n_1-i_1^\ast) \to 1 \, ,
+\]
+as $q\to\infty$.
+\end{proposition}
+
+\begin{proof}
+The proof is by induction on $j$.
+
+\mz{The case $j=1$ is easy. Show this.}
+
+Base step ($j=2$): Since each $P^m_k(r)$ is a probability, the product $P_{i_1}^1(n_2 -
+i_2)P_{n_0}^0 (n_1 - i_1) \to 1$ as $q\to\infty$ if and only if both
+$P_{i_1}^1(n_2 - i_2) \to 1$ and $P_{n_0}^0 (n_1 - i_1) \to 1$ as $q\to
+\infty$.  We have three cases to consider, and in each case, we shall find the
+desired $i_1^\ast$ and $i_2^\ast$.
+
+Case 1: $n_0\leq n_1$ and $n_1\leq n_2$.  By Lemma~\ref{lem:Pqtoinfty},
+$P_{n_0}^0 (n_1 - i_1) \to 1$ as $q\to\infty$ if and only if $i_1 = n_1 - n_0$.
+Again by Lemma~\ref{lem:Pqtoinfty}, $P_{i_1^\ast}(n_2 - i_2) = P_{n_1 - n_0}(n_2 - i_2)
+\to 1$ as $q\to\infty$ if and only if $i_2 = n_2 - n_1 + n_0$.  So $i_1^\ast = n_1 - n_0$
+and $i_2^\ast = n_2 - n_1 + n_0$.
+
+Case 2: $n_0 \leq n_1$ and $n_2 <n_1$. By Lemma~\ref{lem:Pqtoinfty},
+$P_{n_0}^0 (n_1 - i_1) \to 1$ as $q\to\infty$ if and only if $i_1 = n_1 - n_0$.
+So in this case, $i_1^\ast = n_1 - n_0$. We now have two different subcases to
+consider.  
+\begin{itemize} 
+  \item Subcase 1: If $n_1 - n_0\leq n_2$, then by
+    Lemma \ref{lem:Pqtoinfty}, $P_{i_1^\ast}^1(n_2 - i_2) =
+    P_{n_1-n_0}^1(n_2-i_2) \to 1$ as $q\to\infty$ if and only if $i_2 = n_2 -
+    n_1 + n_0$.  So in this subcase, $i_2^\ast = n_2 - n_1 + n_0$.  
+  \item Subcase 2: On the other hand, if $n_1 - n_0 >n_2$, then by 
+  Lemma~\ref{lem:Pqtoinfty}, $P_{i_1^\ast}(n_2 - i_2) = P_{n_1-n_0}(n_2-i_2)
+    \to 1$ as $q\to\infty$ if and only if $i_2 = 0$.  So in this subcase,
+    $i_2^\ast = 0$.  
+\end{itemize}
+
+Case 3: $n_0 > n_1$. By Lemma~\ref{lem:Pqtoinfty}, we know that $P_{n_0}^0
+(n_1 - i_1) \to 1$ as $q\to\infty$ if and only if $i_1 = 0$. 
+Further, regardless of the values of $n_1$ and $n_2$,
+we have that Lemma~\ref{lem:Pqtoinfty} gives 
+$P_{i_1^\ast}^1(n_2 - i_2) = P_{0}^1(n_2 - i_2)\to 1$ as $q\to\infty$ if and
+only if $i_2 = 0$.  So in this case, $i_1^\ast = 0$ and $i_2^\ast = 0$.
+
+Inductive step: Assume there exists exactly one $(i_1^\ast,\ldots , i_{j-1}^\ast)$ in $I^{(j-1)}$ such that 
+\[
+P_{i_{j-2}}^{j-2}(n_{j-1} - i_{j-1}^\ast)P_{i_{j-3}}^{j-3}(n_{j-2} - i_{j-2}^\ast) \cdots P_{i_1^\ast}^1 (n_2 - i_2^\ast) P_{n_0}^0 (n_1 - i_1^\ast) \to 1
+\]
+as $q\to\infty$. If, on the one hand, $i_{j-1}^\ast \leq n_j$, set $i_j^\ast =
+n_j-i_{j-1}^\ast$.  Then by Lemma~\ref{lem:Pqtoinfty},
+$P_{i_{j-1}^\ast}^{j-1}(n_j - i_j^\ast) = P_{i_{j-1}^\ast}^{j-1}(i_{j-1}^\ast)
+\to 1$ as $q\to\infty$. If, on the other hand, $i_{j-1}^\ast > n_j$, set
+$i_j^\ast = 0$. Then by Lemma~\ref{lem:Pqtoinfty},
+$P_{i_{j-1}^\ast}^{j-1}(n_j - i_j^\ast) = P_{i_{j-1}^\ast}^{j-1}(n_j ) \to 1$
+as $q \to\infty$.  
+
+So for $\mathbf{i} = (i_1^\ast,\ldots, i_{j-1}^\ast, i_j^\ast)$ in $I^{(j)}$, we have
+\[
+P_{i_{j-1}^\ast}^{j-1}(n_j-i_j^\ast)P_{i_{j-2}^\ast}^{j-2}(n_{j-1}-i_{j-1}^\ast)\cdots P_{i_1^\ast}^1(n_2-i_2^\ast)P_{n_0}^0(n_1-i_1^\ast) \to 1
+\]
+as $q\to\infty$, as desired.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:qtoinfty}]
+  (sketch of proof) By Proposition~\ref{prop:oneseq}, there is a single $\mathbf{i}^*$
+  such that
+  \[
+    P_{i_{j-1}^\ast}^{j-1}(n_j-i_j^\ast)\cdots
+    P_{i_1^\ast}^1(n_2-i_2^\ast)P_{n_0}^0(n_1-i_1^\ast) \to 1 \, .
+  \]
+  By Lemma~\ref{lem:Pqtoinfty} there is one value of 
+\end{proof}
+

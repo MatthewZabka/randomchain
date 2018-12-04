@@ -10,6 +10,7 @@
 \newtheorem{bigthm}{Theorem}
 \renewcommand{\thebigthm}{\Alph{bigthm}}
 \newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{definition}[theorem]{Definition}
 \theoremstyle{remark}
@@ -61,7 +62,6 @@ properties of this random chain complex.
 \maketitle
 
 
-\mc{Do we want to choose $n_m$ randomly?}
 \section{Introduction}
 \input{Intro.tex}
 %---------------------------------------------------
@@ -71,6 +71,9 @@ properties of this random chain complex.
 \section{The Homology of a Random Chain Complex}\label{SecCondComp}
 \input{Rand_Complex.tex}
 %-------------------------------------------------
+\section{Proof of Theorem B}
+\input{qtoinfty.tex}
+%--------------------------------------------------
 \section{Conjectures}
 \input{Conjectures.tex}
 

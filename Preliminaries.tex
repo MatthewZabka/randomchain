@@ -2,6 +2,7 @@ This section consists of several lemmas that count the number of elements in
 various sets related to finite vector spaces over $\mathbb{F}_q$.  We provide
 proofs for these lemmas, and the interested reader can
 see~\cite{stanley2011enumerative} for further details. 
+
 \begin{lemma}\label{NumkTup}
   The number of ordered, linearly independent $k$-tuples of vectors in $\Fqn{n}$  is
 \[
@@ -11,7 +12,12 @@ see~\cite{stanley2011enumerative} for further details.
 \end{lemma}
 
 \begin{proof}
-Since first vector in the $k$-tuple may be any vector except for the zero vector, there are $q^n-1$ choices for the first vector.  For $1<m \leq k$, the $m$-th vector in the $k$-tuple may be any vector that is not a linear combination of the previously chosen $m-1$ vectors. So there are $q^n - q^{m-1}$ choices for the $m$-th vector.
+Since first vector in the $k$-tuple may be any vector except for the zero
+vector, there are $q^n-1$ choices for the first vector.  More generally, for $1
+\leq m \leq k$, the
+$m$-th vector in the $k$-tuple may be any vector that is not a linear
+combination of the previously chosen $m-1$ vectors. So there are $q^n -
+q^{m-1}$ choices for the $m$-th vector.
 \end{proof}
 
 \begin{lemma}\label{NumkSub}
@@ -63,16 +69,14 @@ The number of $m\times n$ matrices of rank $r$ with entries in $\Fq$ is given by
       \prod_{j=0}^{r-1} \frac{(q^m-q^j) (q^n - q^j)}{q^r - q^j} \, .
 \end{equation*}
 \end{lemma}
-\mc{Redo this statement and proof. This proof uses 'homogeneity' of
-  rank $r$ subspaces of vector space over finite fields, i.e., all
-  that matters is the rank, not the actual subspace. Should we point
-this out?}
+
 \begin{proof}
   Let $W$ be a fixed $r$-dimensional subspace of $\Fqn{n}$.  The number of
   matrices whose column space is $W$ is given by the number of $r\times n$
   matrices with rank $r$.  This number is given by Lemma \ref{NumkTup}. The
-  number of $r$-dimensional subspaces of $\Fqn{n}$ is $\qbin{m}{r}$, as stated
-  in Lemma \ref{NumkSub}.  The product of these is the number of $m\times n$
+  number of $r$-dimensional subspaces of $\Fqn{n}$ is
+  $\left[\begin{smallmatrix}m\\r\end{smallmatrix}\right]_q$,  as stated in
+  Lemma \ref{NumkSub}.  The product of these is the number of $m\times n$
   rank $r$ matrices.
 \end{proof}
 
@@ -107,10 +111,15 @@ Let $n_m$ be a sequence of natural numbers. Let $B_m$ be a sequence of random $(
 \begin{proof}
 Let $k= \nul(B_{m})$ and suppose $B_mB_{m+1} = 0$.  Then $B_{m+1}$ maps
 $\Fq^{n_{m+1}}$ into the kernel of $B_m$, and thus $\rank(B_{m+1}) \leq k$.
-Therefore, if $r>k$, we have $P^m_k(r) = 0$.  Further, if $k=0$, then
+Therefore, if $r>k$, we have $P^m_k(r) = 0$.  If $k=0$, then
 $\rank(B_{m+1}) = 0$, so $P^m_0(0) = 1$. 
 
-On the other hand, suppose $k\neq 0$ and $r\leq k$.  Then, $B_{m+1}$ represents a linear transformation from $\Fq^{n_{m+1}}$ into a $k$-dimensional subspace of $\Fq^{n_{m}}$. Thus, by changing basis, $B_{m+1}$ can be represented by a $(n_{m+1}) \times k$ matrix.  There are $q^{kn_{m+1}}$ such matrices, and, by Lemma \ref{Num_mbyn_rankr}, there are 
+On the other hand, suppose $k\neq 0$ and $r\leq k$.  Then, $B_{m+1}$ represents
+a linear transformation from $\Fq^{n_{m+1}}$ into a $k$-dimensional subspace of
+$\Fq^{n_{m}}$. By changing basis, $B_{m+1}$ can be represented by an
+$n_{m+1} \times k$ matrix.  There are $q^{kn_{m+1}}$ total $n_{m+1} \times k$
+matrices over $\Fqn{}$, and by
+Lemma \ref{Num_mbyn_rankr}, there are 
 \[
 % \displaystyle \frac{\left(\prod_{j=0}^{r-1}\left(q^{n_{m+1}}-q^{j}\right)\right)
 %  \left(\prod_{j=0}^{r-1}\left(q^k - q^j \right) \right)}
@@ -122,5 +131,36 @@ such matrices of rank $r$.
 
 \begin{remark}
   We adopt the convention that the empty product is 1, so that Lemma~\ref{lemPkmr} gives $P^m_0(0) = 1$. 
-  For impossible cases, like $r>k$ or $k<0$, Eq.~\eqref{eqn:Pmkr} gives 0.
+  For impossible cases, like $r>k$ or $k<0$, Eq.~\eqref{eqn:Pmkr} gives $P^m_k(r) = 0$.
 \end{remark}
+
+\begin{lemma}
+  \label{lem:Pqtoinfty}
+  Fix $m$ and $k$. Then 
+  \[
+    \lim_{q \ra \infty} P^m_k(r) = 
+      \begin{cases}
+        1 & \mbox{ if } r = \min(k,n_{m+1}) \, , \\
+        0 & \mbox { else.}
+      \end{cases}
+    \]
+\end{lemma}
+
+\begin{proof}
+  Suppose $\min(k,n_{m+1}) = k$. Then 
+  \begin{align*} 
+    P^m_k(k) =& q^{-kn_{m+1}}\prod_{j=0}^{k-1} \frac{(q^{n_m+1}-q^j) (q^k - q^j)}{q^k - q^j}  \\
+    =& q^{-kn_{m+1}} \prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j) \\
+        %=& \frac{\prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j)}{q^{n_{m+1}k}}\\
+    =& \prod_{j=0}^{k-1} (1-q^{j-n_{m+1}}).
+  \end{align*}
+  Suppose $\min(k,n_{m+1}) = n_{m+1}$. Then
+  \begin{align*}
+    P^m_k(n_{m+1}) 
+    =& q^{-kn_{m+1}}\prod_{j=0}^{n_{m+1}-1} \left(\frac{(q^{n_{m+1}} - q^j)(q^k - q^j)}{q^{n_{m+1}} - q^j}  \right)  \\
+    =&  \prod_{j=0}^{n_{m+1}-1}(1-q^{j-k}).
+	\end{align*}
+    In either of the above cases, $P^m_k(r) \ra 1$ as $q \ra \infty$. On the other hand, 
+    if $r \neq \min(k,n_{m+1})$, then $P^m_k(r) \ra 0$ since each $P^m_k(r)$ represents
+    a probability by Definition~\ref{defPkmr}.
+\end{proof}
