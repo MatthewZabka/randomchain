@@ -1,18 +1,14 @@
 There have been a variety of attempts to randomize topological constructions.
-Most famously, Erdos and Renyi introduced a model for random
+Most famously, Erd\"os and R\'enyi introduced a model for random
 graphs~\cite{erdos_random_1959, erdos_evolution_1960}.  This work spawned an
 entire industry of probabilistic models and tools used for understanding other
 random topological and algebraic phenomenon. These include various models for
 random simplicial complexes, random networks, and many more. Further, this has
 led to beautiful connections with statistical physics, for example through
-percolation theory.  Our perspective is to understand topological constructions
-from a topological perspective. To this end, we introduce a model for building
-and understanding random chain complexes.
-
-For a topological space, the singular chain complex provides a 
-If the topological space has aadditional structure, like a CW or 
-simplicial decomposition , then the singular chains can be replaced
-by CW or simplicial chains, which are much easier to compute.
+percolation theory\mc{Add a lot of citations to this intro.}.  Our ultimate goal 
+is to understand higher dimensional topological constructions from a random perspective. We 
+begin with a much simpler objective of understanding an algebraic
+by-product of topological spaces, known as a chain complex. 
 
 Chain complexes are algebraic constructions used to measure a variety of
 different properties. Their usefulness lies in providing a pathway for
@@ -22,6 +18,15 @@ cohomology, and of course algebraic topology. Specifically, chain
 complexes measure the relationship between cycles and boundaries of a
 topological space. This relationship underlies many topological properties of
 interest, and is precisely what homology reveals. 
+
+The singular chain complex of a topological space provides a canonical
+chain complex.
+If the topological space has additional structure, like a CW or 
+simplicial decomposition, then the singular chain complex can be replaced
+by CW or simplicial chains, which are much easier to compute.
+
+\mc{The previous three paragraphs need to be fleshed out a bit more.}
+
 
 %Topology's tools have become very popular for analyzing data, and as one
 %usually regards data as a random vector, some have attempted to apply
@@ -53,12 +58,21 @@ see~\cite{hatcher2002algebraic} for further details.
 The boundary condition $A_{m-1}A_m=0$ forces $\im A_m \subseteq \ker A_{m-1}$.
 The {\em homology} of a chain complex measures the deviation of this containment
 from equality:
-\begin{equation}
+\begin{equation*}
   \label{eqn:hom}
   H_m(C_*;R) = \frac{\ker A_{m-1}}{\im A_m} \, .
-\end{equation}
+\end{equation*}
 When the chain complex arises from singular chains on a topological
-space, the homology is a very powerful invariant in algebraic topology.
+space, the homology is a very powerful tool in algebraic 
+topology \mc{Add citations}.
+
+We work over the field with $q$-elements $R = \Fqn{}$ throughout. In this setting, 
+homology can be understood in terms of dimension
+\begin{equation*}
+  \beta_m := \dim_{\Fqn{}} \frac{\ker A_{m-1}}{\im A_m} \, ,
+  \label{eqn:betti_numbers}
+\end{equation*}
+where $\beta_m$ is known as the $m^\mathrm{th}$ {\em Betti number}.
 
 % \mc{expand this}
 %Formally, a {\em chain complex $(C_n, \delta_n)$ } is a sequence of modules,
@@ -88,7 +102,8 @@ space, the homology is a very powerful invariant in algebraic topology.
 % This would allow us to define a more general object, even if we never work
 % with it.}
 
-Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements.  We
+\subsection*{Main Results}
+Let $q$ be a prime number.  We
 build a random chain complex with coefficients in $\Fqn{}$ as follows (see
 Definition~\ref{defn:random_chain_cx} for a precise statement). Given a
 sequence of integers $(n_m)$, where $m \in \N$, together with a probability
@@ -97,62 +112,60 @@ linear transformations
 \[
   A_m : \Fqn{n_m} \lra \Fqn{n_{m-1}} \, ,
 \]
-for all $m$. The transformations are subject to the constraint $A_{m-1} A_m = 0$,
-and should be chosen according to $\varphi$. The latter means the following.
-After fixing the
-standard basis for $\Fqn{n_m}$, it suffices to construct random
-matrices $n_{m-1} \times n_m$ matrices $A_m$. We do so by 
-choosing matrix entries i.i.d. from the distribution $\varphi$ on
-$\Fqn{}$.\mc{Add exposition about models for random chain complexes.}
+for all $m$. The transformations are subject to the constraint $A_{m-1} A_m =
+0$, and should be chosen according to $\varphi$. The latter means the
+following: after fixing the standard basis for $\Fqn{n_m}$, it suffices to
+construct random $n_{m-1} \times n_m$ matrices $A_m$, satisfying $A_{m-1}A_m =
+0$. We do so by choosing matrix entries i.i.d. from the distribution $\varphi$
+on $\Fqn{}$.\mc{Add exposition about models for random chain complexes.}
 
-%Consider the sequence of vector spaces $\Fqn{n_m}$ indexed by $m$ in the
-%integers.  Let $A_m$ be a random sequence of $(n_{m-1})\times (n_m)$ matrices
-%whose entries are chosen i.i.d. uniformly from $\Fq$, subject to the condition
-%that the product of consecutive matrices is zero.  We then consider the random
-%chain complex $(\Fqn{n_m},A_m)$. That is, we consider
-%\[
-%  \cdots \stackrel{A_{m+1}}{\lra} \Fqn{n_m} \stackrel{A_m}{\lra} \Fqn{n_{m-1}} 
-%  \stackrel{A_{m-1}}{\lra} \cdots 
-%\]
-%where $A_{i+1}A_i=0$ for every $i$. 
+We are primarily interested in the case when $\varphi \equiv \tfrac1q$ is
+the uniform distribution on $\Fqn{}$. In this case, we say
+$(\Fqn{}, A_m)$ is a {\em uniform random chain complex}.
 
-Since we work with field coefficients, this deviation can
-be understood in terms of dimension
-\begin{equation}
-  \beta_m := \dim \left(\ker A_{m-1} / \im A_m \right)\, .
-  \label{eqn:betti_numbers}
-\end{equation}
-
-
-\subsection*{Main Results}
 
 Our first result is an explicit formula for the distribution
 of the Betti numbers.
 \begin{bigthm} 
   \label{thm:bettinum}
-  Let $\beta_j$ be the $j$-th Betti number of the random chain complex
+  Let $\beta_j$ be the $j$-th Betti number of a uniform random chain complex
   $(\Fq^{n} , A_m)$. Then
   \[    
     \bP[\beta_j = b] = \sum_{i_j=0}^{n_{j}} P_{i_j}^{j}(i_j-b)
     \sum_{i_{j-1}=0}^{n_{j-1}} P_{i_{j-1}}^{j-1}\left(n_{j} -i_j\right) \cdots
-    \sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right).
+    \sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right) \, ,
   \]
   where $P^m_k(r)$ is given in Eq.~\eqref{eqn:Pmkr}.
 \end{bigthm}
 
+\mc{Explain why thm A is good.}
+
 Our second main result shows that as $q \ra \infty$, the homology of a 
-random chain complex tends to its minimal value.
+random chain complex tends to its minimal value. Set
+\begin{equation*}
+  (n)_+ = \max(0,n) \, \, \mbox{ and } \, \, (n)_- = \min(0,n) \, ,
+\end{equation*}
+to be the {\em positive part} and {\em negative part} of $n$, respectively.
+Define
+\begin{equation}
+\begin{aligned}
+  N_m &= \left( (-1)^{m+1}n_m + \left( (-1)^{m}n_{m-1} + \left( \cdots(-n_2 + (n_1+ (-n_0)_-)_+ )_- \cdots \right)_{\pm} \right)_{\mp} \right)_+ \\
+    &=\left( (-1)^{m+1}n_m + \left( (-1)^m n_{m-1} + \left( \cdots(-n_2 + (n_1 -n_0)_+ )_- \cdots \right)_{\pm} \right)_{\mp} \right)_+
+\end{aligned}
+  \label{eqn:Nm}
+\end{equation}
+
 
 \begin{bigthm}
   \label{thm:qtoinfty}
-  Set $N_m = \max(0,n_m - \min(n_{m},n_{m-1}) - \min(n_m,n_{m+1}))$. 
-  For a random chain complex $(\Fqn{n_m},A_m)$, we have
+  For a uniform random chain complex $(\Fqn{n_m},A_m)$ with $N_m$ defined as in Eq.~\eqref{eqn:Nm},
   \[
     \bP[\beta_m = N_m] \ra 1 
     \mbox{ as } q \ra \infty  \, .
   \]
 \end{bigthm}
 
+\mc{The following remarks need to be re-written and substantiated.}
 \begin{remark}
   \label{rem:smallest}
   The number $N_m$ of Theorem~\ref{thm:qtoinfty} represents the smallest
