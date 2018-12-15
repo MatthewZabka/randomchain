@@ -143,22 +143,24 @@ of the Betti numbers.
 Our second main result shows that as $q \ra \infty$, the homology of a 
 random chain complex tends to its minimal value. Set
 \begin{equation*}
-  (n)_+ = \max(0,n) \, \, \mbox{ and } \, \, (n)_- = \min(0,n) \, ,
+  (n)_+ = \max(0,n) \, \, , % \mbox{ and } \, \, (n)_- = \min(0,n) \, ,
 \end{equation*}
-to be the {\em positive part} and {\em negative part} of $n$, respectively.
+to be the {\em positive part} of $n$.
 Define
+% \begin{equation}
+% \begin{aligned}
+  % N_m &= \left( (-1)^{m+1}n_m + \left( (-1)^{m}n_{m-1} + \left( \cdots(-n_2 + (n_1+ (-n_0)_-)_+ )_- \cdots \right)_{\pm} \right)_{\mp} \right)_+ \\
+    % &=\left( (-1)^{m+1}n_m + \left( (-1)^m n_{m-1} + \left( \cdots(-n_2 + (n_1 -n_0)_+ )_- \cdots \right)_{\pm} \right)_{\mp} \right)_+
+% \end{aligned}
+% \label{eqn:Nm}
+% \end{equation}
+
+% \mz{I think it should be the following:}
 \begin{equation}
-\begin{aligned}
-  N_m &= \left( (-1)^{m+1}n_m + \left( (-1)^{m}n_{m-1} + \left( \cdots(-n_2 + (n_1+ (-n_0)_-)_+ )_- \cdots \right)_{\pm} \right)_{\mp} \right)_+ \\
-    &=\left( (-1)^{m+1}n_m + \left( (-1)^m n_{m-1} + \left( \cdots(-n_2 + (n_1 -n_0)_+ )_- \cdots \right)_{\pm} \right)_{\mp} \right)_+
-\end{aligned}
+  N_m = (-n_{m+1} + (n_m - (n_{m-1} - (\cdots - (n_1 - n_0)_+ \cdots)_+ )_+
+  )_+)_+ \, \, .
   \label{eqn:Nm}
 \end{equation}
-
-\mz{I think it should be the following:}
-\[
-N_m = (-n_{m+1} + (n_m - (n_{m-1} - (\cdots (n_1 - n_0)_+ \cdots)_+ )_+ )_+)_+
-\]
 
 
 \begin{bigthm}
