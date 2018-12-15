@@ -8,15 +8,15 @@ led to beautiful connections with statistical physics, for example through
 percolation theory\mc{Add a lot of citations to this intro.}.  Our ultimate goal 
 is to understand higher dimensional topological constructions from a random perspective. We 
 begin with a much simpler objective of understanding an algebraic
-by-product of topological spaces, known as a chain complex. 
+by-product of topological spaces, known as a chain complex. \mz{This is a good introductory paragraph.}
 
 Chain complexes are algebraic constructions used to measure a variety of
 different properties. Their usefulness lies in providing a pathway for
 homological algebra computations. They arise in a variety of contexts,
 including commutative algebra, algebraic geometry, group cohomology, Hoschild homology, de Rham
-cohomology, and of course algebraic topology. Specifically, chain
+cohomology, and of course algebraic topology.\mz{Do we need sources here?} Specifically, chain
 complexes measure the relationship between cycles and boundaries of a
-topological space. This relationship underlies many topological properties of
+topological space. This relationship uncovers many topological properties of
 interest, and is precisely what homology reveals. 
 
 The singular chain complex of a topological space provides a canonical
@@ -26,6 +26,7 @@ simplicial decomposition, then the singular chain complex can be replaced
 by CW or simplicial chains, which are much easier to compute.
 
 \mc{The previous three paragraphs need to be fleshed out a bit more.}
+\mz{I don't know if we need the previous paragraph -- our paper is purely algebraic.}
 
 
 %Topology's tools have become very popular for analyzing data, and as one
@@ -50,24 +51,23 @@ linear transformations
   \cdots \xrightarrow{\delta_{m+1}} C_m \xrightarrow{\delta_m}
   C_{m-1} \xrightarrow{\delta_{m-1}} \cdots
 \]
-such that $\delta_{m-1}\delta_m = 0$ for all $m \in \Z$. The maps $\delta_m$
+such that $\delta_{m-1}\delta_m = 0$ for all $m \in \Z$.  The maps $\delta_m$
 are called the boundary maps of the chain complex, and the equation
 $\delta_{m-1} \delta_m = 0$ is known as the boundary condition;
-see~\cite{hatcher2002algebraic} for further details.
+see~\cite{cartan2016homological} for further details. \mz{I've changed the citation to something more algebraic}
 
-The boundary condition $A_{m-1}A_m=0$ forces $\im A_m \subseteq \ker A_{m-1}$.
+The boundary condition $\delta_{m-1}\delta_m=0$ forces $\im \delta_m \subseteq \ker \delta_{m-1}$.
 The {\em homology} of a chain complex measures the deviation of this containment
 from equality:
 \begin{equation*}
   \label{eqn:hom}
-  H_m(C_*;R) = \frac{\ker A_{m-1}}{\im A_m} \, .
+  H_m(C_*;R) = \frac{\ker \delta_{m-1}}{\im \delta_m} \, .
 \end{equation*}
 When the chain complex arises from singular chains on a topological
 space, the homology is a very powerful tool in algebraic 
-topology \mc{Add citations}.
+topology. \cite{hatcher2002algebraic} \mz{I've put the Hatcher citation here instead -- do we need more?} \mc{Add citations}.
 
-We work over the field with $q$-elements $R = \Fqn{}$ throughout. In this setting, 
-homology can be understood in terms of dimension
+We work over the field with $q$-elements $R = \Fqn{}$ and consider the chain complex whose $R$-modules are given by finite dimensional vector spaces,  $C_m = \Fqn{n_m}$, where $n_m$ is in $\mathbb{N}$. In this setting, the boundary maps can be regarded as $n_{m-1}\times n_m $ matrices, which we denote by $A_m$. Homology can then be understood in terms of dimension \mz{We had defined the Betti numbers in terms of $A_m$ without defining the $A_m$. What I've written is one possible fix.}
 \begin{equation*}
   \beta_m := \dim_{\Fqn{}} \frac{\ker A_{m-1}}{\im A_m} \, ,
   \label{eqn:betti_numbers}
@@ -106,21 +106,20 @@ where $\beta_m$ is known as the $m^\mathrm{th}$ {\em Betti number}.
 Let $q$ be a prime number.  We
 build a random chain complex with coefficients in $\Fqn{}$ as follows (see
 Definition~\ref{defn:random_chain_cx} for a precise statement). Given a
-sequence of integers $(n_m)$, where $m \in \N$, together with a probability
-distribution $\varphi$ on $\Fqn{}$, we construct 
+sequence of non-negative integers $(n_m)$, where $m \in \N$, together with a probability
+distribution $\varphi$ on $\Fqn{}$, we construct random
 linear transformations 
 \[
   A_m : \Fqn{n_m} \lra \Fqn{n_{m-1}} \, ,
 \]
 for all $m$. The transformations are subject to the constraint $A_{m-1} A_m =
 0$, and should be chosen according to $\varphi$. The latter means the
-following: after fixing the standard basis for $\Fqn{n_m}$, it suffices to
+following: After fixing the standard basis for $\Fqn{n_m}$, it suffices to
 construct random $n_{m-1} \times n_m$ matrices $A_m$, satisfying $A_{m-1}A_m =
 0$. We do so by choosing matrix entries i.i.d. from the distribution $\varphi$
-on $\Fqn{}$.\mc{Add exposition about models for random chain complexes.}
+on $\Fqn{}$. We then say that $(\Fqn{n_m}, A_m)$ is a {\em random chain complex}. \mz{Does $\varphi$ belong in this notation? $(\Fqn{}, A_m, \varphi)$?  What more exposition do we need?} \mc{Add exposition about models for random chain complexes.}
 
-We are primarily interested in the case when $\varphi \equiv \tfrac1q$ is
-the uniform distribution on $\Fqn{}$. In this case, we say
+We are primarily interested in the case when $\varphi$ is the discrete uniform distribution on $\Fqn{}$. In this case, we say
 $(\Fqn{}, A_m)$ is a {\em uniform random chain complex}.
 
 
@@ -138,24 +137,15 @@ of the Betti numbers.
   where $P^m_k(r)$ is given in Eq.~\eqref{eqn:Pmkr}.
 \end{bigthm}
 
-\mc{Explain why thm A is good.}
+\mc{Explain why thm A is good.}\mz{We need to decide on the index and be consistent.  Should it be $m$ or $j$?} As Theorem A gives a formula for computing the distribution of the Betti numbers, it also leads to formulas for other probabilistic properties of $\beta_m$, such as its moments and variance.
 
-Our second main result shows that as $q \ra \infty$, the homology of a 
-random chain complex tends to its minimal value. Set
+Our second main result show that, asymptotically, the $m$-th Betti number of a uniform random chain complex concentrates in a single value. Set
 \begin{equation*}
-  (n)_+ = \max(0,n) \, \, , % \mbox{ and } \, \, (n)_- = \min(0,n) \, ,
+  (n)_+ = \max(0,n) \, \, , % \mbox{ and } \, \, (n)_- = \min(0,n) \
 \end{equation*}
 to be the {\em positive part} of $n$.
 Define
-% \begin{equation}
-% \begin{aligned}
-  % N_m &= \left( (-1)^{m+1}n_m + \left( (-1)^{m}n_{m-1} + \left( \cdots(-n_2 + (n_1+ (-n_0)_-)_+ )_- \cdots \right)_{\pm} \right)_{\mp} \right)_+ \\
-    % &=\left( (-1)^{m+1}n_m + \left( (-1)^m n_{m-1} + \left( \cdots(-n_2 + (n_1 -n_0)_+ )_- \cdots \right)_{\pm} \right)_{\mp} \right)_+
-% \end{aligned}
-% \label{eqn:Nm}
-% \end{equation}
 
-% \mz{I think it should be the following:}
 \begin{equation}
   N_m = (-n_{m+1} + (n_m - (n_{m-1} - (\cdots - (n_1 - n_0)_+ \cdots)_+ )_+
   )_+)_+ \, \, .
@@ -173,24 +163,23 @@ Define
 \end{bigthm}
 
 \mc{The following remarks need to be re-written and substantiated.}
-\begin{remark}
-  \label{rem:smallest}
-  The number $N_m$ of Theorem~\ref{thm:qtoinfty} represents the smallest
-  possible value of $\beta_m$. Therefore, we interpret Theorem~\ref{thm:qtoinfty}
-  as the statement that the rank of the homology is minimal as 
-  $q \ra \infty$.
-\end{remark}
+%\begin{remark}
+%  \label{rem:smallest}
+%  The number $N_m$ of Theorem~\ref{thm:qtoinfty} represents the smallest
+%  possible value of $\beta_m$. Therefore, we interpret Theorem~\ref{thm:qtoinfty}
+%  as the statement that the rank of the homology is minimal as 
+%  $q \ra \infty$.
+%\end{remark}
 
 \begin{remark}
   \label{rem:monotone}
   As a special case of the above theorem, consider when $\{n_m\}$
-  is monotonic, e.g., constant or increasing. In this case, 
-  $N_m = 0$, and the homology is trivial in probability as $q \ra \infty$.
+  is constant or increasing. In this case, 
+  $N_m = 0$, and the homology is trivial in probability as $q \ra \infty$. \mz{Should we refer to a cor here?} 
 \end{remark}
 
-\subsection*{Related Work} There are other notions of random chain complex
-one could consider. In~\cite{ginzburg2017random}, Ginzburg and Pasechnik investigate
-a different notion of random chain complex than the one described above.
+\subsection*{Related Work} Others have considered different methods of applying randomness to chain complexes. In~\cite{ginzburg2017random}, Ginzburg and Pasechnik investigate
+a different \mz{Is it really that different? The map $D$ is just one of the nilpotent matrices from $V$ into $V$ -- they're just choosing their matrix according to a different distribution.  Best to talk about this.} notion of random chain complex than the one described above.
 Given a finite dimensional vector space $V$ over $\Fqn{}$, they consider chain
 complexes of the form
 \[
@@ -199,10 +188,11 @@ complexes of the form
 for a randomly chosen linear operator $D$ such that $D^2 = 0$. They choose the 
 operator $D$ uniformly over all such possible choices. 
 
+\mz{Is it important to reference their results, since they don't align with our own?}
 The first of their main results~\cite[Thm 2.1]{ginzburg2017random} states that
 $\bP[\beta_r > 0] \ra 0$ as $q \ra \infty$ for $r>1$. Furthermore, $\bP[\beta_0
 = 0] \ra 1$ ($n$-even) or $\bP[\beta_1 = 0] \ra 1$ ($n$-odd) as $q \ra \infty$.
-One interpretation of this result is that homology concentrates in the
+%One interpretation of this result is that homology concentrates in the
 lowest possible dimension as $q \ra \infty$ (depending on the parity of $n$).
 This result is a special case of Theorem~\ref{thm:qtoinfty} where $n_m \equiv
 n$ for all $m$ (c.f.  Remark~\ref{rem:monotone}).
@@ -214,10 +204,11 @@ the following limit exists and is bounded
 \]
 for all $r$ and $j$. Based on explicit bounds, they provide analytic
 formulas for the quantity $\lim_{n\ra \infty}\bP[\beta_j=r]$ in terms
-of $r$ and $j$. In our situation, we interpret $n \ra \infty$ as the case
-$n_m \ra \infty$ and consider $\beta_M$ for large $M$. In theory,
-one can analyze this quantity using Theorem~\ref{thm:bettinum},
-but we have not been able to obtain useful bounds.
+of $r$ and $j$.\mz{Has something happened to the index here?}
+
+In \cite{zabka2018random}, Z. studied the properties of a random Bockstein operation when regarded the connecting homomorphism given by a random boundary operation between two finite dimensional vector spaces over $\Fqn{}$. \mz{I can add more here if we decide that we indeed want Ginzberg's results in our paper}
+
+\mz{I'm happy to write the following subsections, but I'm not sure what should go there.}
 
 \subsection*{Outline}
 
