@@ -16,7 +16,7 @@ Chain complexes are algebraic constructions used to measure a variety of
 different properties. Their usefulness lies in providing a pathway for
 homological algebra computations. They arise in a variety of contexts,
 including commutative algebra, algebraic geometry, group cohomology, Hoschild homology, de Rham
-cohomology, and of course algebraic topology.\mz{Do we need sources here?} \mc{Yes}
+cohomology, and of course algebraic topology~\cite{atiyah2018introduction, hartshorne2013algebraic,brown2012cohomology, hochschild1945cohomology, bott2013differential, hatcher2002algebraic}. \mz{I've just added some sources for each one of these areas -- you probably know better sources.}
 Specifically, chain
 complexes measure the relationship between cycles and boundaries of a
 topological space. This relationship uncovers many topological properties of
@@ -26,9 +26,6 @@ of associating a chain complex to a topological space.
 %If the topological space has additional structure, like a CW or 
 %simplicial decomposition, then the singular chain complex can be replaced
 %by CW or simplicial chains, which are much easier to compute.
-
-\mz{I don't know if we need the previous paragraph -- our paper is purely algebraic.}
-\mc{I agree, I merged them.}
 
 
 %Topology's tools have become very popular for analyzing data, and as one
@@ -66,19 +63,15 @@ from equality:
   H_m(C_*;R) = \frac{\ker \delta_{m-1}}{\im \delta_m} \, .
 \end{equation*}
 When the chain complex arises from singular chains on a topological
-space, the homology is a very powerful tool in algebraic topology.
-\cite{hatcher2002algebraic} \mz{I've put the Hatcher citation here instead --
-do we need more?} \mc{After a second reading, the sentence
-probably needs to be changed.}
+space, the homology is a very powerful tool in algebraic topology~\cite{hatcher2002algebraic}.  \mc{After a second reading, the sentence
+probably needs to be changed.} \mz{I think it sounds good.  What am I missing?}
 
 We work over the field with $q$-elements $R = \Fqn{}$ and consider the chain
 complex whose $R$-modules are given by finite dimensional vector spaces,  $C_m
 = \Fqn{n_m}$, where each $n_m \in \mathbb{N}$. After fixing the standard
 basis for $\Fqn{}$, the boundary
 maps can be regarded as $n_{m-1}\times n_m $ matrices, which we denote by
-$A_m$. Homology can then be understood in terms of dimension \mz{We had defined
-the Betti numbers in terms of $A_m$ without defining the $A_m$. What I've
-written is one possible fix.}
+$A_m$. Homology can then be understood in terms of dimension
 \begin{equation*}
   \beta_m := \dim_{\Fqn{}} \frac{\ker A_{m-1}}{\im A_m} \, ,
   \label{eqn:betti_numbers}
@@ -131,7 +124,7 @@ construct random $n_{m-1} \times n_m$ matrices $A_m$, satisfying $A_{m-1}A_m =
 on $\Fqn{}$. We then say that $(\Fqn{n_m}, A_m, \varphi)$ is a {\em random
 chain complex}. 
 
-We are primarily interested in the case when $\varphi$ is the discrete uniform distribution on $\Fqn{}$. In this case, we say
+We are primarily interested in the case when $\varphi$ is the discrete uniform distribution on $\Fqn{}$. In this case, we drop $\phi$ from the notation and say that
 $(\Fqn{n_m}, A_m)$ is a {\em uniform random chain complex}.
 
 
@@ -187,7 +180,7 @@ Define
   \label{rem:monotone}
   As a special case of the above theorem, consider when $\{n_m\}$
   is constant or increasing. In this case, 
-  $B_m = 0$, and the homology is trivial in probability as $q \ra \infty$. \mz{Should we refer to a cor here?} \mc{I don't think so. It should be obvious from the formula. Which cor did you have in mind?}
+  $B_m = 0$, and the homology is trivial in probability as $q \ra \infty$. \mz{Should we refer to a cor here?} \mc{I don't think so. It should be obvious from the formula. Which cor did you have in mind?} \mz{Should we have a corollary in Section 3 that gives the result of this remark explicitly?  Perhaps after the proof of Theorem B?} 
 \end{remark}
 
 \subsection*{Related Work} Others have considered different methods of applying
@@ -197,8 +190,8 @@ a different
 % \mz{Is it really that different? The map $D$ is just one of the nilpotent
 % matrices from $V$ into $V$ -- they're just choosing their matrix according to a
 % different distribution.  Best to talk about this.} 
-notion of random chain
-complex than the one described above.  Given a finite dimensional vector space
+notion of a random chain
+complex than the one we have described above.  Given a finite dimensional vector space
 $V$ over $\Fqn{}$, they consider chain complexes of the form \[ \cdots
 \stackrel{D}{\lra} V \stackrel{D}{\lra} V \stackrel{D}{\lra} \cdots \, \, , \]
 for a randomly chosen linear operator $D$ such that $D^2 = 0$. They choose the
@@ -206,16 +199,10 @@ operator $D$ uniformly over all such possible choices. In particular, our constr
 is distinct from theirs, since they use the same operator $D$
 at each stage of the complex.
 
-\mz{Is it important to reference their results, since they don't align with our own?}
-\mc{No I don't think so. At least not as precisely. What do you think of the following?}
 The first of their main results~\cite[Thm 2.1]{ginzburg2017random} states that
-the rank of homology concentrates in the 
-% $\bP[\beta_r > 0] \ra 0$ as $q \ra \infty$ for $r>1$. Furthermore, $\bP[\beta_0
-% = 0] \ra 1$ ($n$-even) or $\bP[\beta_1 = 0] \ra 1$ ($n$-odd) as $q \ra \infty$.
-%One interpretation of this result is that homology concentrates in the
-lowest possible dimension as $q \ra \infty$.  While a direct comparison with
+the rank of homology concentrates in the lowest possible dimension as $q \ra \infty$.  While a direct comparison with
 our results is not possible, we view Theorem~\ref{thm:qtoinfty} as a result in the
-same fashion of concentration of minimal rank homology.
+same fashion of concentration of minimal rank homology. \mz{Our chain complexes don't  concentrate in minimal rank in homology, so I think this needs to change.}
 
 % Their second main result~\cite[Thm 2.2]{ginzburg2017random} shows that 
 % the following limit exists and is bounded
@@ -226,15 +213,13 @@ same fashion of concentration of minimal rank homology.
 % formulas for the quantity $\lim_{n\ra \infty}\bP[\beta_j=r]$ in terms
 % of $r$ and $j$.\mz{Has something happened to the index here?}
 
-In \cite{zabka2018random}, the second author introduced and studied the
-properties of a random Bockstein operation. The Bockstein is an example of a
+The second author has introduced and studied the
+properties of a random Bockstein operation~\cite{zabka2018random}. The Bockstein is an example of a
 cohomology operation in algebraic topology, which can detect information about the topology of a
 space that neither homology nor cohomology can detect. In homological algebra,
 the Bockstein is a connecting homomorphism associated with a short exact
 sequence of abelian groups, which are then used as the coefficients in a chain
-complex. \mc{We need to connect this with our work/results.}
-
-\mz{I'm happy to write the following subsections, but I'm not sure what should go there.}
+complex. In~\cite[Thm 5.2]{zabka2018random} finds the distribution of a random Bockstein operation when the boundary operation of the chain complex is chosen randomly. \mz{Not sure if the citation format is okay. Also, is what I've written sufficient for tying it to our paper?}
 
 \subsection*{Outline}
   The paper is organized as follows. In Section 2, we discuss preliminary results useful for 
@@ -243,7 +228,6 @@ complex. \mc{We need to connect this with our work/results.}
   Theorem~\ref{thm:bettinum}. In Section 4, we complete the proof of Theorem~\ref{thm:qtoinfty}.
 
 \subsection*{Conventions}
-\mc{Do we have any conventions? What should go here? I don't remember now.}
+\mc{Do we have any conventions? What should go here? I don't remember now.} \mz{I don't think we have any. We could get rid of this subsection.}
 
-\subsection*{Acknowledgments} The first author would like to thank
-Peter Bubenik for helpful discussions.
+\subsection*{Acknowledgments} The first author would like to thank Peter Bubenik for helpful discussions. \mz{The second author would like to thank the first author for being a badass.}
