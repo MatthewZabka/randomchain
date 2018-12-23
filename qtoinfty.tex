@@ -39,34 +39,9 @@ P_{i_{j-1}^\ast}^{j-1}(n_j-i_j^\ast)P_{i_{j-2}^\ast}^{j-2}(n_{j-1}-i_{j-1}^\ast)
 as $q\to\infty$, as desired.
 \end{proof}
 
-% \begin{proof}[Proof of Theorem~\ref{thm:qtoinfty}]
-%   By Theorem~\ref{thm:bettinum}, we have that
-%   \[ 
-%     \bP[\beta_m = b] = \sum_{i_m=0}^{n_{m}} P_{i_m}^{m}(i_m-b)
-%     \sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -i_m\right) \cdots
-%     \sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right) \, ,
-%   \]
-% By Proposition \ref{prop:oneseq} we have that there exists exactly one sequence $i_1^\ast, i_2^\ast, \ldots, i_m^\ast$ such that 
-% \[
-% P_{i_{m-1}}^{m-1}\left(n_{m} -i_m^\ast\right) \cdots
-%      P_{i_1^\ast}^1\left(n_2 - i_2^\ast\right) P_{n_0}^0 \left(n_1 - i_1^\ast\right) \to 1
-% \]
-% as $q \to \infty$, where $i_\ell^\ast = (n_\ell -i_{\ell-1}^\ast)_+$ for $1
-% \leq \ell \leq m$. Thus, in order for $\bP[\beta_m = b] \to 1$ as $q\to\infty$,
-% we need that $P_{i_m^\ast}^{m}(i_m^\ast-b)\to\infty$ as $q\to\infty$. By
-% Lemma~\ref{lem:Pqtoinfty}, we know that $P_{i_m^\ast}^{m}(i_m^\ast-b)\to1$
-% as $q\to\infty$ if and only if $i_m^\ast - b =\min(i_m^\ast, n_{m+1})$.  That
-% is, 
-% 	\begin{align*}
-% 	b 	&= i_m^\ast - \min(i_m^\ast, n_{m+1})\\
-% 		&= (-n_{m+1} + i_m^\ast)_+\\
-% 		&= (-n_{m+1} + (n_m -i_{m-1}^\ast)_+)_+\\
-% 		&= (-n_{m+1} + (n_m - (n_{m_1} - (\cdots (n_1 - n_0)_+ \cdots)_+)_+)_+ )_+\\
-% 		&= N_m
-% 	\end{align*}
-% \end{proof}
-
 \mc{What do you think of the following proof? (I just commented out your proof if you still want it.)}
+
+\mz{Yours is cleaner and more concise.}
 \begin{proof}[Proof of Theorem~\ref{thm:qtoinfty}]
   By Theorem~\ref{thm:bettinum}, it is sufficient to show
   \[
@@ -82,16 +57,28 @@ as $q\to\infty$, as desired.
 		&= (-n_{m+1} + i_m^\ast)_+\\
 		&= (-n_{m+1} + (n_m -i_{m-1}^\ast)_+)_+\\
 		&= (-n_{m+1} + (n_m - (n_{m_1} - (\cdots (n_1 - n_0)_+ \cdots)_+)_+)_+ )_+\\
-        &= N_m \, . \qedhere
+        &= B_m \, . \qedhere
 	\end{align*}
 \end{proof}
 
+\mz{Do we want a corollary here for the case where $n_m$ is monotone increasing?}
+
 \mc{How to word the following?}
+
+\mz{I think this is worded fine -- do we want a short proof?}
 \begin{corollary}
-  The moments of the random variable $\beta_m$ satisfy
+  The $t$-th moments of the random variable $\beta_m$ satisfy
   \[
-    \lim_{q \ra \infty} \mathbb{E}\beta_m^k = N_m^k \, .
+    \lim_{q \ra \infty} \mathbb{E}\left[\beta_m^t \right] = B_m^t \, .
   \]
 \end{corollary}
+\begin{proof}
+	\begin{align*}
+	\lim_{q \ra \infty} \mathbb{E}\left[\beta_m^t \right]
+	&= \lim_{q \ra \infty} \sum_{b=0}^{n_m} b^t \bP\left[\beta_m = b \right]\\
+	&= \sum_{b=0}^{n_m} b^t \lim_{q \ra \infty} \bP\left[\beta_m = b \right]\\
+	&= B_m^t
+	\end{align*}
+\end{proof}
 
-\mc{what is this limit?}
+

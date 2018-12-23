@@ -18,17 +18,18 @@
 % \end{definition}
 
 \begin{definition}
-  Let $n_m$ be a sequence of natural numbers indexed by $m \in \Z$.  A {\bf
-  model for a random chain complex over} $\Fqn{}$ consists of a probability
-  distribution $\varphi$ on $\Fqn{}$, together with a sequence of random matrices
-  $A_m: \Fqn{n_{m+1}} \ra \Fqn{n_m}$ whose entries are chosen with respect to
-  $\varphi$, subject to $A_{m+1}A_m = 0$ for all $m \in \Z$.
+  Let $q$ be a prime number and $\{n_m\}$ be a sequence of non-negative integers indexed by $m \in \Z$. Let $\varphi$ be a probability distribution on $\Fqn{}$. Let $\{A_m\}$ be a sequence of $n_{m-1}\times n_{m}$ matrices whose entries are chosen i.i.d. according to $\varphi$, subject to the condition that $A_{m-1}A_m = 0$.  The triple $(\Fqn{n_m},A_m,\varphi)$ is then said to be a {\bf  model for a random chain complex over} the field $\Fqn{}$.
 \end{definition}
+
+\mz{We should talk about whether we need the word \textit{model}.}
+
+\mz{The above definition is long. It's possible we'd like to define the sequence of maps/matrices $\{A_m\}$ first.}
+
+\mz{We need to ensure that the index $m$ is in the appropriate set.  When do we demand that $m$ is in $\{0,1,2,\ldots\}$? Perhaps this is what should be in the conventions? Or we should state after the definition that we are only concerned with $m$ in this index set.}
 
 
 \begin{definition}
-  The {\bf uniform random chain complex} is a model for a random chain complex
-  over $\Fqn{}$ with the uniform distribution $\varphi \equiv \tfrac1q$ on $\Fqn{}$. 
+  A {\bf uniform random chain complex} is a model for a random chain complex over $\Fqn{}$, $(\Fqn{n_m},A_m,\varphi)$, where $\varphi$ is the uniform distribution on $\Fqn{}$. In this case, we drop $\varphi$ from the notation and write $(\Fqn{n_m}, A_m)$.
   \label{defn:random_chain_cx}
 \end{definition}
 
@@ -42,20 +43,19 @@
 %   subject to the condition $A_{m+1}A_m = 0$, for all $m \in \Z$.
 % \end{definition}
 
-We wish to investigate the probabilistic properties of the homology of a random
+We wish to investigate the probabilistic properties of the homology of a uniform random
 chain complex.  We are primarily interested in the distribution of the Betti
-numbers $\beta_m = \ker A_m - \im A_{m+1}$.
-
-\mz{Exposition here regarding if $k > n_{m+1}$, then the smallest possible rank
-of $H_m$ is greater than $0$? Maybe an example?}
+numbers $\beta_m = \nul A_m - \rank A_{m+1}$.
 
 \begin{remark}
-As the $A_m$ of a random chain complex are uniformly distributed, Definition
+If $\{A_m\}$ is the sequence of maps from a uniform random chain complex, Definition
 \ref{defPkmr} immediately gives us that
 \[
   P^m_k(r) = \mathbb{P}\left[\beta_m = k-r \st \nul(A_{m}) = k\right].
 \]
 \end{remark}
+
+\mz{Is in necessary in the definition of $P^m_k(r)$ to say that the sequence of linear maps must be understood?}
 
 \mz{If we know anything about $\lim_{q\to\infty} \Fq$, we should state it here.}
 
@@ -200,7 +200,7 @@ As the $A_m$ of a random chain complex are uniformly distributed, Definition
 % \mz{Mike!  Please check the following lemma and proof}
 
 \begin{theorem}\label{thmProbranks}
-Let $(\Fq^{n_m}, A_m)$ be a random chain complex with $A_0:\Fq^{n_0}\to 0$.  Then
+Let $(\Fq^{n_m}, A_m)$ be a uniform random chain complex \mz{with $m$ in $\{0,1,2,\ldots\}$} and $A_0:\Fq^{n_0}\to 0$.  Then
 \begin{align*}
  &  \mathbb{P}\left[\rank(A_{m}) = n_{m} - k\right]\\
 =& 	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -k\right)
@@ -238,11 +238,11 @@ We must show that
 \end{align*}
 As in the base case, we have 
 \begin{align*}
-  \mathbb{P}\left[\rank(A_{m}) = n_{m} - k\right]\\
-  =& 	\sum_{i_{m-1}=0}^{n_{m-1}} \mathbb{P}\left[ \rank(A_{m}) = n_{m} - k  
-  \st \nul(A_{m-1}) = i_{m-1}\right] \mathbb{P}\left[\nul(A_{m-1}) = i_{m-1}\right]\\
-  =&  \sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}(n_{m} - k)
-  \mathbb{P}\left[\rank(A_{m-1}) = n_{m-1}- i_{m-1}\right].
+   & \mathbb{P}\left[\rank(A_{m}) = n_{m} - k\right]\\
+  =& \sum_{i_{m-1}=0}^{n_{m-1}} \mathbb{P}\left[ \rank(A_{m}) = n_{m} - k  
+  		\st \nul(A_{m-1}) = i_{m-1}\right] \mathbb{P}\left[\nul(A_{m-1}) = i_{m-1}\right]\\
+  =& \sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}(n_{m} - k)
+  		\mathbb{P}\left[\rank(A_{m-1}) = n_{m-1}- i_{m-1}\right].
 \end{align*}
 The desired result now follows by the induction hypothesis.
 \end{proof}
