@@ -39,9 +39,9 @@ P_{i_{j-1}^\ast}^{j-1}(n_j-i_j^\ast)P_{i_{j-2}^\ast}^{j-2}(n_{j-1}-i_{j-1}^\ast)
 as $q\to\infty$, as desired.
 \end{proof}
 
-\mc{What do you think of the following proof? (I just commented out your proof if you still want it.)}
+\mc{As a corollary, we could put what happens to the rank as $q \ra \infty$.}
 
-\mz{Yours is cleaner and more concise.}
+
 \begin{proof}[Proof of Theorem~\ref{thm:qtoinfty}]
   By Theorem~\ref{thm:bettinum}, it is sufficient to show
   \[
@@ -56,29 +56,43 @@ as $q\to\infty$, as desired.
 	b 	&= i_m^\ast - \min(i_m^\ast, n_{m+1})\\
 		&= (-n_{m+1} + i_m^\ast)_+\\
 		&= (-n_{m+1} + (n_m -i_{m-1}^\ast)_+)_+\\
-		&= (-n_{m+1} + (n_m - (n_{m_1} - (\cdots (n_1 - n_0)_+ \cdots)_+)_+)_+ )_+\\
+		&= (-n_{m+1} + (n_m - (n_{m-1} - (\cdots (n_1 - n_0)_+ \cdots)_+)_+)_+ )_+\\
         &= B_m \, . \qedhere
 	\end{align*}
 \end{proof}
 
 \mz{Do we want a corollary here for the case where $n_m$ is monotone increasing?}
+\mc{I added the following corollary and a short proof. What do you think?}
 
-\mc{How to word the following?}
+\begin{corollary}
+  \label{cor:inc}
+  If $\{n_m\}$ is a monotone increasing sequence, then 
+  \[
+    \lim_{q \ra \infty} \bP[\beta_m = 0] = 1 \, .
+  \]
+\end{corollary}
 
-\mz{I think this is worded fine -- do we want a short proof?}
+\begin{proof}
+  By direct inspection, we have
+  \[
+    (n_m - (n_{m-1} - ( \cdots (n_1 - n_0)_+ \cdots )_+)_+)_+ \leq n_m \, ,
+  \]
+  and hence $B_m = 0$.
+\end{proof}
+
 \begin{corollary}
   The $t$-th moments of the random variable $\beta_m$ satisfy
   \[
     \lim_{q \ra \infty} \mathbb{E}\left[\beta_m^t \right] = B_m^t \, .
   \]
 \end{corollary}
-\begin{proof}
-	\begin{align*}
-	\lim_{q \ra \infty} \mathbb{E}\left[\beta_m^t \right]
-	&= \lim_{q \ra \infty} \sum_{b=0}^{n_m} b^t \bP\left[\beta_m = b \right]\\
-	&= \sum_{b=0}^{n_m} b^t \lim_{q \ra \infty} \bP\left[\beta_m = b \right]\\
-	&= B_m^t
-	\end{align*}
-\end{proof}
+% \begin{proof}
+	% \begin{align*}
+	% \lim_{q \ra \infty} \mathbb{E}\left[\beta_m^t \right]
+	% &= \lim_{q \ra \infty} \sum_{b=0}^{n_m} b^t \bP\left[\beta_m = b \right]\\
+	% &= \sum_{b=0}^{n_m} b^t \lim_{q \ra \infty} \bP\left[\beta_m = b \right]\\
+	% &= B_m^t
+	% \end{align*}
+% \end{proof}
 
 

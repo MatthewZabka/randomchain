@@ -21,11 +21,7 @@
   Let $q$ be a prime number and $\{n_m\}$ be a sequence of non-negative integers indexed by $m \in \Z$. Let $\varphi$ be a probability distribution on $\Fqn{}$. Let $\{A_m\}$ be a sequence of $n_{m-1}\times n_{m}$ matrices whose entries are chosen i.i.d. according to $\varphi$, subject to the condition that $A_{m-1}A_m = 0$.  The triple $(\Fqn{n_m},A_m,\varphi)$ is then said to be a {\bf  model for a random chain complex over} the field $\Fqn{}$.
 \end{definition}
 
-\mz{We should talk about whether we need the word \textit{model}.}
-
-\mz{The above definition is long. It's possible we'd like to define the sequence of maps/matrices $\{A_m\}$ first.}
-
-\mz{We need to ensure that the index $m$ is in the appropriate set.  When do we demand that $m$ is in $\{0,1,2,\ldots\}$? Perhaps this is what should be in the conventions? Or we should state after the definition that we are only concerned with $m$ in this index set.}
+% \mz{We need to ensure that the index $m$ is in the appropriate set.  When do we demand that $m$ is in $\{0,1,2,\ldots\}$? Perhaps this is what should be in the conventions? Or we should state after the definition that we are only concerned with $m$ in this index set.}
 
 
 \begin{definition}
@@ -33,7 +29,12 @@
   \label{defn:random_chain_cx}
 \end{definition}
 
-\mc{Re-write all this expository stuff}
+\begin{remark}
+  \label{rem:bdd}
+  We are interested in {\em bounded from below} chain complexes, so that $A_m = 0$ for all $m < 0$
+  for the remainder of the manuscript.
+\end{remark}
+
 
 % \begin{definition}
 %   Let $n_m$ be a sequence of natural numbers indexed by $m \in \Z$. 
@@ -55,9 +56,9 @@ If $\{A_m\}$ is the sequence of maps from a uniform random chain complex, Defini
 \]
 \end{remark}
 
-\mz{Is in necessary in the definition of $P^m_k(r)$ to say that the sequence of linear maps must be understood?}
+% \mz{Is in necessary in the definition of $P^m_k(r)$ to say that the sequence of linear maps must be understood?}
 
-\mz{If we know anything about $\lim_{q\to\infty} \Fq$, we should state it here.}
+% \mz{If we know anything about $\lim_{q\to\infty} \Fq$, we should state it here.}
 
 
 %\begin{lemma}
@@ -200,7 +201,9 @@ If $\{A_m\}$ is the sequence of maps from a uniform random chain complex, Defini
 % \mz{Mike!  Please check the following lemma and proof}
 
 \begin{theorem}\label{thmProbranks}
-Let $(\Fq^{n_m}, A_m)$ be a uniform random chain complex \mz{with $m$ in $\{0,1,2,\ldots\}$} and $A_0:\Fq^{n_0}\to 0$.  Then
+Let $(\Fq^{n_m}, A_m)$ be a uniform random chain complex 
+% \mz{with $m$ in $\{0,1,2,\ldots\}$}
+and $A_0:\Fq^{n_0}\to 0$.  Then
 \begin{align*}
  &  \mathbb{P}\left[\rank(A_{m}) = n_{m} - k\right]\\
 =& 	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -k\right)
@@ -210,7 +213,7 @@ Let $(\Fq^{n_m}, A_m)$ be a uniform random chain complex \mz{with $m$ in $\{0,1,
 \end{align*}
 \end{theorem}
 \begin{proof}
-The proof is by induction on $m$. For the basis step $m=1$, we have
+The proof is by induction on $m$. For the base case $m=1$, we have
 \begin{align*}
 \mathbb{P}\left[\rank(A_1) = n_1 - k\right]
 	=& \sum_{i_0=0}^{n_0}\mathbb{P}\left [\rank(A_1)= n_1 - k\st\nul (A_0) = i_0\right]
@@ -228,14 +231,14 @@ For the inductive step, suppose that
 		\cdots
 	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right).
 \end{align*}
-We must show that
-\begin{align*}
-  &  \mathbb{P}\left[\rank(A_{m}) = n_{m} - k\right]\\
-  =& 	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -k\right)
-  \sum_{i_{m-2}=0}^{n_{m-2}} P_{i_{m-2}}^{m-2}\left(n_{m-1} - i_{m-1}\right)
-  \cdots
-  \sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right) \, .
-\end{align*}
+% We must show that
+% \begin{align*}
+  % &  \mathbb{P}\left[\rank(A_{m}) = n_{m} - k\right]\\
+  % =& 	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -k\right)
+  % \sum_{i_{m-2}=0}^{n_{m-2}} P_{i_{m-2}}^{m-2}\left(n_{m-1} - i_{m-1}\right)
+  % \cdots
+  % \sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right) \, .
+% \end{align*}
 As in the base case, we have 
 \begin{align*}
    & \mathbb{P}\left[\rank(A_{m}) = n_{m} - k\right]\\
@@ -264,7 +267,7 @@ for completeness.
   By the law of total probability, we have
   \begin{align*}
     \mathbb{P}[\beta_{m} = b] 
-    &= \mathbb{P}[\nul(A_{m}) - \rank(A_{m+1}) = b]\\
+    % &= \mathbb{P}[\nul(A_{m}) - \rank(A_{m+1}) = b]\\
     &= \mathbb{P}[\rank(A_{m+1}) = \nul(A_{m}) - b]\\
     &= \sum_{k=0}^{n_{m}}\mathbb{P}[\rank(A_{m+1}) = k - b\st \nul(A_{m})=k] \mathbb{P}[\nul(A_{m}) = k]\\
     &= \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\mathbb{P}[n_{m} - \rank(A_{m}) = k]\\

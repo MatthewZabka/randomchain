@@ -1,22 +1,24 @@
 There have been a variety of attempts to randomize topological constructions.
 Most famously, Erd\"os and R\'enyi introduced a model for random
-graphs~\cite{erdos_random_1959, erdos_evolution_1960}.  This work spawned an
+graphs~\cite{erdos_random_1959}.  This work spawned an
 entire industry of probabilistic models and tools used for understanding other
 random topological and algebraic phenomenon. These include various models for
-random simplicial complexes, random networks, and many more. Further, this has
+random simplicial complexes, random networks, and many
+more~\cite{erdos_evolution_1960, linial_random_2017}. Further, this has
 led to beautiful connections with statistical physics, for example through
 percolation theory~\cite{broadbent_percolation_1957, bollobas_2006_percolation,
 kesten_percolation_1982}.  Our ultimate goal is to understand higher
 dimensional topological constructions arising in algebraic topology from a
-random perspective. In this manuscript, we begin to address this goal with a
+random perspective. In this manuscript, we begin to address this goal with the
 much simpler objective of understanding an algebraic construction on
 topological spaces, known as a chain complex. 
 
-Chain complexes are algebraic constructions used to measure a variety of
+Chain complexes are algebraic constructions\mc{Can you think of a different way of saying
+'algebraic construction'?}used to measure a variety of
 different properties. Their usefulness lies in providing a pathway for
 homological algebra computations. They arise in a variety of contexts,
 including commutative algebra, algebraic geometry, group cohomology, Hoschild homology, de Rham
-cohomology, and of course algebraic topology~\cite{atiyah2018introduction, hartshorne2013algebraic,brown2012cohomology, hochschild1945cohomology, bott2013differential, hatcher2002algebraic}. \mz{I've just added some sources for each one of these areas -- you probably know better sources.}
+cohomology, and of course algebraic topology~\cite{hartshorne2013algebraic,brown2012cohomology, hochschild1945cohomology, bott2013differential, hatcher2002algebraic}. 
 Specifically, chain
 complexes measure the relationship between cycles and boundaries of a
 topological space. This relationship uncovers many topological properties of
@@ -63,8 +65,7 @@ from equality:
   H_m(C_*;R) = \frac{\ker \delta_{m-1}}{\im \delta_m} \, .
 \end{equation*}
 When the chain complex arises from singular chains on a topological
-space, the homology is a very powerful tool in algebraic topology~\cite{hatcher2002algebraic}.  \mc{After a second reading, the sentence
-probably needs to be changed.} \mz{I think it sounds good.  What am I missing?}
+space, homology can be a very powerful tool in algebraic topology~\cite{hatcher2002algebraic}. 
 
 We work over the field with $q$-elements $R = \Fqn{}$ and consider the chain
 complex whose $R$-modules are given by finite dimensional vector spaces,  $C_m
@@ -124,8 +125,10 @@ construct random $n_{m-1} \times n_m$ matrices $A_m$, satisfying $A_{m-1}A_m =
 on $\Fqn{}$. We then say that $(\Fqn{n_m}, A_m, \varphi)$ is a {\em random
 chain complex}. 
 
-We are primarily interested in the case when $\varphi$ is the discrete uniform distribution on $\Fqn{}$. In this case, we drop $\phi$ from the notation and say that
-$(\Fqn{n_m}, A_m)$ is a {\em uniform random chain complex}.
+We are primarily interested in the case when $\varphi$ is the discrete uniform
+distribution on $\Fqn{}$. In this case, we drop $\varphi$ from the notation and
+say that $(\Fqn{n_m}, A_m)$ is a {\em uniform random chain complex}. We also
+restrict our attention to bounded below chain complexes (see Remark~\ref{rem:bdd}). 
 
 
 Our first result is an explicit formula for the distribution
@@ -180,29 +183,25 @@ Define
   \label{rem:monotone}
   As a special case of the above theorem, consider when $\{n_m\}$
   is constant or increasing. In this case, 
-  $B_m = 0$, and the homology is trivial in probability as $q \ra \infty$. \mz{Should we refer to a cor here?} \mc{I don't think so. It should be obvious from the formula. Which cor did you have in mind?} \mz{Should we have a corollary in Section 3 that gives the result of this remark explicitly?  Perhaps after the proof of Theorem B?} 
+  $B_m = 0$, and the homology is trivial in probability as $q \ra \infty$ 
+  (see Corollary~\ref{cor:inc}). 
 \end{remark}
 
 \subsection*{Related Work} Others have considered different methods of applying
 randomness to chain complexes. In~\cite{ginzburg2017random}, Ginzburg and
-Pasechnik investigate
-a different 
-% \mz{Is it really that different? The map $D$ is just one of the nilpotent
-% matrices from $V$ into $V$ -- they're just choosing their matrix according to a
-% different distribution.  Best to talk about this.} 
-notion of a random chain
-complex than the one we have described above.  Given a finite dimensional vector space
-$V$ over $\Fqn{}$, they consider chain complexes of the form \[ \cdots
+Pasechnik investigate a different notion of a random chain complex than the one
+we have described above.  Given a finite dimensional vector space $V$ over
+$\Fqn{}$, they consider chain complexes of the form \[ \cdots
 \stackrel{D}{\lra} V \stackrel{D}{\lra} V \stackrel{D}{\lra} \cdots \, \, , \]
 for a randomly chosen linear operator $D$ such that $D^2 = 0$. They choose the
-operator $D$ uniformly over all such possible choices. In particular, our construction
-is distinct from theirs, since they use the same operator $D$
-at each stage of the complex.
-
+operator $D$ uniformly over all such possible choices. In particular, our
+construction is distinct from theirs, since they use the same operator $D$ at
+each stage of the complex.
 The first of their main results~\cite[Thm 2.1]{ginzburg2017random} states that
-the rank of homology concentrates in the lowest possible dimension as $q \ra \infty$.  While a direct comparison with
-our results is not possible, we view Theorem~\ref{thm:qtoinfty} as a result in the
-same fashion of concentration of minimal rank homology. \mz{Our chain complexes don't  concentrate in minimal rank in homology, so I think this needs to change.}
+the rank of homology concentrates in the lowest possible dimension as $q \ra \infty$.  
+In the special case when $n_m \equiv n$ is constant, we also obtain minimal rank
+homology (see Remark~\ref{rem:monotone}).
+\mc{What do you think of the changes I made to the previous paragraph?}
 
 % Their second main result~\cite[Thm 2.2]{ginzburg2017random} shows that 
 % the following limit exists and is bounded
@@ -214,12 +213,22 @@ same fashion of concentration of minimal rank homology. \mz{Our chain complexes 
 % of $r$ and $j$.\mz{Has something happened to the index here?}
 
 The second author has introduced and studied the
-properties of a random Bockstein operation~\cite{zabka2018random}. The Bockstein is an example of a
-cohomology operation in algebraic topology, which can detect information about the topology of a
-space that neither homology nor cohomology can detect. In homological algebra,
+properties of a random Bockstein operation~\cite{zabka2018random}. 
+% The Bockstein is an example of a
+% cohomology operation in algebraic topology, which can detect information about the topology of a
+% space that neither homology nor cohomology can detect. 
+In homological algebra,
 the Bockstein is a connecting homomorphism associated with a short exact
 sequence of abelian groups, which are then used as the coefficients in a chain
-complex. In~\cite[Thm 5.2]{zabka2018random} finds the distribution of a random Bockstein operation when the boundary operation of the chain complex is chosen randomly. \mz{Not sure if the citation format is okay. Also, is what I've written sufficient for tying it to our paper?}
+complex. Given a random boundary operator of a chain complex, the distribution of compatible
+random Bockstein operation is given in~\cite[Thm 5.2]{zabka2018random}.
+% finds the distribution of a random
+% Bockstein operation when the boundary operation of the chain complex is chosen
+% randomly. 
+\mz{Not sure if the citation format is okay. Also, is what I've
+written sufficient for tying it to our paper?}
+\mc{I've commented out one sentence on topology, since I don't think we need it in this
+paper. I've also re-written the last sentence.}
 
 \subsection*{Outline}
   The paper is organized as follows. In Section 2, we discuss preliminary results useful for 
@@ -227,7 +236,7 @@ complex. In~\cite[Thm 5.2]{zabka2018random} finds the distribution of a random B
   random chain complex in Section 3, as well as prove
   Theorem~\ref{thm:bettinum}. In Section 4, we complete the proof of Theorem~\ref{thm:qtoinfty}.
 
-\subsection*{Conventions}
-\mc{Do we have any conventions? What should go here? I don't remember now.} \mz{I don't think we have any. We could get rid of this subsection.}
+% \subsection*{Conventions}
+% \mc{Do we have any conventions? What should go here? I don't remember now.} \mz{I don't think we have any. We could get rid of this subsection.}
 
-\subsection*{Acknowledgments} The first author would like to thank Peter Bubenik for helpful discussions. \mz{The second author would like to thank the first author for being a badass.}
+  \subsection*{Acknowledgments} The first author would like to thank Peter Bubenik for helpful discussions. \mz{The second author would like to thank the first author for being a badass.} \mc{lmao}
