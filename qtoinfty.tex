@@ -39,8 +39,23 @@ P_{i_{j-1}^\ast}^{j-1}(n_j-i_j^\ast)P_{i_{j-2}^\ast}^{j-2}(n_{j-1}-i_{j-1}^\ast)
 as $q\to\infty$, as desired.
 \end{proof}
 
-\mc{As a corollary, we could put what happens to the rank as $q \ra \infty$.}
+\mc{As a corollary, we could put what happens to the rank as $q \ra \infty$. This 
+is what I think is true. Let me know what you think.}
 
+Proposition~\ref{prop:oneseq} has a number of immediate consequences.
+
+\begin{corollary}
+  Let $(\Fqn{n_m},A_m)$ be a uniform random chain complex. Then
+  \[
+    \bP[\rank(A_m) = n_m-(n_{m-1} -(n_{m-2} -( \cdots -(n_1-n_0)_+ \cdots )_+ )_+ )_+]
+    \ra 1 \,
+  \]
+  as $q \ra \infty$.
+\end{corollary}
+
+\begin{proof}
+  This follows immediately from Proposition~\ref{prop:oneseq} and Theorem~\ref{thm:qtoinfty}.
+\end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:qtoinfty}]
   By Theorem~\ref{thm:bettinum}, it is sufficient to show
