@@ -10,7 +10,7 @@ Then for every natural number $j$, there exists exactly one $\mathbf{i}^\ast =
   P_{i_{j-1}^\ast}^{j-1}(n_j-i_j^\ast)\cdots
   P_{i_1^\ast}^1(n_2-i_2^\ast)P_{n_0}^0(n_1-i_1^\ast) \to 1 \, ,
 \]
-as $q\to\infty$. In particular, if we set $i_0^\ast = n_0$, for each $\ell$ in
+as $q\to\infty$. In particular, set $i_0^\ast = n_0$. Then for $\ell$ in
 $\{1,2,\ldots, j\}$, we have $i_\ell^\ast = (n_\ell - i_{\ell - 1}^\ast)_+$.
 \end{proposition}
 
@@ -39,24 +39,6 @@ P_{i_{j-1}^\ast}^{j-1}(n_j-i_j^\ast)P_{i_{j-2}^\ast}^{j-2}(n_{j-1}-i_{j-1}^\ast)
 as $q\to\infty$, as desired.
 \end{proof}
 
-\mc{As a corollary, we could put what happens to the rank as $q \ra \infty$. This 
-is what I think is true. Let me know what you think.}
-
-Proposition~\ref{prop:oneseq} has a number of immediate consequences.
-
-\begin{corollary}
-  Let $(\Fqn{n_m},A_m)$ be a uniform random chain complex. Then
-  \[
-    \bP[\rank(A_m) = n_m-(n_{m-1} -(n_{m-2} -( \cdots -(n_1-n_0)_+ \cdots )_+ )_+ )_+]
-    \ra 1 \,
-  \]
-  as $q \ra \infty$.
-\end{corollary}
-
-\begin{proof}
-  This follows immediately from Proposition~\ref{prop:oneseq} and Theorem~\ref{thm:qtoinfty}.
-\end{proof}
-
 \begin{proof}[Proof of Theorem~\ref{thm:qtoinfty}]
   By Theorem~\ref{thm:bettinum}, it is sufficient to show
   \[
@@ -76,8 +58,25 @@ Proposition~\ref{prop:oneseq} has a number of immediate consequences.
 	\end{align*}
 \end{proof}
 
-\mz{Do we want a corollary here for the case where $n_m$ is monotone increasing?}
-\mc{I added the following corollary and a short proof. What do you think?}
+Proposition~\ref{prop:oneseq} and Theorem B have a number of immediate consequences.
+
+\mc{As a corollary, we could put what happens to the rank as $q \ra \infty$. This 
+is what I think is true. Let me know what you think.}
+
+\mz{I am not seeing this.  Let's talk about it.}
+
+\begin{corollary}
+  Let $(\Fqn{n_m},A_m)$ be a uniform random chain complex. Then
+  \[
+    \bP[\rank(A_m) = n_m-(n_{m-1} -(n_{m-2} -( \cdots -(n_1-n_0)_+ \cdots )_+ )_+ )_+]
+    \ra 1 \,
+  \]
+  as $q \ra \infty$.
+\end{corollary}
+
+\begin{proof}
+  This follows immediately from Proposition~\ref{prop:oneseq} and Theorem~\ref{thm:qtoinfty}.
+\end{proof}
 
 \begin{corollary}
   \label{cor:inc}
