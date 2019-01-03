@@ -60,22 +60,19 @@ as $q\to\infty$, as desired.
 
 Proposition~\ref{prop:oneseq} and Theorem B have a number of immediate consequences.
 
-\mc{As a corollary, we could put what happens to the rank as $q \ra \infty$. This 
-is what I think is true. Let me know what you think.}
-
-\mz{I am not seeing this.  Let's talk about it.}
-
 \begin{corollary}
   Let $(\Fqn{n_m},A_m)$ be a uniform random chain complex. Then
   \[
-    \bP[\rank(A_m) = n_m-(n_{m-1} -(n_{m-2} -( \cdots -(n_1-n_0)_+ \cdots )_+ )_+ )_+]
+    \bP[\rank(A_m) = n_m-(n_m-(n_{m-1} -( \cdots -(n_1-n_0)_+ \cdots )_+ )_+)_+]
     \ra 1 \,
   \]
   as $q \ra \infty$.
 \end{corollary}
 
+\mc{I changed the proof.}
 \begin{proof}
-  This follows immediately from Proposition~\ref{prop:oneseq} and Theorem~\ref{thm:qtoinfty}.
+  Using Lemma~\ref{lem:Pqtoinfty}, this follows by a similar argument to the
+  Proof of Theorem~\ref{thm:qtoinfty}.
 \end{proof}
 
 \begin{corollary}
