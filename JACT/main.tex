@@ -1,0 +1,95 @@
+% \documentclass{amsart}
+\documentclass[smallextended]{svjour3}
+%\usepackage[utf8]{inputenc}
+\usepackage{amssymb, mathtools}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+
+%\newtheorem{theorem}{Theorem}[section]
+\newtheorem{bigthm}{Theorem}
+\renewcommand{\thebigthm}{\Alph{bigthm}}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{definition}[theorem]{Definition}
+%\theoremstyle{remark}
+%\newtheorem{convention}[theorem]{Convention}
+%newtheorem{remark}[theorem]{Remark}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\newtheorem{question}[theorem]{Question}
+
+\DeclareMathOperator{\rank}{\mathrm{rank}}
+\DeclareMathOperator{\im}{\mathrm{im}}
+%\DeclareMathOperator{\ker}{\mathrm{ker}}
+
+%\usepackage{libertine,anyfontsize,libertinust1math}
+\linespread{1.1}
+
+
+\usepackage[usenames,dvipsnames]{color}
+ 
+% comments
+\newcommand\mc[1]{\textcolor{NavyBlue}{\textbf{Mike: }#1}}
+\newcommand\mz[1]{\textcolor{OliveGreen}{\textbf{Matt: }#1}}
+
+% abbreviations 
+\newcommand{\qbin}[2]{\begin{bmatrix}{#1}\\ {#2}\end{bmatrix}_q}
+\newcommand{\Fq}{\mathbb{F}_q}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand\Fqn[1]{\mathbb{F}_q^{#1}}
+\newcommand{\nul}{\mathrm{nul}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\st}{\,|\,} % such that
+
+
+\begin{document}
+\title{A Model for Random Chain Complexes}
+\author{Michael J. Catanzaro \and Matthew J. Zabka}
+\institute{Michael J. Catanzaro \at Iowa State University,\\ \email{mjcatanz@iastate.edu}
+           \and Matthew J. Zabka \at Southwest Minnesota State University, \\
+           \email{matthew.zabka@smsu.edu}
+           }
+\date{\today}
+
+\maketitle
+\begin{abstract}
+We introduce a model for random chain complexes over a finite
+field. The randomness in our complex comes from choosing the entries in the
+matrices that represent the boundary maps uniformly over $\mathbb{F}_q$,
+conditioned on ensuring that the composition of consecutive boundary maps is
+the zero map.  We then investigate the combinatorial and homological 
+properties of this random chain complex.
+\end{abstract}
+
+
+\section{Introduction}
+\input{Intro.tex}
+%---------------------------------------------------
+\section{Preliminaries}
+\input{Preliminaries.tex}
+%---------------------------------------------------
+\section{The Homology of a Random Chain Complex}\label{SecCondComp}
+\input{Rand_Complex.tex}
+%-------------------------------------------------
+\section{Proof of Theorem B}
+\input{qtoinfty.tex}
+%--------------------------------------------------
+%\section{Conjectures}
+%\input{Conjectures.tex}
+
+ \section*{Conflict of interest}
+
+ The authors declare that they have no conflict of interest.
+
+
+\bibliography{master}
+\bibliographystyle{plain}
+  
+
+\end{document}

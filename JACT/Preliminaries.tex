@@ -1,0 +1,169 @@
+This section consists of lemmas that are necessary to prove our main results.
+The first four lemmas count the number of elements in various sets related to
+finite vector spaces over $\mathbb{F}_q$.  We provide
+proofs for these lemmas, but an interested reader can also
+see~\cite{stanley2011enumerative} for further details. The last lemma of 
+this section, Lemma~\ref{lem:Pqtoinfty}, gives the asymptotic behavior of a useful
+conditional probability and will be used several times in the remainder of the
+paper.
+
+\begin{lemma}\label{NumkTup}
+  The number of ordered, linearly independent $k$-tuples of vectors in $\Fqn{n}$  is
+\[
+\prod_{j=0}^{k-1} \left(q^n - q^j\right) = 
+(q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n - q^{k-2})(q^n-q^{k-1}).
+\]
+\end{lemma}
+
+\begin{proof}
+Since first vector in the $k$-tuple may be any vector except for the zero
+vector, there are $q^n-1$ choices for the first vector.  More generally, for $1
+\leq m \leq k$, the
+$m$-th vector in the $k$-tuple may be any vector that is not a linear
+combination of the previously chosen $m-1$ vectors. So there are $q^n -
+q^{m-1}$ choices for the $m$-th vector.
+\end{proof}
+
+\begin{lemma}\label{NumkSub}
+  The number of $k$-dimensional subspaces of $\Fqn{n}$ is
+\[
+%\qbin{n}{k} = \frac{(q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n - q^{k-2})(q^n-q^{k-1})}{(q^k-1)(q^k-q)(q^k-q^2)\cdots(q^k - q^{k-2})(q^k-q^{k-1})}.
+  \qbin{n}{k} = \prod_{j=0}^{k-1} \frac{q^n-q^j}{q^k-q^j} \, .
+\]
+\end{lemma}
+
+\begin{proof}
+  Let $\left[\begin{smallmatrix}n\\k\end{smallmatrix}\right]_q$ denote the number of $k$-dimensional subspaces of $\Fqn{n}$
+  and $N(q,k)$ be the number of ordered, linear independent $k$-tuples of
+  vectors in $\Fqn{n}$.  Then Lemma~\ref{NumkTup} gives
+  \begin{equation}
+    \label{Nqk1}
+%    N(q,k) = (q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n - q^{k-2})(q^n-q^{k-1}).
+    N(q,k) = \prod_{j=0}^{k-1} q^n-q^j \, .
+  \end{equation}
+  We may also find $N(q,k)$ another way: First choose a $k$-dimensional
+  subspace and then choose the independent vectors in our $k$-tuple from the
+  chosen subspace.  There are
+  $\left[\begin{smallmatrix}n\\k\end{smallmatrix}\right]_q$ $k$-dimensional
+  subspaces of $\Fqn{n}$.  There are $q^k-1$ choices for the first vector in
+  the $k$-tuple, and more generally, for $1 \leq m \leq k$, there are $q^k - q^{m-1}$ vectors for
+  the $m$-th vector in the $k$-tuple.  Thus
+  \begin{equation}\label{Nqk2}
+  %  N(q,k) = \qbin{n}{k}(q^k-1)(q^k-q)(q^k-q^2)\cdots(q^k - q^{k-2})(q^k-q^{k-1}).
+    N(q,k) = \qbin{n}{k}\prod_{j=0}^{k-1} q^k - q^j \, .
+  \end{equation}
+  Equations~\eqref{Nqk1}~and~\eqref{Nqk2} give the desired result.
+\end{proof}
+
+The number $\left[\begin{smallmatrix}n\\k\end{smallmatrix}\right]_q$ defined
+above is known as the $q$-binomial
+coefficient~\cite{stanley2011enumerative}.  
+Lemmas~\ref{NumkTup}~and~\ref{NumkSub} combine to count the number of matrices
+of a given rank. %The following lemma will aid us in Section
+%\ref{SecCondComp}.
+
+\begin{lemma}\label{Num_mbyn_rankr}
+The number of $m\times n$ matrices of rank $r$ with entries in $\Fq$ is given by
+\begin{equation*}
+%	&\qbin{m}{r}(q^n-1)(q^n-q)\cdots (q^n-q^{r-1})\\
+%   =& \qbin{n}{r}(q^m-1)(q^m-q)\cdots (q^m-q^{r-1})\\
+%   =& \frac{(q^m-1) (q^m-q) \cdots (q^m-q^{r-1})\cdot
+%            (q^n-1) (q^n-q) \cdots (q^n-q^{r-1})}
+%      {(q^r-1)(q^r - q)(q^r - q^2)\cdots (q^r - q^{r-2})(q^r-q^{r-1})} \\
+%      =& \prod_{j=0}^{r-1} \frac{(q^m-q^j) (q^n - q^j)}{q^r - q^j} \, .
+      \prod_{j=0}^{r-1} \frac{(q^m-q^j) (q^n - q^j)}{q^r - q^j} \, .
+\end{equation*}
+\end{lemma}
+
+\begin{proof}
+  Let $W$ be a fixed $r$-dimensional subspace of $\Fqn{n}$.  The number of
+  matrices whose column space is $W$ is given by the number of $r\times n$
+  matrices with rank $r$.  This number is given by Lemma \ref{NumkTup}. The
+  number of $r$-dimensional subspaces of $\Fqn{n}$ is
+  $\left[\begin{smallmatrix}m\\r\end{smallmatrix}\right]_q$,  as stated in
+  Lemma \ref{NumkSub}.  The product of these is the number of $m\times n$
+  rank $r$ matrices.
+\end{proof}
+
+%We now turn our attention to a sequence of random matrices.
+
+\begin{definition}\label{defPkmr}
+Let $n_m$ be a sequence of natural numbers. Let $A_m$ be a sequence of random
+$(n_m) \times (n_{m-1})$ matrices whose entries are chosen i.i.d. uniformly
+from $\Fq$. Let $r$ be a non-negative integer.  Define 
+\[
+  P^m_k(r) := \mathbb{P} 
+  \left[\rank(A_{m+1}) = r \st A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right] \, .
+\]
+\end{definition}
+
+%Lemma~\ref{Num_mbyn_rankr} gives us the following.
+
+\begin{lemma}\label{lemPkmr} With $A_m$ defined as in Definition \ref{defPkmr}, we have that
+  \begin{equation}
+    P^m_k(r) = 
+   % \begin{cases}
+      %{\displaystyle 
+    q^{-kn_{m+1}}\prod_{j=0}^{r-1} \frac{(q^{n_{m+1}}-q^j) (q^k - q^j)}{q^r - q^j} \, . % }
+%	\frac{\left(\prod_{j=0}^{r-1}\left(q^{n_{m+1}}-q^{j}\right)\right)
+%	\left(\prod_{j=0}^{r-1}\left(q^k - q^j \right) \right)}
+%      {q^{kn_{m+1}} \left(\prod_{j=0}^{r-1} \left(q^r-q^j\right)\right)}}
+%      & \textrm{ if } k\neq 0, r \leq k, \\
+%      0	& \textrm{ if }  r>k, r<0, \textrm{ or } k<0, \\
+%           1	& \textrm{ if } r = k = 0.
+%	 \end{cases}
+	 \label{eqn:Pmkr}
+       \end{equation}
+\end{lemma}
+\begin{proof}
+  Let $ k = \nul(A_m)$.
+The linear transformation $A_{m+1}$ maps 
+$\Fq^{n_{m+1}}$ into a $k$-dimensional subspace of
+$\Fq^{n_{m}}$. By changing basis, $A_{m+1}$ can be represented by an
+$k \times n_{m+1}$ matrix. There are $q^{kn_{m+1}}$ total $k \times n_{m+1}$
+matrices over $\Fqn{}$, and by
+Lemma \ref{Num_mbyn_rankr}, there are 
+\[
+% \displaystyle \frac{\left(\prod_{j=0}^{r-1}\left(q^{n_{m+1}}-q^{j}\right)\right)
+%  \left(\prod_{j=0}^{r-1}\left(q^k - q^j \right) \right)}
+%  {\prod_{j=0}^{r-1} \left(q^r-q^j\right)}
+  \prod_{j=0}^{r-1} \frac{(q^{n_{m+1}}-q^j) ( q^k - q^j)}{q^r-q^j}
+\]
+such matrices of rank $r$.
+\end{proof}
+
+\begin{remark}
+  We adopt the convention that the empty product is 1. With this,
+  $P^m_0(0) = 1$ and $P^m_k(r) = 0$ for impossible cases like $r>k$ and $k < 0$.
+\end{remark}
+
+\begin{lemma}
+  \label{lem:Pqtoinfty}
+  Fix $m$ and $k$. Then 
+  \[
+    \lim_{q \ra \infty} P^m_k(r) = 
+      \begin{cases}
+        1 & \mbox{ if } r = \min(k,n_{m+1}) \, , \\
+        0 & \mbox { else.}
+      \end{cases}
+    \]
+\end{lemma}
+
+\begin{proof}
+  Suppose $\min(k,n_{m+1}) = k$. Then 
+  \begin{align*} 
+    P^m_k(k) =& q^{-kn_{m+1}}\prod_{j=0}^{k-1} \frac{(q^{n_m+1}-q^j) (q^k - q^j)}{q^k - q^j}  \\
+    =& q^{-kn_{m+1}} \prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j) \\
+        %=& \frac{\prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j)}{q^{n_{m+1}k}}\\
+    =& \prod_{j=0}^{k-1} (1-q^{j-n_{m+1}}).
+  \end{align*}
+  Suppose $\min(k,n_{m+1}) = n_{m+1}$. Then
+  \begin{align*}
+    P^m_k(n_{m+1}) 
+    =& q^{-kn_{m+1}}\prod_{j=0}^{n_{m+1}-1} \frac{(q^{n_{m+1}} - q^j)(q^k - q^j)}{q^{n_{m+1}} - q^j}    \\
+    =&  \prod_{j=0}^{n_{m+1}-1}(1-q^{j-k}).
+	\end{align*}
+    In either of the above cases, $P^m_k(r) \ra 1$ as $q \ra \infty$. On the other hand, 
+    if $r \neq \min(k,n_{m+1})$, then $P^m_k(r) \ra 0$ since each $P^m_k(r)$ represents
+    a probability by Definition~\ref{defPkmr}.
+\end{proof}
