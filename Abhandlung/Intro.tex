@@ -1,0 +1,233 @@
+There have been a variety of attempts to randomize topological constructions.
+Most famously, Erd\"os and R\'enyi introduced a model for random
+graphs~\cite{erdos_random_1959}.  This work spawned an
+entire industry of probabilistic models and tools used for understanding other
+random topological and algebraic phenomenon. These include various models for
+random simplicial complexes, random networks, and many
+more~\cite{erdos_evolution_1960,linial_random_2017}. Further, this has
+led to beautiful connections with statistical physics, for example through
+percolation theory~\cite{bollobas_2006_percolation,broadbent_percolation_1957,kesten_percolation_1982}.  Our ultimate goal is to understand higher
+dimensional topological constructions arising in algebraic topology from a
+random perspective. In this manuscript, we begin to address this goal with the
+much simpler objective of understanding an algebraic construction commonly associated
+with topological spaces, known as a chain complex. 
+
+Chain complexes are used to measure a
+variety of different algebraic, geoemtric, and topological properties Their usefulness lies in
+providing a pathway for homological algebra computations. They arise in a
+variety of contexts, including commutative algebra, algebraic geometry, group
+cohomology, Hoschild homology, de Rham cohomology, and of course algebraic
+topology~\cite{bott2013differential,brown2012cohomology,hartshorne2013algebraic,hatcher2002algebraic,hochschild1945cohomology}.
+Specifically, chain complexes measure the relationship between cycles and
+boundaries of a topological space. This relationship uncovers many topological
+properties of interest, and is precisely what homology reveals. Furthermore,
+the singular chain complex of a topological space provides a canonical method
+of associating a chain complex to a topological space.
+%If the topological space has additional structure, like a CW or 
+%simplicial decomposition, then the singular chain complex can be replaced
+%by CW or simplicial chains, which are much easier to compute.
+
+
+%Topology's tools have become very popular for analyzing data, and as one
+%usually regards data as a random vector, some have attempted to apply
+%randomness to topological ideas.  For example, Ginzburg and Pasechnik
+%\cite{ginzburg2017random} have investigated a random chain complex with
+%constant differential, while Zabka \cite{zabka2018random} has investigated a
+%random Bockstein operator.  Both of these papers have investigated their topics
+%in a strictly algebraic setting, and in this paper, we too shall investigate a
+%random chain complex in a strictly algebraic setting.
+%
+%Chain complexes arise in topology as an algebraic measure in different
+%dimensions of the relationship between the cycles and boundaries of a
+%topological space. In particular, a chain complex defined on a space gives us a
+%way to calculate that space's homology groups.
+
+
+Let $R$ be a ring. A {\em chain complex $C_*=(C_m, \delta_m)$ with coefficients in
+$R$} is a sequence of $R$-modules, denoted $C_m$, together with a sequence of
+linear transformations 
+\[
+  \cdots \xrightarrow{\delta_{m+1}} C_m \xrightarrow{\delta_m}
+  C_{m-1} \xrightarrow{\delta_{m-1}} \cdots
+\]
+such that $\delta_{m-1}\delta_m = 0$ for all $m \in \Z$.  The maps $\delta_m$
+are called the boundary maps of the chain complex, and the equation
+$\delta_{m-1} \delta_m = 0$ is known as the boundary condition;
+see~\cite{cartan2016homological} for further details. 
+
+The boundary condition $\delta_{m-1}\delta_m=0$ forces $\im \delta_m \subseteq \ker \delta_{m-1}$.
+The {\em homology} of a chain complex measures the deviation of this containment
+from equality:
+\begin{equation*}
+  \label{eqn:hom}
+  H_m(C_*;R) = \frac{\ker \delta_{m-1}}{\im \delta_m} \, .
+\end{equation*}
+When the chain complex arises by taking singular chains on a topological
+space, homology can be a very powerful tool in algebraic topology~\cite{hatcher2002algebraic}. 
+
+
+We work over the field with $q$-elements $R = \Fqn{}$ and consider the chain
+complex whose $R$-modules are given by finite dimensional vector spaces,  $C_m
+= \Fqn{n_m}$, where each $n_m \in \mathbb{N}$. After fixing the standard
+basis for $\Fqn{}$, the boundary
+maps can be regarded as $n_{m-1}\times n_m $ matrices, which we denote by
+$A_m$. Homology can then be understood in terms of dimension
+\begin{equation*}
+  \beta_m := \dim_{\Fqn{}} \frac{\ker A_{m-1}}{\im A_m} \, ,
+  \label{eqn:betti_numbers}
+\end{equation*}
+where $\beta_m$ is known as the $m^\mathrm{th}$ {\em Betti number}.
+
+% \mc{expand this}
+%Formally, a {\em chain complex $(C_n, \delta_n)$ } is a sequence of modules,
+%denoted $C_n$, and a sequence of linear transformations $\delta_n : C_n \to
+%C_{n-1}$ that satisfy the `boundary' condition $\delta_{n-1}\delta_n = 0$ for
+%all $n$. The $\delta_n$ are usually called the boundary maps of the chain
+%complex. An interested reader can see \cite{hatcher2002algebraic} for further
+%details.
+%
+%Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements.
+%Consider the sequence of vector spaces $\Fqn{n_m}$ indexed by $m$ in the
+%integers.  Let $A_m$ be a random sequence of $(n_{m-1})\times (n_m)$ matrices
+%whose entries are chosen i.i.d. uniformly from $\Fq$, subject to the condition
+%that the product of consecutive matrices is zero.  We then consider the random
+%chain complex $(\Fqn{n_m},A_m)$. That is, we consider
+%\[
+%  \cdots \stackrel{A_{m+1}}{\lra} \Fqn{n_m} \stackrel{A_m}{\lra} \Fqn{n_{m-1}} 
+%  \stackrel{A_{m-1}}{\lra} \cdots 
+%\]
+%where $A_{i+1}A_i=0$ for every $i$. 
+
+% \mc{Do we need an iterative construction like this? I don't think so:
+% people work with unbounded chain complexes all the time. Equivalently,
+% building a $\Z$-graded chain complex doesn't rely on an induction or anything.
+% E.g.: take $C_n = R$ for all $n \in \Z$ and take all the maps to be zero. 
+% This is a perfectly good chain complex that doesn't \emph{start} anywhere.
+% This would allow us to define a more general object, even if we never work
+% with it.}
+
+\subsection*{Main Results}
+Let $q$ be a prime number.  We
+build a random chain complex with coefficients in $\Fqn{}$ as follows (see
+Definition~\ref{defn:random_chain_cx} for a precise statement). Given a
+sequence of non-negative integers $\{n_m\}$, where $m \in \Z$, together with a probability
+distribution $\varphi$ on $\Fqn{}$, we construct random
+linear transformations 
+\[
+  A_m : \Fqn{n_m} \lra \Fqn{n_{m-1}} \, ,
+\]
+for all $m$. The transformations are subject to the constraint $A_{m-1} A_m =
+0$, and should be chosen according to $\varphi$. The latter means the
+following: After fixing the standard basis for $\Fqn{n_m}$, it suffices to
+construct random $n_{m-1} \times n_m$ matrices $A_m$, satisfying $A_{m-1}A_m =
+0$. We do so by choosing matrix entries i.i.d. from the distribution $\varphi$
+on $\Fqn{}$. We then say that $(\Fqn{n_m}, A_m, \varphi)$ is a {\em random
+chain complex}. 
+
+We are primarily interested in the case when $\varphi$ is the discrete uniform
+distribution on $\Fqn{}$. In this case, we drop $\varphi$ from the notation and
+say that $(\Fqn{n_m}, A_m)$ is a {\em uniform random chain complex}. We also
+restrict our attention to bounded below chain complexes (see Remark~\ref{rem:bdd}). 
+
+
+Our first result is an explicit formula for the distribution
+of the Betti numbers.
+\begin{bigthm} 
+  \label{thm:bettinum}
+  Let $\beta_m$ be the $m$-th Betti number of a uniform random chain complex
+  $(\Fq^{n_m} , A_m)$. Then
+  \[    
+    \bP[\beta_m = b] = \sum_{i_m=0}^{n_{m}} P_{i_m}^{m}(i_m-b)
+    \sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -i_m\right) \cdots
+    \sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right) \, ,
+  \]
+  where $P^m_k(r)$ is given in Eq.~\eqref{eqn:Pmkr}.
+\end{bigthm}
+
+As Theorem~\ref{thm:bettinum} gives a formula for
+computing the distribution of the Betti numbers, it also leads to formulas for
+other probabilistic properties of $\beta_m$, such as its moments and variance.
+
+Our second main result show that, asymptotically, the $m$-th Betti number of a uniform random chain complex concentrates in a single value. Set
+\begin{equation*}
+  (n)_+ = \max(0,n) \, , % \mbox{ and } \, \, (n)_- = \min(0,n) \
+\end{equation*}
+to be the {\em positive part} of $n$.
+Define
+\begin{equation}
+  B_m = (-n_{m+1} + (n_m - (n_{m-1} - (\cdots - (n_1 - n_0)_+ \cdots)_+ )_+
+  )_+)_+ \, \, .
+  \label{eqn:Nm}
+\end{equation}
+
+\begin{bigthm}
+  \label{thm:qtoinfty}
+  For a uniform random chain complex $(\Fqn{n_m},A_m)$ with $B_m$ defined as in Eq.~\eqref{eqn:Nm},
+  \[
+    \bP[\beta_m = B_m] \ra 1 
+    \mbox{ as } q \ra \infty  \, .
+  \]
+\end{bigthm}
+
+% \mc{The following remarks need to be re-written and substantiated.}
+%\begin{remark}
+%  \label{rem:smallest}
+%  The number $N_m$ of Theorem~\ref{thm:qtoinfty} represents the smallest
+%  possible value of $\beta_m$. Therefore, we interpret Theorem~\ref{thm:qtoinfty}
+%  as the statement that the rank of the homology is minimal as 
+%  $q \ra \infty$.
+%\end{remark}
+
+\begin{remark}
+  \label{rem:monotone}
+  As a special case of the above theorem, consider when $\{n_m\}$
+  is constant or increasing. In this case, 
+  $B_m = 0$, and the homology is trivial in probability as $q \ra \infty$ 
+  (see Corollary~\ref{cor:inc}). 
+\end{remark}
+
+\subsection*{Related Work} Others have considered different methods of applying
+randomness to chain complexes. In~\cite{ginzburg2017random}, Ginzburg and
+Pasechnik investigate a different notion of a random chain complex than the one
+we have described above.  Given a finite dimensional vector space $V$ over
+$\Fqn{}$, they consider chain complexes of the form \[ \cdots
+\stackrel{D}{\lra} V \stackrel{D}{\lra} V \stackrel{D}{\lra} \cdots \, \, , \]
+for a randomly chosen linear operator $D$ such that $D^2 = 0$. They choose the
+operator $D$ uniformly over all such possible choices. In particular, our
+construction is distinct from theirs, since they use the same operator $D$ at
+each stage of the complex.
+The first of their main results~\cite[Thm 2.1]{ginzburg2017random} states that
+the rank of homology concentrates in the lowest possible dimension as $q \ra \infty$.  
+In the special case when $n_m \equiv n$ is constant, we also obtain minimal rank
+homology (see Remark~\ref{rem:monotone}).
+
+% Their second main result~\cite[Thm 2.2]{ginzburg2017random} shows that 
+% the following limit exists and is bounded
+% \[
+%   0 < \lim_{n \ra \infty} \bP[\beta_r = j] < 1 \, ,
+% \]
+% for all $r$ and $j$. Based on explicit bounds, they provide analytic
+% formulas for the quantity $\lim_{n\ra \infty}\bP[\beta_j=r]$ in terms
+% of $r$ and $j$.\mz{Has something happened to the index here?}
+
+The second author has introduced and studied the
+properties of a random Bockstein operation~\cite{zabka2018random}. 
+% The Bockstein is an example of a
+% cohomology operation in algebraic topology, which can detect information about the topology of a
+% space that neither homology nor cohomology can detect. 
+In homological algebra,
+the Bockstein is a connecting homomorphism associated with a short exact
+sequence of abelian groups, which are then used as the coefficients in a chain
+complex. Given a random boundary operator of a chain complex, the distribution of compatible
+random Bockstein operations is given in~\cite[Thm 5.2]{zabka2018random}.
+
+\subsection*{Outline}
+  The paper is organized as follows. In Section 2, we discuss preliminary results useful for 
+  the combinatorial aspects of our results. We give a precise definition of a model for a 
+  random chain complex in Section 3, as well as prove
+  Theorem~\ref{thm:bettinum}. In Section 4, we complete the proof of Theorem~\ref{thm:qtoinfty}.
+
+% \subsection*{Conventions}
+
+
+

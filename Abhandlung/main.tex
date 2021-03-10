@@ -1,0 +1,108 @@
+\documentclass [smallcondensed, referee] {svjour3}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amssymb, mathtools}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+
+\newtheorem{bigthm}{Theorem}
+\renewcommand{\thebigthm}{\Alph{bigthm}}
+\newtheorem{convention}[theorem]{Convention}
+
+\DeclareMathOperator{\rank}{\mathrm{rank}}
+\DeclareMathOperator{\im}{\mathrm{im}}
+%\DeclareMathOperator{\ker}{\mathrm{ker}}
+
+%\usepackage{libertine,anyfontsize,libertinust1math}
+\linespread{1.1}
+
+
+\usepackage[usenames,dvipsnames]{color}
+ 
+% comments
+\newcommand\mc[1]{\textcolor{NavyBlue}{\textbf{Mike: }#1}}
+\newcommand\mz[1]{\textcolor{OliveGreen}{\textbf{Matt: }#1}}
+
+% abbreviations 
+\newcommand{\qbin}[2]{\begin{bmatrix}{#1}\\ {#2}\end{bmatrix}_q}
+\newcommand{\Fq}{\mathbb{F}_q}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand\Fqn[1]{\mathbb{F}_q^{#1}}
+\newcommand{\nul}{\mathrm{nul}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\st}{\,|\,} % such that
+
+\begin{document}
+
+
+\title{A Model for Random Chain Complexes}
+\author{Michael J. Catanzaro \and Matthew J. Zabka}
+\institute {Michael J. Catanzaro 
+    \at Iowa State University, Ames, Iowa, USA\\
+    \email{mjcatanz@iastate.edu }\\
+    ORCHID: 0000-0002-1910-7786
+    \and 
+    Matthew J. Zabka 
+    \at Southwest Minnesota State University, Marshall, MN, USA\\
+    \email{mathhew.zabka@smsu.edu}\\
+    ORCHID: 0000-0002-2772-2498}
+\date{\today}
+
+
+
+\maketitle
+
+\begin{abstract}
+We introduce a model for random chain complexes over a finite
+field. The randomness in our complex comes from choosing the entries in the
+matrices that represent the boundary maps uniformly over $\mathbb{F}_q$,
+conditioned on ensuring that the composition of consecutive boundary maps is
+the zero map.  We then investigate the combinatorial and homological 
+properties of this random chain complex.
+\end{abstract}
+\keywords{Homological Algebra, Chain Complex}
+
+
+\maketitle
+
+
+\begin{center}
+    \textbf{Declarations} 
+\end{center}
+
+\textbf{Funding:} Not applicable\\
+
+\textbf{Conflicts of interest/Competing interests:} Not applicable\\
+
+\textbf{Availability of data and material:} Not applicable\\
+
+\textbf{Code availability:} Not applicable\\
+
+\newpage
+
+\section{Introduction}
+\input{Intro.tex}
+%-----------------------------------------------------
+\section{Preliminaries}
+\input{Preliminaries.tex}
+%---------------------------------------------------
+\section{The Homology of a Random Chain Complex}\label{SecCondComp}
+\input{Rand_Complex.tex}
+%-------------------------------------------------
+\section{Proof of Theorem B}
+\input{qtoinfty.tex}
+
+\begin{acknowledgements}
+The first author would like to thank Peter Bubenik for helpful discussions.
+\end{acknowledgements}
+
+\bibliography{master}
+\bibliographystyle{plain}
+
+\end{document}

@@ -1,0 +1,323 @@
+% Recall that a chain complex consists of a pair of sequences $(C_n, \delta_n)$,
+% where the $C_n$ are appropriate spaces (vector spaces, groups, modules, etc.)
+% and the $\delta_n$ are maps, $\delta_n: C_n \to C_{n-1}$ such that
+% $\delta_{n-1}\delta_n = 0$.  
+
+% Let $q$ be a prime number and let $\Fq$ denote the field with $q$ elements. Let
+% $n_m$ be a sequence of natural numbers. Consider the sequence of finite vector
+% spaces $\Fqn{n_m}$ indexed by $m$.  We iteratively construct a sequence $A_m$
+% of boundary maps from $\Fq^{n_m}$ into $\Fq^{n_{m-1}}$.
+
+% \begin{definition} \label{defn:random_chain_cx} Let $n_m$ be a sequence of
+%   natural numbers and let $A_0:\Fq^{n_0} \to 0$ be the zero map.  Suppose for
+%   $m>0$ that $A_{m}:\Fq^{n_m} \to \Fq^{n_{m-1}}$ is known. Let $A_{m+1}$ be the
+%   random linear transformation given by the random $(n_{m})\times (n_{m+1})$
+%   matrix whose entries are chosen i.i.d. uniformly from $\Fq$, subject to the
+%   condition that $A_{m+1}A_{m} = 0$.  A {\bf random chain complex} is a sequence
+%   of pairs $(\Fqn{n_m},A_m)$ for $m \in \Z$.  
+% \end{definition}
+
+\begin{definition}
+  Let $q$ be a prime number and $\{n_m\}$ be a sequence of non-negative integers indexed by $m \in \Z$. Let $\varphi$ be a probability distribution on $\Fqn{}$. Let $\{A_m\}$ be a sequence of $n_{m-1}\times n_{m}$ matrices whose entries are chosen i.i.d. according to $\varphi$, subject to the condition that $A_{m-1}A_m = 0$.  The triple $(\Fqn{n_m},A_m,\varphi)$ is then said to be a {\bf  model for a random chain complex over} the field $\Fqn{}$.
+\end{definition}
+
+% \mz{We need to ensure that the index $m$ is in the appropriate set.  When do we demand that $m$ is in $\{0,1,2,\ldots\}$? Perhaps this is what should be in the conventions? Or we should state after the definition that we are only concerned with $m$ in this index set.}
+
+
+\begin{definition}
+  A {\bf uniform random chain complex} is a model for a random chain complex over $\Fqn{}$, $(\Fqn{n_m},A_m,\varphi)$, where $\varphi$ is the uniform distribution on $\Fqn{}$. In this case, we drop $\varphi$ from the notation and write $(\Fqn{n_m}, A_m)$.
+  \label{defn:random_chain_cx}
+\end{definition}
+
+\begin{remark}
+  \label{rem:bdd}
+  We are interested in {\em bounded from below} chain complexes, so that $A_m = 0$ for all $m < 0$
+  for the remainder of the manuscript.
+\end{remark}
+
+
+% \begin{definition}
+%   Let $n_m$ be a sequence of natural numbers indexed by $m \in \Z$. 
+%   A {\bf random chain complex} is a sequence of pairs $(\Fqn{n_m},A_m)$
+%   such that each $A_m: \Fqn{n_{m+1}} \ra \Fqn{n_m}$ is a 
+%   random matrix whose entries are chosen i.i.d. uniformly from $\Fqn{}$,
+%   subject to the condition $A_{m+1}A_m = 0$, for all $m \in \Z$.
+% \end{definition}
+
+We wish to investigate the probabilistic properties of the homology of a uniform random
+chain complex.  We are primarily interested in the distribution of the Betti
+numbers $\beta_m = \nul \,A_m - \rank A_{m+1}$.
+
+\begin{remark}
+If $\{A_m\}$ is the sequence of maps from a uniform random chain complex, Definition
+\ref{defPkmr} immediately gives us that
+\[
+  P^m_k(r) = \mathbb{P}\left[\beta_m = k-r \st \nul(A_{m}) = k\right].
+\]
+\end{remark}
+
+% \mz{Is in necessary in the definition of $P^m_k(r)$ to say that the sequence of linear maps must be understood?}
+
+% \mz{If we know anything about $\lim_{q\to\infty} \Fq$, we should state it here.}
+
+
+%\begin{lemma}
+%  \label{lem:condqtoinfty}
+%Let $\beta_m$ be the $m$-th Betti number of a random chain complex.  If $k\leq n_{m+1}$, then
+%\[
+%\mathbb{P}\left[\beta_m= 0 \st \nul(A_{m}) = k \right] \to 1 \textrm{ as } q\to\infty.
+%\]
+%\end{lemma}
+%\mz{I had to fix a bunch of the indexing here.  Please double check!}
+%\begin{proof}
+%We have
+%	\begin{align*}
+%	\mathbb{P}\left[\beta_m = 0 \st A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right]
+%    =& P^m_k(k)\\
+%    =& q^{-kn_{m+1}}\prod_{j=0}^{k-1} \frac{(q^{n_m+1}-q^j) (q^k - q^j)}{q^k - q^j}  \\
+%		=& \frac{1}{q^{kn_{m+1}}} \prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j) \\
+%		%=& \frac{\prod_{j=0}^{k-1}(q^{n_{m+1}} - q^j)}{q^{n_{m+1}k}}\\
+%		=& \frac{q^{kn_{m+1}}}{q^{kn_{m+1}}}\prod_{j=0}^{k-1}(1-q^{j-n_{m+1}})\\
+%		=& \prod_{j=0}^{k-1} (1-q^{j-n_{m+1}}).
+%	\end{align*}
+%Since the index $j$ is less than $k$, and since $k$ is less than $n_{m+1}$, this product tends to $1$ as $q\to\infty$.  
+%\end{proof}
+
+% \begin{lemma}
+%   \label{lem:condqtoinfty2}
+% Let $\beta_m$ be the $m$-th Betti number of a random chain complex.  If $k > n_{m+1}$, then
+% \[
+% \mathbb{P}\left[\beta_m= k - n_{m+1} \st \nul(A_{m}) = k \right] \to 1 \textrm{ as } q\to\infty.
+% \]
+% \end{lemma}
+
+% \begin{proof}
+% Since $k$ must be less than or equal to $n_m$, we have that $n_{m+1} < k \leq n_m$.  So
+% 	\begin{align*}
+% 	\mathbb{P}\left[\beta_m = k - n_{m+1} \st A_{m}A_{m+1} = 0, \nul(A_{m}) = k \right]
+%     =& P^m_k(n_{m+1})\\
+%     =& q^{-kn_{m+1}}\prod_{j=0}^{n_{m+1}-1} \left(\frac{(q^{n_{m+1}} - q^j)(q^k - q^j)}{q^{n_{m+1}} - q^j}  \right)  \\
+%     =&  \prod_{j=0}^{n_{m+1}-1}(1-q^{j-k}).
+% 	\end{align*}
+% Since the index $j$ is less than to $n_{m+1}$, which is less than $k$, this product goes to $1$ as $q$ goes to infinity.
+% \end{proof}
+
+% \mc{I've made this a separate lemma for now. Maybe we only need this, and not the previous
+% two lemmas at all. Or maybe not.}
+
+
+% \begin{lemma}
+%   Fix $m$ and $r$. Then
+%   \[
+%     \lim_{q \ra \infty} P^m_k(r) = 
+%       \begin{cases}
+%         1 & \mbox{ if } r < \min(n_m,n_{m+1}) \, \mbox{ and } \, k = r \, , \\
+%         1 & \mbox{ if } r = \min(n_m,n_{m+1}) \, \mbox{ and }  \, k \geq r \, , \\
+%         0 & \mbox { else.}
+%       \end{cases}
+%     \]
+% \end{lemma}
+
+% \begin{proof}
+%   TBD
+% \end{proof}
+
+
+% We are now in a position to prove Theorem~\ref{thm:qtoinfty}.
+
+% \begin{proof}[Proof of Theorem~\ref{thm:qtoinfty}]
+%   Consider the law of total probability
+%   \begin{equation}
+%     \label{eqn:totalbm}
+%     \bP[\beta_m = j] = \sum_{k=0}^{n_m} \bP[\beta_m = j \st \nul(A_m) = k]
+%     \bP[\nul(A_m) = k] \, .
+%   \end{equation}
+%    Since $0 \leq \nul(A_m) \leq n_m$, we have that $\bP[\nul(A_m) = k]$ is
+%    finite for all $k$ and for all primes $q$.  It suffices to show that 
+%    $\bP[\beta_m =N_m \st \nul(A_m) = k] \ra 1$ as $q \ra \infty$.
+   
+%    By Lemma~\ref{lem:condqtoinfty}, every
+%    term of Eq.~\eqref{eqn:totalbm} with $k\leq n_{m+1}$ tend to 0 as $q \ra \infty$.
+%    On the other hand, if $k>n_{m+1}$, there are two cases to consider.
+%    If $n_m \leq n_{m+1}$, then $n_m \leq n_{m+1} < k$, which is a contradiction.
+%    Otherwise, $n_m > n_{m+1}$, in which case $N_m = 0$. Hence, we have
+%    \begin{align*}
+%      \bP[\beta_m = 0 \st \nul(A_m) = k] &= q^{-k n_{m+1}} \prod_{j=0}^{k-1}q^{n_{m+1}}-q^j \\
+%      &= \prod_{j=0}^{k-1} 1 - q^{j-n_{m+1}} \, ,
+%    \end{align*}
+%    which tends to 1 as $q \ra \infty$.
+%  \end{proof}
+
+
+
+
+  
+
+
+
+% The previous theorem immediately leads to two corollaries.  
+% \mc{Fix the following two Corollaries.}
+
+% \begin{corollary}\label{condtozero}
+% Let $\beta_m$ be the $m$-th Betti number of a random chain complex. Let $b$ be a positive integer that is less than or equal to $k$. Then 
+% \[
+% \mathbb{P}[\beta_m = b \st \nul(A_{m}) = k ] \to 0 \textrm{ as } q\to\infty.
+% \]
+% \end{corollary}
+% \begin{proof}
+% We have that
+% 	\begin{eqnarray*}
+% 	&&\mathbb{P}[\beta_m = b \st A_{m}A_{m+1} = 0, \nul(A_{m}) = k ]\\
+%     &=& 1 - \sum_{j\neq b}\mathbb{P}[\beta_0 = j \st A_{m}A_{m+1} = 0, \nul(A_{m}) = k ]\\
+%     &\leq& 1 - \mathbb{P}[\beta_m = 0 \st A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ].
+% 	\end{eqnarray*}
+% By Lemma~\ref{lem:condqtoinfty}, this goes to $0$ as $q$ goes to infinity.
+% \end{proof}
+
+% \begin{corollary}
+% Let $\beta_m$ be the $m$-th Betti number of a random chain complex.  Then 
+% \[
+% \mathbb{E}[\beta_m \st \nul(A_{m}) = k ] \to  N_m\textrm{ as } q\to\infty.
+% \]
+% \begin{proof}
+% The conditional expectation of the $m$-th Betti number is given by
+% 	\begin{eqnarray*}
+% 	& & \mathbb{E}[\beta_m \st A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ]\\
+% 	&=& \sum_{b=1}^{n_m} b \mathbb{P}[\beta_m = b \st A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ] \, .
+% 	\end{eqnarray*}
+% By Corollary \ref{condtozero}, all terms with $b< n$ in this sum tend to 
+% $0$ as $q$ tends to infinity. 
+
+% On the other hand, when $b=n$, 
+% \[
+% n\mathbb{P}(\beta_m=0\st A_{m}A_{m+1} = 0, \dim\ker(A_{m}) = k ),
+% \]
+% which goes to $n$ has $q$ tends to infinity by Lemma~\ref{lem:condqtoinfty}.
+% \end{proof}
+% \end{corollary}
+
+% We next derive explicit formulas for the distributions of the Betti numbers of a random chain complex. We first need a lemma.
+
+% \mz{Mike!  Please check the following lemma and proof}
+
+\begin{theorem}\label{thmProbranks}
+Let $(\Fq^{n_m}, A_m)$ be a uniform random chain complex 
+% \mz{with $m$ in $\{0,1,2,\ldots\}$}
+and $A_0:\Fq^{n_0}\to 0$.  Then
+\begin{align*}
+ &  \mathbb{P}\left[\rank(A_{m}) = n_{m} - k\right]\\
+=& 	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -k\right)
+	\sum_{i_{m-2}=0}^{n_{m-2}} P_{i_{m-2}}^{m-2}\left(n_{m-1} - i_{m-1}\right)
+		\cdots
+        \sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right) \, .
+\end{align*}
+\end{theorem}
+\begin{proof}
+The proof is by induction on $m$. For the base case $m=1$, we have
+\begin{align*}
+\mathbb{P}\left[\rank(A_1) = n_1 - k\right]
+	=& \sum_{i_0=0}^{n_0}\mathbb{P}\left [\rank(A_1)= n_1 - k\st\nul (A_0) = i_0\right]
+		\mathbb{P}\left[\nul(A_0) = i_0 \right]\\
+	=& \mathbb{P}\left [\rank(A_1)= n_1 - k\st\nul (A_0) = n_0\right]\\
+	=& P_{n_0}^0(n_1 - k).
+\end{align*}
+The first equality follows by the Law of Total Probability, and the second equality follows because $A_0$ is the zero map.
+
+For the inductive step, suppose that
+\begin{align*}
+ &  \mathbb{P}\left[\rank(A_{m-1}) = n_{m-1} - i_{m-1}\right]\\
+=& 	\sum_{i_{m-2}=0}^{n_{m-2}} P_{i_{m-2}}^{m-2}\left(n_{m-1} -i_{m-1}\right)
+	\sum_{i_{m-3}=0}^{n_{m-3}} P_{i_{m-3}}^{m-3}\left(n_{m-2} - i_{m-2}\right)
+		\cdots
+	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right).
+\end{align*}
+% We must show that
+% \begin{align*}
+  % &  \mathbb{P}\left[\rank(A_{m}) = n_{m} - k\right]\\
+  % =& 	\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -k\right)
+  % \sum_{i_{m-2}=0}^{n_{m-2}} P_{i_{m-2}}^{m-2}\left(n_{m-1} - i_{m-1}\right)
+  % \cdots
+  % \sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right) \, .
+% \end{align*}
+As in the base case, we have 
+\begin{align*}
+   & \mathbb{P}\left[\rank(A_{m}) = n_{m} - k\right]\\
+  =& \sum_{i_{m-1}=0}^{n_{m-1}} \mathbb{P}\left[ \rank(A_{m}) = n_{m} - k  
+  		\st \nul(A_{m-1}) = i_{m-1}\right] \mathbb{P}\left[\nul(A_{m-1}) = i_{m-1}\right]\\
+  =& \sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}(n_{m} - k)
+  		\mathbb{P}\left[\rank(A_{m-1}) = n_{m-1}- i_{m-1}\right].
+\end{align*}
+The desired result now follows by the induction hypothesis.
+\end{proof}
+
+Theorem~\ref{thm:bettinum} now follows from Theorem~\ref{thmProbranks} and 
+Lemma~\ref{lem:Pqtoinfty} in a straightforward manner. We give an explicit proof
+for completeness.
+
+% \begin{theorem} Let $\beta_j$ be the $j$-th Betti number of the random chain complex $(\Fq^{n} , A_m)$. Then
+% 	\[    
+%     \bP[\beta_j = b] = \sum_{i_j=0}^{n_{j}} P_{i_j}^{j}(i_j-b)
+%     \sum_{i_{j-1}=0}^{n_{j-1}} P_{i_{j-1}}^{j-1}\left(n_{j} -i_j\right)
+% 		\cdots
+% 	\sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right).
+%     \]
+% \end{theorem}
+
+\begin{proof}[Proof of Theorem~\ref{thm:bettinum}]
+  By the law of total probability, we have
+  \begin{align*}
+    \mathbb{P}[\beta_{m} = b] 
+    % &= \mathbb{P}[\nul(A_{m}) - \rank(A_{m+1}) = b]\\
+    &= \mathbb{P}[\rank(A_{m+1}) = \nul(A_{m}) - b]\\
+    &= \sum_{k=0}^{n_{m}}\mathbb{P}[\rank(A_{m+1}) = k - b\st \nul(A_{m})=k] \mathbb{P}[\nul(A_{m}) = k]\\
+    &= \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\mathbb{P}[n_{m} - \rank(A_{m}) = k]\\
+    &= \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\mathbb{P}[\rank(A_{m}) = n_{m} - k] \, .
+  \end{align*}
+  By Theorem~\ref{thmProbranks},
+  \begin{align*}
+    & \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\mathbb{P}[\rank(A_{m}) = n_{m} - k] \\
+    =& \sum_{k=0}^{n_{m}} P_{k}^{m}(k-b)\sum_{i_{m-1}=0}^{n_{m-1}} P_{i_{m-1}}^{m-1}\left(n_{m} -k\right)
+    \cdots
+    \sum_{i_1 = 0}^{n_1} P_{i_1}^1\left(n_2 - i_2\right) P_{n_0}^0 \left(n_1 - i_1\right), 
+  \end{align*}
+  as desired.
+\end{proof}
+
+% \begin{lemma}
+% Let $I_m:= \{0,1,\ldots, n_m\}$.  Let $I^{(j)}:= I_1\times\cdots \times I_j$.  Then for every $j$ in $\mathbb{N}$, there exists exactly one $\mathbf{i}^\ast = (i_1^\ast,\ldots, i_j^\ast)$ in $I^{(j)}$ such that 
+% \[
+% P_{i_{j-1}^\ast}^{j-1}(n_j-i_j^\ast)\cdots P_{i_1^\ast}^1(n_2-i_2^\ast)P_{n_0}^0(n_1-i_1^\ast) \to 1
+% \]
+% as $q\to\infty$.
+% \end{lemma}
+
+% \begin{proof}
+% The proof is by induction on $j$.
+
+% \mz{The case $j=1$ is easy. Show this.}
+
+% Basis step: $j=2$ \mz{could we start with $j=1$?}.  Note that $P_{i_1}^1(n_2 - i_2)P_{n_0}^0 (n_1 - i_1) \to 1$ as $q\to\infty$ if and only if both $P_{i_1}^1(n_2 - i_2) \to 1$ and $P_{n_0}^0 (n_1 - i_1) \to 1$ as $q\to \infty$.  We have three cases to consider, and in each case, we shall find the desired $i_1^\ast$ and $i_2^\ast$.
+
+% Case 1: $n_0\leq n_1$ and $n_1\leq n_2$.  By Lemma \ref{lem:condqtoinfty} $P_{n_0}^0 (n_1 - i_1) \to 1$ as $q\to\infty$ if and only if $i_1 = n_1 - n_0$.  So in this case, $i_1^\ast = n_1 - n_0$.  Further, again by Lemma \ref{lem:condqtoinfty}, $P_{i_1^\ast}(n_2 - i_2) = P_{n_1 - n_0}(n_2 - i_2)  \to 1$ as $q\to\infty$ if and only if $i_2 = n_2 - n_1 + n_0$.  So $i_2^\ast = n_2 - n_1 + n_0$.
+
+% Case 2: $n_0 \leq n_1$ and $n_2 <n_1$. By Lemma \ref{lem:condqtoinfty} $P_{n_0}^0 (n_1 - i_1) \to 1$ as $q\to\infty$ if and only if $i_1 = n_1 - n_0$. So in this case, $i_1^\ast = n_1 - n_0$. We now have two different subcases to consider.
+% 	\begin{itemize}
+% 	\item Subcase 1: If $n_1 - n_0\leq n_2$, then by Lemma \ref{lem:condqtoinfty}, $P_{i_1^\ast}^1(n_2 - i_2) = P_{n_1-n_0}^1(n_2-i_2) \to 1$ as $q\to\infty$ if and only if $i_2 = n_2 - n_1 + n_0$.  So in this subcase, $i_2^\ast = n_2 - n_1 + n_0$.
+% 	\item Subcase 2: On the other hand, if $n_1 - n_0 >n_2$, then by Lemma \ref{lem:condqtoinfty2}, $P_{i_1^\ast}(n_2 - i_2) = P_{n_1-n_0}(n_2-i_2) \to 1$ as $q\to\infty$ if and only if $i_2 = 0$.  So in this subcase, $i_2^\ast = 0$.
+% 	\end{itemize}
+	
+% Case 3: $n_0 > n_1$. By Lemma \ref{lem:condqtoinfty2}, we know that $P_{n_0}^0 (n_1 - i_1) \to 1$ as $q\to\infty$ if and only if $i_1 = 0$. So in this case, $i_1^\ast = 0$.  Further, no matter the relationship between $n_1$ and $n_2$, we have that Lemma \ref{lem:condqtoinfty2} gives us that that $P_{i_1^\ast}^1(n_2 - i_2) = P_{0}^1(n_2 - i_2)\to 1$ as $q\to\infty$ if and only if $i_2 = 0$.  So in this case, $i_2^\ast = 0$.
+
+% Inductive step: Assume there exists exactly one $(i_1^\ast,\ldots , i_{j-1}^\ast)$ in $I^{(j-1)}$ such that 
+% \[
+% P_{i_{j-2}}^{j-2}(n_{j-1} - i_{j-1}^\ast)P_{i_{j-3}}^{j-3}(n_{j-2} - i_{j-2}^\ast) \cdots P_{i_1^\ast}^1 (n_2 - i_2^\ast) P_{n_0}^0 (n_1 - i_1^\ast) \to 1
+% \]
+% as $q\to\infty$. If, on the one hand, $i_{j-1}^\ast \leq n_j$, set $i_j^\ast = n_j-i_{j-1}^\ast$.  Then by Lemma \ref{lem:condqtoinfty}, $P_{i_{j-1}^\ast}^{j-1}(n_j - i_j^\ast) = P_{i_{j-1}^\ast}^{j-1}(i_{j-1}^\ast) \to 1$ as $q\to\infty$. If, on the other hand, $i_{j-1}^\ast > n_j$, set $i_j^\ast = 0$. Then by Lemma \ref{lem:condqtoinfty2}, $P_{i_{j-1}^\ast}^{j-1}(n_j - i_j^\ast) = P_{i_{j-1}^\ast}^{j-1}(n_j ) \to 1$ as $q \to\infty$.  
+
+% So for $\mathbf{i} = (i_1^\ast,\ldots, i_{j-1}^\ast, i_j^\ast)$ in $I^{(j)}$, we have
+% \[
+% P_{i_{j-1}^\ast}^{j-1}(n_j-i_j^\ast)P_{i_{j-2}^\ast}^{j-2}(n_{j-1}-i_{j-1}^\ast)\cdots P_{i_1^\ast}^1(n_2-i_2^\ast)P_{n_0}^0(n_1-i_1^\ast) \to 1
+% \]
+% as $q\to\infty$, as desired.
+% \end{proof}
+
